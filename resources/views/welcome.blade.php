@@ -340,14 +340,7 @@
 </section>
 
 <!--end New Arrivals-->
-
-
-
-
-
 <!-- What do we do -->
-
-
 
 <div class="Whatdo my-5 pt-5">
 
