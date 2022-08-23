@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 @include('layouts.backend.header')
 
 <!-- ============================================================== -->
