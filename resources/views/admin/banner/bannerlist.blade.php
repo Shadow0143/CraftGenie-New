@@ -52,10 +52,10 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody> 
+                                <tbody>
 
                                     @forelse($cms as $key => $val)
-                                    <tr>
+                                    <tr id="removeRow{{$val->id}}">
                                         <td>{{$key+1}}</td>
                                         <td>{{$val->title}}</td>
                                         <td>{{$val->subtitle}}</td>
@@ -78,11 +78,13 @@
                                                             class="dropdown-item" target="_blank"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             View banner image</a></li>
-                                                    <li><a class="dropdown-item edit-item-btn"><i
+                                                    <li><a class="dropdown-item edit-item-btn" href="{{route('editBanner',['id'=>$val->id])}}"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
-                                                        <a class="dropdown-item remove-item-btn">
+                                                        <a href="javaScript:void(0);"
+                                                            class="dropdown-item remove-item-btn delete_btn"
+                                                            data-id="{{$val->id}}">
                                                             <i
                                                                 class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
@@ -112,3 +114,40 @@
     </div>
     <!-- End Page-content -->
     @include('layouts.backend.footer')
+
+    <script>
+        $('.delete_btn').on('click',function(){
+            var banner_id = $(this).data('id');
+            swal({
+                title: 'Are you sure?',
+                text: "You won't delete this banner!",
+                icon: 'warning',
+                buttons: true,
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then((confirm) => {
+                if (confirm) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{route('deleteBanner')}}",
+                        data: { id: banner_id },
+                        success: function(data) {
+                            swal({
+                                title: 'Success',
+                                text: "Deleted",
+                                icon: 'success',
+                                buttons: true,
+                                buttonsStyling: false,
+                                reverseButtons: true
+                            });
+                            $('#removeRow'+banner_id).hide();
+                        }
+                    });
+                }
+
+            });
+        });
+
+
+          
+    </script>

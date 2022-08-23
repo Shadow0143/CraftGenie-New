@@ -28,28 +28,57 @@ class DashboardController extends Controller
 
     public function submitBanner(Request $request)
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'subtitle' => 'required',
-            'banner' => 'required',
-        ]);
-        $cms = new CMS();
-        $cms->created_by = Auth::user()->id;
-        $cms->type = 'banner';
-        $cms->title = $request->title;
-        $cms->subtitle = $request->subtitle;
-        if (!empty($request->file('banner'))) {
-            $banner = $request->file('banner');
-            $bannerphoto = 'banner-logo-' . rand(000, 999) . '.' .
-                $banner->getClientOriginalExtension();
-            $result = public_path('banners');
-            $banner->move($result, $bannerphoto);
-            $cms->image  = $bannerphoto;
+        if(!empty($request->id)){
+            $cms =  CMS::find($request->id);
+            $cms->title = $request->title;
+            $cms->subtitle = $request->subtitle;
+            if (!empty($request->file('banner'))) {
+                $banner = $request->file('banner');
+                $bannerphoto = 'banner-logo-' . rand(000, 999) . '.' .
+                    $banner->getClientOriginalExtension();
+                $result = public_path('banners');
+                $banner->move($result, $bannerphoto);
+                $cms->image  = $bannerphoto;
+            }
+            $cms->status = $request->changestatus;
+            $cms->save();
+            Alert::success('Success', 'Banner updated !');
+        }else{
+            $validated = $request->validate([
+                'title' => 'required',
+                'subtitle' => 'required',
+                'banner' => 'required',
+            ]);
+            $cms = new CMS();
+            $cms->created_by = Auth::user()->id;
+            $cms->type = 'banner';
+            $cms->title = $request->title;
+            $cms->subtitle = $request->subtitle;
+            if (!empty($request->file('banner'))) {
+                $banner = $request->file('banner');
+                $bannerphoto = 'banner-logo-' . rand(000, 999) . '.' .
+                    $banner->getClientOriginalExtension();
+                $result = public_path('banners');
+                $banner->move($result, $bannerphoto);
+                $cms->image  = $bannerphoto;
+            }
+            $cms->status = '1';
+            $cms->save();
+            Alert::success('Success', 'Banner added !');
         }
-        $cms->status = '1';
-        $cms->save();
-        Alert::success('Success', 'Banner added !');
+        
         return redirect()->route('bannerList');
+    }
+
+    public function deleteBanner(Request $request){
+        $cms = CMS::find($request->id);
+        $cms->delete();
+    }
+
+    public function editBanner($id)
+    {
+        $cms = CMS::where('id',$id)->first();
+        return view('admin.banner.addBanner',compact('cms'));
     }
 
 

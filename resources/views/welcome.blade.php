@@ -1,51 +1,20 @@
 @include('layouts.frontend.header')
 <div class="banner">
     <div id="home"> </div>
+
     <div id="banner" class="owl-carousel owl-theme">
-        <div class="item" style="background: url(img/bnr.jpg) no-repeat;">
-            <div class="container">
-                <div class="text-box">
-                    <h2>Your story matters.</h2>
-                    <p>We, at Craftgenie believe in delivering the ethos of your business through engaging & accessible
-                        narratives. Our solution-based approach with the science of storytelling has created impactful
-                        perception journeys for brands across various spectrums in the industry. Depending on the stage
-                        of your company we work across Indiaâ€™s fastest growing startups to some of Indiaâ€™s biggest
-                        unicorn founders.</p>
+        @foreach ($cms as $key=>$val)
+            @if($val->type =='banner')
+                <div class="item" style="background: url({{asset('banners')}}/{{$val->image}}) no-repeat;">
+                    <div class="container">
+                        <div class="text-box">
+                            <h2>{{$val->title}}</h2>
+                            <p>{{$val->subtitle}}</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="item" style="background: url(img/bnr2.jpg) no-repeat;">
-            <div class="container">
-                <div class="text-box">
-                    <h2>Relevant press coverage</h2>
-                    <p>Press solutions tailored to your businessâ€™</p>
-                </div>
-            </div>
-        </div>
-        <div class="item" style="background: url(img/bnr3.jpg) no-repeat;">
-            <div class="container">
-                <div class="text-box">
-                    <h2>Influencer marketing</h2>
-                    <p>Curating content with powerful influencers</p>
-                </div>
-            </div>
-        </div>
-        <div class="item" style="background: url(img/bnr4.jpg) no-repeat;">
-            <div class="container">
-                <div class="text-box">
-                    <h2>Blogs & LinkedIn</h2>
-                    <p>A makeover strategy for LinkedIn & blogs</p>
-                </div>
-            </div>
-        </div>
-        <div class="item" style="background: url(img/bnr22.jpg) no-repeat;">
-            <div class="container">
-                <div class="text-box">
-                    <h2>Crisis Communication </h2>
-                    <p>Timely & effective response battling negative press</p>
-                </div>
-            </div>
-        </div>
+            @endif
+        @endforeach
     </div>
 </div>
 

@@ -43,9 +43,12 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-6">
+                                        @if(!empty($cms->id))
+                                        <input type="hidden" name="id" id="id" value="{{$cms->id}}" readable>
+                                        @endif
                                         <label for="ttile">Tilte</label>
                                         <input type="text" name="title" id="title"
-                                            class="form-control @error('title') is-invalid @enderror">
+                                            class="form-control @error('title') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->title}}" @endif>
                                         @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
@@ -56,23 +59,35 @@
                                     <div class="col-6">
                                         <label for="subtitle">Sub Title</label>
                                         <input type="text" name="subtitle" id="subtitle"
-                                            class="form-control @error('subtitle') is-invalid @enderror">
+                                            class="form-control @error('subtitle') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->subtitle}}" @endif>
                                         @error('subtitle')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
                                         @enderror
                                     </div>
-                                    <div class="col-12 mt-3">
-                                        <label for="banner">Banner Image</label>
-                                        <input type="file" name="banner" id="banner"
-                                            class="form-control @error('banner') is-invalid @enderror">
-                                        @error('banner')
-                                        <span class="invalid-feedback" role="alert">
-                                            {{ $message }}
-                                        </span>
-                                        @enderror
+                                    <div class="row">
+                                        <div class=" @if(empty($cms))col-12 @else col-6 @endif mt-3">
+                                            <label for="banner">Banner Image</label>
+                                            <input type="file" name="banner" id="banner"
+                                                class="form-control @error('banner') is-invalid @enderror">
+                                            @error('banner')
+                                            <span class="invalid-feedback" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        @if(!empty($cms))
+                                        <div class="col-6 mt-3 ml-5">
+                                            <label for="status">Status</label>
+                                            <select name="changestatus" id="changestatus" class="form-control">
+                                                <option value="1" {{$cms->status == '1'  ? 'selected' : ''}}>Active</option>
+                                                <option value="0" {{$cms->status == '0'  ? 'selected' : ''}}>Inactive</option>
+                                            </select>
+                                        </div>
+                                    @endif
                                     </div>
+                                   
                                     <div class="col-12 text-center mt-5">
                                         <button type="submit" class="btn btn-outline-primary">Submit</button>
                                     </div>
