@@ -1,4 +1,4 @@
-@section('title', 'Add/Edit Blog')
+@section('title', 'Add/Edit Testimonial')
 @include('layouts.backend.header')
 <div class="main-content">
 
@@ -9,12 +9,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Blog </h4>
+                        <h4 class="mb-sm-0">Testimonial </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                <li class="breadcrumb-item active">Blog </li>
+                                <li class="breadcrumb-item active">Testimonial </li>
                             </ol>
                         </div>
                     </div>
@@ -29,27 +29,27 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <h5 class="card-title mb-0">Add Blog </h5>
+                                    <h5 class="card-title mb-0">Add Testimonial </h5>
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{route('blogList')}}" class="btn btn-outline-danger">Back</a>
+                                    <a href="{{route('testimonialList')}}" class="btn btn-outline-danger">Back</a>
                                 </div>
 
                             </div>
 
                         </div>
                         <div class="card-body">
-                            <form action="{{route('submitBlog')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('submitTestimonial')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-6">
                                         @if(!empty($cms->id))
                                         <input type="hidden" name="id" id="id" value="{{$cms->id}}" readable>
                                         @endif
-                                        <label for="ttile">Tilte</label>
-                                        <input type="text" name="title" id="title"
-                                            class="form-control @error('title') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->title}}" @endif>
-                                        @error('title')
+                                        <label for="name">User Name <span class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name"
+                                            class="form-control @error('name') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->user_name}}" @endif>
+                                        @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
@@ -57,40 +57,47 @@
 
                                     </div>
                                     <div class="col-6">
-                                        <label for="subtitle">Sub Title</label>
-                                        <input type="text" name="subtitle" id="subtitle"
-                                            class="form-control @error('subtitle') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->subtitle}}" @endif>
-                                        @error('subtitle')
+                                        <label for="designation">Designation <span class="text-danger">*</span></label>
+                                        <input type="text" name="designation" id="designation"
+                                            class="form-control @error('designation') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->user_designation}}" @endif>
+                                        @error('designation')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
                                         @enderror
                                     </div>
-                                    <div class="col-12 mt-3">
-                                        <label for="blog_description">Blog Description</label>
-                                        <textarea name="blog_description" id="blog_description" cols="30" rows="10" class="form-control snow-editor ckeditor-classic" > @if(!empty($cms)) {!! $cms->description!!} @endif</textarea>
-                                    </div>
                                     <div class="row">
                                         <div class=" @if(empty($cms))col-12 @else col-6 @endif mt-3">
-                                            <label for="blog">Blog Image</label>
-                                            <input type="file" name="blog" id="blog"
-                                                class="form-control @error('blog') is-invalid @enderror">
-                                            @error('blog')
+                                            <label for="user_image">User Image <span class="text-danger">*</span></label>
+                                            <input type="file" name="user_image" id="user_image"
+                                                class="form-control @error('user_image') is-invalid @enderror">
+                                            @error('user_image')
                                             <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
                                             </span>
                                             @enderror
                                         </div>
                                         @if(!empty($cms))
-                                        <div class="col-6 mt-3 ml-5">
-                                            <label for="status">Status</label>
-                                            <select name="changestatus" id="changestatus" class="form-control">
-                                                <option value="1" {{$cms->status == '1'  ? 'selected' : ''}}>Active</option>
-                                                <option value="0" {{$cms->status == '0'  ? 'selected' : ''}}>Inactive</option>
-                                            </select>
-                                        </div>
-                                    @endif
+                                            <div class="col-6 mt-3 ml-5">
+                                                <label for="status">Status</label>
+                                                <select name="changestatus" id="changestatus" class="form-control">
+                                                    <option value="1" {{$cms->status == '1'  ? 'selected' : ''}}>Active</option>
+                                                    <option value="0" {{$cms->status == '0'  ? 'selected' : ''}}>Inactive</option>
+                                                </select>
+                                            </div>
+                                        @endif
                                     </div>
+
+                                    <div class="col-12 mt-3">
+                                        <label for="user_say">What user say ? <span class="text-danger">*</span></label>
+                                        <textarea name="user_say" id="user_say" cols="30" rows="10" class="form-control snow-editor ckeditor-classic @error('user_say') is-invalid @enderror" > @if(!empty($cms)) {!! $cms->user_say!!} @endif</textarea>
+                                        @error('user_say')
+                                            <span class="invalid-feedback" role="alert">
+                                                {{ $message }}
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    
                                    
                                     <div class="col-12 text-center mt-5">
                                         <button type="submit" class="btn btn-outline-primary">Submit</button>

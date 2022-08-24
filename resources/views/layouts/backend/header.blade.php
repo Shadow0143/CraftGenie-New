@@ -181,6 +181,9 @@
                                     <li class="nav-item">
                                         <a href="{{route('blogList')}}" class="nav-link" data-key="t-crm"> Blogs </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm"> Testimonial </a>
+                                    </li>
                                     
                                 </ul>
                             </div>

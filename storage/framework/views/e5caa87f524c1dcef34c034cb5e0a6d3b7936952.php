@@ -1,21 +1,21 @@
-@section('title', '')
-@include('layouts.frontend.header')
+<?php $__env->startSection('title', ''); ?>
+<?php echo $__env->make('layouts.frontend.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <div class="banner">
     <div id="home"> </div>
 
     <div id="banner" class="owl-carousel owl-theme">
-        @foreach ($cms as $key=>$val)
-            @if($val->type =='banner')
-                <div class="item" style="background: url({{asset('banners')}}/{{$val->image}}) no-repeat;">
+        <?php $__currentLoopData = $cms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($val->type =='banner'): ?>
+                <div class="item" style="background: url(<?php echo e(asset('banners')); ?>/<?php echo e($val->image); ?>) no-repeat;">
                     <div class="container">
                         <div class="text-box">
-                            <h2>{{$val->title}}</h2>
-                            <p>{{$val->subtitle}}</p>
+                            <h2><?php echo e($val->title); ?></h2>
+                            <p><?php echo e($val->subtitle); ?></p>
                         </div>
                     </div>
                 </div>
-            @endif
-        @endforeach
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </div>
 
@@ -49,7 +49,7 @@
             <div class="col-md-4 mb-sm-0 mb-3 d-flex">
                 <div class="bg-inner text-center">
                     <span class=" d-flex align-items-center justify-content-center radius-box1">
-                        <img src="{{asset('img/b1.png')}}" alt="b1.png">
+                        <img src="<?php echo e(asset('img/b1.png')); ?>" alt="b1.png">
                     </span>
                     <h4>EXPERIENCED PROFESSIONAL</h4>
                 </div>
@@ -57,7 +57,7 @@
             <div class="col-md-4 mb-sm-0 mb-3 d-flex">
                 <div class="bg-inner text-center">
                     <span class=" d-flex align-items-center justify-content-center radius-box1">
-                        <img src="{{asset('img/b2.png')}}" alt="b2.png">
+                        <img src="<?php echo e(asset('img/b2.png')); ?>" alt="b2.png">
                     </span>
                     <h4>SAME- DAY TURN AROUND </h4>
                 </div>
@@ -65,7 +65,7 @@
             <div class="col-md-4 mb-sm-0 mb-3 d-flex">
                 <div class="bg-inner text-center">
                     <span class=" d-flex align-items-center justify-content-center radius-box1">
-                        <img src="{{asset('img/b3.png')}}" alt="b3.png">
+                        <img src="<?php echo e(asset('img/b3.png')); ?>" alt="b3.png">
                     </span>
                     <h4>SIMPLE TRANSPARENT PRICING</h4>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="item">
                     <div class="inr-slider-box ">
                         <div class="img-area">
-                            <img src="{{asset('img/qp1.jpg')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/qp1.jpg')); ?>" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5>Start-up PR packages </h5>
@@ -92,8 +92,8 @@
                                 package up for a consultation and press strategy solutions </p>
                             <div class="bar-list">
                                 <ul>
-                                    <li><img src="{{asset('img/ppt.png')}}" alt="pdf.png"></li>
-                                    <li><img src="{{asset('img/excel.png')}}" alt="excel.png"></li>
+                                    <li><img src="<?php echo e(asset('img/ppt.png')); ?>" alt="pdf.png"></li>
+                                    <li><img src="<?php echo e(asset('img/excel.png')); ?>" alt="excel.png"></li>
                                 </ul>
                                 <a href="" class="order"> order</a>
                             </div>
@@ -103,14 +103,14 @@
                 <div class="item">
                     <div class="inr-slider-box ">
                         <div class="img-area">
-                            <img src="{{asset('img/qp2.jpg')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/qp2.jpg')); ?>" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5>Press Release/ Press documents </h5>
                             <p>Quick PR fixes? Hit this package for singular press documents and press releases</p>
                             <div class="bar-list">
                                 <ul>
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
                                 </ul>
                                 <a href="" class="order"> order</a>
                             </div>
@@ -120,7 +120,7 @@
                 <div class="item">
                     <div class="inr-slider-box ">
                         <div class="img-area">
-                            <img src="{{asset('img/qp3.jpg')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/qp3.jpg')); ?>" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5>Crisis Communication </h5>
@@ -128,7 +128,7 @@
                             </p>
                             <div class="bar-list">
                                 <ul>
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
                                 </ul>
                                 <a href="" class="order"> order</a>
                             </div>
@@ -138,7 +138,7 @@
                 <div class="item">
                     <div class="inr-slider-box ">
                         <div class="img-area">
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/quic3.png')); ?>" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5>Influencer Marketing
@@ -150,9 +150,9 @@
                                 <ul>
 
 
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
 
-                                    <li><img src="{{asset('img/excel.png')}}" alt="excel.png"></li>
+                                    <li><img src="<?php echo e(asset('img/excel.png')); ?>" alt="excel.png"></li>
 
                                 </ul>
 
@@ -172,7 +172,7 @@
 
                         <div class="img-area">
 
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/quic3.png')); ?>" alt="quic3.png">
 
                         </div>
 
@@ -194,7 +194,7 @@
                                 <ul>
 
 
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
 
                                 </ul>
 
@@ -213,7 +213,7 @@
 
                         <div class="img-area">
 
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/quic3.png')); ?>" alt="quic3.png">
 
                         </div>
 
@@ -235,7 +235,7 @@
                                 <ul>
 
 
-                                    <li><img src="{{asset('img/excel.png')}}" alt="ppt.png"></li>
+                                    <li><img src="<?php echo e(asset('img/excel.png')); ?>" alt="ppt.png"></li>
 
                                 </ul>
 
@@ -254,7 +254,7 @@
 
                         <div class="img-area">
 
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
+                            <img src="<?php echo e(asset('img/quic3.png')); ?>" alt="quic3.png">
 
                         </div>
 
@@ -277,7 +277,7 @@
                                 <ul>
 
 
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="pdf.png"></li>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="pdf.png"></li>
 
                                 </ul>
 
@@ -333,7 +333,7 @@
 
                     <div class="rw-box">
 
-                        <img src="{{asset('img/icon.png')}}" alt="">
+                        <img src="<?php echo e(asset('img/icon.png')); ?>" alt="">
 
                     </div>
 
@@ -345,7 +345,7 @@
 
                     <div class="rw-box">
 
-                        <img src="{{asset('img/icon2.png')}}" alt="">
+                        <img src="<?php echo e(asset('img/icon2.png')); ?>" alt="">
 
                     </div>
 
@@ -357,7 +357,7 @@
 
                     <div class="rw-box">
 
-                        <img src="{{asset('img/icon4.png')}}" alt="">
+                        <img src="<?php echo e(asset('img/icon4.png')); ?>" alt="">
 
                     </div>
 
@@ -398,24 +398,25 @@
     <div class="container">
 
         <div id="clientsp" class="owl-carousel owl-theme">
-            @foreach($testimonial as $key => $val)
+            <?php $__currentLoopData = $testimonial; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item text-left">
                     <div class="boxinn">
                         <div class="col-md-3">
                             <div class="profile">
-                                <img src="{{asset('testimonial')}}/{{$val->image}}" alt="user.jpg">
+                                <img src="<?php echo e(asset('testimonial')); ?>/<?php echo e($val->image); ?>" alt="user.jpg">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p>{!! $val->user_say !!}</p>
+                            <p><?php echo $val->user_say; ?></p>
                             <h2 class="mt-5">
-                                {{$val->user_name}}
-                                <span class="d-block">{{$val->user_designation}}</span>
+                                <?php echo e($val->user_name); ?>
+
+                                <span class="d-block"><?php echo e($val->user_designation); ?></span>
                             </h2>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
         </div>
@@ -437,23 +438,24 @@
     <div class="container">
         <div class="row">
             <div id="blogslide" class="owl-carousel owl-theme">
-                @foreach($blog as $key=>$val)
+                <?php $__currentLoopData = $blog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="item">
                         <div class="col-md-12">
-                            <a href="{{route('blogDetails',['id'=>$val->id])}}">
+                            <a href="<?php echo e(route('blogDetails',['id'=>$val->id])); ?>">
                                 <div class="blog-item">
                                     <div class="date">
-                                        {{date('d',strtotime($val->created_at))}}
-                                        <small> {{date('M',strtotime($val->created_at))}}</small>
-                                        <span> {{date('Y',strtotime($val->created_at))}}</span>
+                                        <?php echo e(date('d',strtotime($val->created_at))); ?>
+
+                                        <small> <?php echo e(date('M',strtotime($val->created_at))); ?></small>
+                                        <span> <?php echo e(date('Y',strtotime($val->created_at))); ?></span>
                                     </div>
-                                    <div class="blog-img"><img src="{{asset('blogs')}}/{{$val->image}}" alt="{{$val->image}}"></div>
+                                    <div class="blog-img"><img src="<?php echo e(asset('blogs')); ?>/<?php echo e($val->image); ?>" alt="<?php echo e($val->image); ?>"></div>
                                     <div class="blog-p">
-                                        <h3>{{$val->title}}</h3>
-                                        <p>{{$val->subtitle}}</p>
+                                        <h3><?php echo e($val->title); ?></h3>
+                                        <p><?php echo e($val->subtitle); ?></p>
                                         <div class="time">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <span>{{date('H A',strtotime($val->created_at))}}</span>
+                                            <span><?php echo e(date('H A',strtotime($val->created_at))); ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -461,7 +463,7 @@
 
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
     </div>
@@ -488,7 +490,7 @@
 
                 <div class="work-item">
 
-                    <div class="work-img"><img src="{{asset('img/work-1.jpg')}}" alt=""></div>
+                    <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
 
                     <div class="work-p">
 
@@ -508,7 +510,7 @@
 
                 <div class="work-item">
 
-                    <div class="work-img"><img src="{{asset('img/work-2.jpg')}}" alt=""></div>
+                    <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
 
                     <div class="work-p">
 
@@ -528,7 +530,7 @@
 
                 <div class="work-item">
 
-                    <div class="work-img"><img src="{{asset('img/work-3.jpg')}}" alt=""></div>
+                    <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
 
                     <div class="work-p">
 
@@ -607,4 +609,4 @@
 </div>
 
 <!-- end incontact -->
-@include('layouts.frontend.footer')
+<?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>

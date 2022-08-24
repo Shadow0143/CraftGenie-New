@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="footer-logo">
-					<img src="img/logo.png">
+					<img src="{{asset('img/logo.png')}}" alt="footer-main-logo">
 				</div>				
 			</div>
 			<div class="col-md-5 ml-auto text-right">
@@ -12,13 +12,13 @@
 				<h2>Â© 2022 Ariiliana Network</h2>			
 					<ul>
 						<li>
-							<a href=""> <img src="img/face.png"></a>
+							<a href=""> <img src="{{asset('img/face.png')}}" alt="facebook-logo"></a>
 						</li>
 						<li>
-							<a href=""> <img src="img/ins.png"></a>
+							<a href=""> <img src="{{asset('img/ins.png')}}" alt="insta-logo"></a>
 						</li>
 						<li>
-							<a href=""> <img src="img/tw.png"></a>
+							<a href=""> <img src="{{asset('img/tw.png')}}" alt="twit-logo"></a>
 						</li>
 					</ul>
 				</div>

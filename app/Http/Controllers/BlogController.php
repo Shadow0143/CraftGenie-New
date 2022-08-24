@@ -16,7 +16,7 @@ class BlogController extends Controller
     }
 
     public function blogList(){
-        $blogs = Blog::where('created_by',Auth::user()->id)->where('status','1')->orderBy('id','desc')->get();
+        $blogs = Blog::where('created_by',Auth::user()->id)->orderBy('id','desc')->get();
         return view('admin.blog.blogList',compact('blogs'));
     }
 
@@ -32,17 +32,18 @@ class BlogController extends Controller
             $cms =  Blog::find($request->id);
             $cms->title = $request->title;
             $cms->subtitle = $request->subtitle;
-            if (!empty($request->file('banner'))) {
-                $banner = $request->file('banner');
-                $bannerphoto = 'banner-logo-' . rand(000, 999) . '.' .
-                    $banner->getClientOriginalExtension();
-                $result = public_path('banners');
-                $banner->move($result, $bannerphoto);
-                $cms->image  = $bannerphoto;
+            $cms->description = $request->blog_description;
+            if (!empty($request->file('blog'))) {
+                $blogs = $request->file('blog');
+                $blogphoto = 'blog-' . rand(000, 999) . '.' .
+                    $blogs->getClientOriginalExtension();
+                $result = public_path('blogs');
+                $blogs->move($result, $blogphoto);
+                $cms->image  = $blogphoto;
             }
             $cms->status = $request->changestatus;
             $cms->save();
-            Alert::success('Success', 'Banner updated !');
+            Alert::success('Success', 'Blog updated !');
         }else{
             $validated = $request->validate([
                 'title' => 'required',
@@ -69,5 +70,17 @@ class BlogController extends Controller
         }
         
         return redirect()->route('blogList');
+    }
+
+    public function deleteBlog(Request $request)
+    {
+        $delete = Blog::find($request->id);
+        $delete->delete();
+    }
+
+    public function editBlog($id)
+    {
+        $blog = Blog::where('id',$id)->first();
+        return view('admin.blog.addBlog')->with('cms',$blog);
     }
 }

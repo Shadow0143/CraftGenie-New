@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>craftgenie</title>
+    <title>Craftgenie  @yield('title')</title>
     @laravelPWA
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
@@ -21,7 +21,7 @@
     <!-- header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light position-absolute w-100 ">
-            <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img src="{{asset('img/logo.png')}}" alt="main-logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,22 +29,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">HOME</a>
+                        <a class="nav-link" href="{{route('welcome')}}#home">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">about us </a>
+                        <a class="nav-link" href="{{route('welcome')}}#about">about us </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#quick"> Quick packages </a>
+                        <a class="nav-link " href="{{route('welcome')}}#quick"> Quick packages </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#howdo">How do we do </a>
+                        <a class="nav-link " href="{{route('welcome')}}#howdo">How do we do </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#Blogs">Blog</a>
+                        <a class="nav-link " href="{{route('welcome')}}#Blogs">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#contact">CONTACT</a>
+                        <a class="nav-link " href="{{route('welcome')}}#contact">CONTACT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('login')}}">LOGIN</a>

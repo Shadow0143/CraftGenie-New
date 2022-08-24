@@ -1,4 +1,4 @@
-@section('title', 'Blog List')
+@section('title', 'Testimonial List')
 @include('layouts.backend.header')
 <div class="main-content">
 
@@ -9,12 +9,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Blog </h4>
+                        <h4 class="mb-sm-0">Testimonial </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                <li class="breadcrumb-item active">Blog </li>
+                                <li class="breadcrumb-item active">Testimonial </li>
                             </ol>
                         </div>
                     </div>
@@ -29,11 +29,11 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <h5 class="card-title mb-0">Blog List </h5>
+                                    <h5 class="card-title mb-0">Testimonial List </h5>
                                 </div>
                                 <div class="col-2 text-right">
-                                    <a href="{{route('addBlog')}}" class="btn btn-outline-success add-btn"><i
-                                            class="ri-add-line align-bottom me-1"></i> Add Blog</a>
+                                    <a href="{{route('addTestimonial')}}" class="btn btn-outline-success add-btn"><i
+                                            class="ri-add-line align-bottom me-1"></i> Add Testimonial</a>
                                 </div>
                             </div>
 
@@ -45,26 +45,26 @@
                                 <thead>
                                     <tr>
                                         <th>SR No.</th>
-                                        <th>Title </th>
-                                        <th>Sub Title </th>
-                                        <th>Banner Uploaded Date</th>
+                                        <th>User Name</th>
+                                        <th>Designation </th>
+                                        <th>User Says</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @forelse($blogs as $key => $val)
+                                    @forelse($cms as $key => $val)
                                     <tr id="removeRow{{$val->id}}">
                                         <td>{{$key+1}}</td>
-                                        <td>{{$val->title}}</td>
-                                        <td>{{$val->subtitle}}</td>
-                                        <td>{{$val->created_at}}</td>
+                                        <td>{{$val->user_name}}</td>
+                                        <td>{{$val->user_designation}}</td>
+                                        <td>{!! substr($val->user_say ,0,50)!!}</td>
                                         <td>
                                             @if($val->status ==1)
-                                                <span class="badge badge-soft-success">Active</span>
+                                            <span class="badge badge-soft-success">Active</span>
                                             @else
-                                                <span class="badge badge-soft-danger">Inctive</span>
+                                            <span class="badge badge-soft-danger">Inctive</span>
                                             @endif
                                         </td>
                                         <td>
@@ -74,17 +74,19 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="{{asset('blogs')}}/{{$val->image}}"
+                                                    <li><a href="{{asset('testimonial')}}/{{$val->image}}"
                                                             class="dropdown-item" target="_blank"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                            View blog image</a></li>
-                                                    <li><a class="dropdown-item edit-item-btn" href="{{route('editBlog',['id'=>$val->id])}}"><i
+                                                            View User image</a></li>
+                                                    <li><a class="dropdown-item edit-item-btn" href="{{route('editTestimonial',['id'=>$val->id])}}"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
                                                         <a href="javaScript:void(0);"
-                                                            class="dropdown-item remove-item-btn delete_btn" data-id="{{$val->id}}">
-                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            class="dropdown-item remove-item-btn delete_btn"
+                                                            data-id="{{$val->id}}">
+                                                            <i
+                                                                class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
                                                     </li>
@@ -94,7 +96,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="text-center" colspan="6"> No blog added yet </td>
+                                        <td class="text-center" colspan="6"> No testimonial added yet </td>
                                     </tr>
                                     @endforelse
 
@@ -115,10 +117,10 @@
 
     <script>
         $('.delete_btn').on('click',function(){
-            var blog_id = $(this).data('id');
+            var test_id = $(this).data('id');
             swal({
                 title: 'Are you sure?',
-                text: "You won't delete this blog!",
+                text: "You won't delete this testimonial!",
                 icon: 'warning',
                 buttons: true,
                 buttonsStyling: false,
@@ -127,8 +129,8 @@
                 if (confirm) {
                     $.ajax({
                         type: "GET",
-                        url: "{{route('deleteBlog')}}",
-                        data: { id: blog_id },
+                        url: "{{route('deleteTestimonial')}}",
+                        data: { id: test_id },
                         success: function(data) {
                             swal({
                                 title: 'Success',
@@ -138,7 +140,7 @@
                                 buttonsStyling: false,
                                 reverseButtons: true
                             });
-                            $('#removeRow'+blog_id).hide();
+                            $('#removeRow'+test_id).hide();
                         }
                     });
                 }
