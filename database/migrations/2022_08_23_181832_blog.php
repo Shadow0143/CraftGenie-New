@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Cms extends Migration
+class Blog extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class Cms extends Migration
      */
     public function up()
     {
-        Schema::create('cms', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('created_by');
             $table->string('type');
             $table->string('title');
             $table->string('subtitle');
+            $table->longText('description');
             $table->string('image');
             $table->string('extra_file')->nullable();
             $table->enum('status',['1','0']);
@@ -34,6 +35,6 @@ class Cms extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms');
+        Schema::dropIfExists('blogs');
     }
 }
