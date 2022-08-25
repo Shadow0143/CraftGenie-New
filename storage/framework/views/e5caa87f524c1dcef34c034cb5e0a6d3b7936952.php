@@ -5,16 +5,16 @@
 
     <div id="banner" class="owl-carousel owl-theme">
         <?php $__currentLoopData = $cms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <?php if($val->type =='banner'): ?>
-                <div class="item" style="background: url(<?php echo e(asset('banners')); ?>/<?php echo e($val->image); ?>) no-repeat;">
-                    <div class="container">
-                        <div class="text-box">
-                            <h2><?php echo e($val->title); ?></h2>
-                            <p><?php echo e($val->subtitle); ?></p>
-                        </div>
-                    </div>
+        <?php if($val->type =='banner'): ?>
+        <div class="item" style="background: url(<?php echo e(asset('banners')); ?>/<?php echo e($val->image); ?>) no-repeat;">
+            <div class="container">
+                <div class="text-box">
+                    <h2><?php echo e($val->title); ?></h2>
+                    <p><?php echo e($val->subtitle); ?></p>
                 </div>
-            <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </div>
@@ -399,23 +399,23 @@
 
         <div id="clientsp" class="owl-carousel owl-theme">
             <?php $__currentLoopData = $testimonial; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="item text-left">
-                    <div class="boxinn">
-                        <div class="col-md-3">
-                            <div class="profile">
-                                <img src="<?php echo e(asset('testimonial')); ?>/<?php echo e($val->image); ?>" alt="user.jpg">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p><?php echo $val->user_say; ?></p>
-                            <h2 class="mt-5">
-                                <?php echo e($val->user_name); ?>
-
-                                <span class="d-block"><?php echo e($val->user_designation); ?></span>
-                            </h2>
+            <div class="item text-left">
+                <div class="boxinn">
+                    <div class="col-md-3">
+                        <div class="profile">
+                            <img src="<?php echo e(asset('testimonial')); ?>/<?php echo e($val->image); ?>" alt="user.jpg">
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <p><?php echo $val->user_say; ?></p>
+                        <h2 class="mt-5">
+                            <?php echo e($val->user_name); ?>
+
+                            <span class="d-block"><?php echo e($val->user_designation); ?></span>
+                        </h2>
+                    </div>
                 </div>
+            </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
@@ -439,106 +439,109 @@
         <div class="row">
             <div id="blogslide" class="owl-carousel owl-theme">
                 <?php $__currentLoopData = $blog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="item">
-                        <div class="col-md-12">
-                            <a href="<?php echo e(route('blogDetails',['id'=>$val->id])); ?>">
-                                <div class="blog-item">
-                                    <div class="date">
-                                        <?php echo e(date('d',strtotime($val->created_at))); ?>
+                <div class="item">
+                    <div class="col-md-12">
+                        <a href="<?php echo e(route('blogDetails',['id'=>$val->id])); ?>">
+                            <div class="blog-item">
+                                <div class="date">
+                                    <?php echo e(date('d',strtotime($val->created_at))); ?>
 
-                                        <small> <?php echo e(date('M',strtotime($val->created_at))); ?></small>
-                                        <span> <?php echo e(date('Y',strtotime($val->created_at))); ?></span>
-                                    </div>
-                                    <div class="blog-img"><img src="<?php echo e(asset('blogs')); ?>/<?php echo e($val->image); ?>" alt="<?php echo e($val->image); ?>"></div>
-                                    <div class="blog-p">
-                                        <h3><?php echo e($val->title); ?></h3>
-                                        <p><?php echo e($val->subtitle); ?></p>
-                                        <div class="time">
-                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                            <span><?php echo e(date('H A',strtotime($val->created_at))); ?></span>
-                                        </div>
+                                    <small> <?php echo e(date('M',strtotime($val->created_at))); ?></small>
+                                    <span> <?php echo e(date('Y',strtotime($val->created_at))); ?></span>
+                                </div>
+                                <div class="blog-img"><img src="<?php echo e(asset('blogs')); ?>/<?php echo e($val->image); ?>"
+                                        alt="<?php echo e($val->image); ?>"></div>
+                                <div class="blog-p">
+                                    <h3><?php echo e($val->title); ?></h3>
+                                    <p><?php echo e($val->subtitle); ?></p>
+                                    <div class="time">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        <span><?php echo e(date('H A',strtotime($val->created_at))); ?></span>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
 
-                        </div>
                     </div>
+                </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
 
+        </div>
+
     </div>
 
-</div>
+
+
+    <!-- our blogs end -->
 
 
 
-<!-- our blogs end -->
+    <!-- our work -->
 
+    <div class="work-sec my-5 py-5">
 
+        <h2 class="titleall mb-5">OUR WORK</h2>
 
-<!-- our work -->
+        <div class="container">
 
-<div class="work-sec my-5 py-5">
+            <div class="row">
 
-    <h2 class="titleall mb-5">OUR WORK</h2>
+                <div class="col-md-4">
 
-    <div class="container">
+                    <div class="work-item">
 
-        <div class="row">
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
 
-            <div class="col-md-4">
+                        <div class="work-p">
 
-                <div class="work-item">
+                            <h3>Lorem Ipsum is simply</h3>
 
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
+                            <p>Ipsum passages, and more
 
-                    <div class="work-p">
+                                recently withIpsum passages, and more</p>
 
-                        <h3>Lorem Ipsum is simply</h3>
-
-                        <p>Ipsum passages, and more
-
-                            recently withIpsum passages, and more</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="work-item">
-
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
-
-                    <div class="work-p">
-
-                        <h3>Lorem Ipsum is simply</h3>
-
-                        <p>Ipsum passages, and more
-
-                            recently withIpsum passages, and more</p>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="col-md-4">
 
-            <div class="col-md-4">
+                    <div class="work-item">
 
-                <div class="work-item">
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
 
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
+                        <div class="work-p">
 
-                    <div class="work-p">
+                            <h3>Lorem Ipsum is simply</h3>
 
-                        <h3>Lorem Ipsum is simply</h3>
+                            <p>Ipsum passages, and more
 
-                        <p>Ipsum passages, and more
+                                recently withIpsum passages, and more</p>
 
-                            recently withIpsum passages, and more</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="work-item">
+
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
+
+                        <div class="work-p">
+
+                            <h3>Lorem Ipsum is simply</h3>
+
+                            <p>Ipsum passages, and more
+
+                                recently withIpsum passages, and more</p>
+
+                        </div>
 
                     </div>
 
@@ -548,65 +551,64 @@
 
         </div>
 
+        <div id="contact"></div>
+
     </div>
 
-    <div id="contact"></div>
+    <!-- our work end -->
 
-</div>
-
-<!-- our work end -->
-
-
-
-
-
-<div class="incontact py-5">
-
-    <div class="container">
-
-        <div class="row align-items-center justify-content-center">
-
-            <div class="col-md-5">
-
-                <h2 class="titleall mb-3">Contact Us</h2>
-
-                <p>Your time matters, so we work across our network to turn around your story within 24 hours.</p>
-
-                <div class="col-md-12 support-box">
-
-                    <label class="d-flex ">
-
-                        <span><i class="fa fa-envelope-o" aria-hidden="true"></i> </span> support @gmail.com </label>
-
-                    <label class="d-flex ">
-
-                        <span><i class="fa fa-phone" aria-hidden="true"></i> </span> 8548785485 </label>
-
+    <div class="incontact py-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-5">
+                    <h2 class="titleall mb-3">Contact Us</h2>
+                    <p>Your time matters, so we work across our network to turn around your story within 24 hours.</p>
+                    <div class="col-md-12 support-box">
+                        <label class="d-flex ">
+                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> </span> support @gmail.com
+                        </label>
+                        <label class="d-flex ">
+                            <span><i class="fa fa-phone" aria-hidden="true"></i> </span> 8548785485 </label>
+                    </div>
                 </div>
-
+                <div class="col-md-4 allform">
+                    <form class="Contact_form" method="GET" action="<?php echo e(route('submitContact')); ?>">
+                        <input type="text" name="name" placeholder="Full Name" id="name">
+                        <input type="text" name="email" placeholder="Email Id" id="email">
+                        <input type="text" name="contact" placeholder="Contact Number" id="contact">
+                        <button  onClick="submitForm()"> Submit</button>
+                    </form>
+                </div>
             </div>
-
-            <div class="col-md-4 allform">
-
-                <form name="box-one">
-
-                    <input type="text" name="" placeholder="Full Name">
-
-                    <input type="text" name="" placeholder="Email Id">
-
-                    <input type="text" name="" placeholder="Contact Number">
-
-                    <button> Submit</button>
-
-                </form>
-
-            </div>
-
         </div>
-
     </div>
 
-</div>
+    <!-- end incontact -->
+    <?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <script>
+        function submitForm()
+        {
+            $(".Contact_form").submit(function (event) {
+            var formData = {
+                "_token": "<?php echo e(csrf_token()); ?>",
+                name: $("#name").val(),
+                email: $("#email").val(),
+                contact_no: $("#contact").val(),
+            };
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function(res){
+                    alert('Done');
+                },
+            });
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            });
+        }
 
-<!-- end incontact -->
-<?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>
+
+    </script><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>

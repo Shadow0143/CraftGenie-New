@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/blog-details/{id}', [App\Http\Controllers\WelcomeController::class, 'blogDetails'])->name('blogDetails');
+Route::get('/submit-contact', [App\Http\Controllers\WelcomeController::class, 'submitContact'])->name('submitContact');
+
 
 
 Auth::routes();
@@ -40,4 +42,6 @@ Route::prefix('admin')->group(function () {
     Route::post('/submit-testimonial', [App\Http\Controllers\TestimonialController::class, 'submitTestimonial'])->name('submitTestimonial');
     Route::get('/edit-testimonial/{id}', [App\Http\Controllers\TestimonialController::class, 'editTestimonial'])->name('editTestimonial');
     Route::get('/delete-testimonial', [App\Http\Controllers\TestimonialController::class, 'deleteTestimonial'])->name('deleteTestimonial');
+
+
 });

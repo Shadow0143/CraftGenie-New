@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
     <!-- header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light position-absolute w-100 ">
