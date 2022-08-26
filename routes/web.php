@@ -20,15 +20,31 @@ Route::get('/submit-contact', [App\Http\Controllers\WelcomeController::class, 's
 
 
 
+
+
+Route::get('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
+Route::post('/razorpay-payment/order-save', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentOrderSave'])->name('razorpayPaymentOrderSave');
+Route::get('/payment/CreateOrder', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentCreateOrder'])->name('razorpay.payment.create.order');
+Route::post('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
+
+
+
+
+
+
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::get('/banner-list', [App\Http\Controllers\DashboardController::class, 'bannerList'])->name('bannerList');
     Route::get('/add-banner', [App\Http\Controllers\DashboardController::class, 'addBanner'])->name('addBanner');
     Route::post('/submit-banner', [App\Http\Controllers\DashboardController::class, 'submitBanner'])->name('submitBanner');
     Route::get('/edit-banner/{id}', [App\Http\Controllers\DashboardController::class, 'editBanner'])->name('editBanner');
     Route::get('/delete-banner', [App\Http\Controllers\DashboardController::class, 'deleteBanner'])->name('deleteBanner');
+    Route::get('/contact-list', [App\Http\Controllers\DashboardController::class, 'contactList'])->name('contactList');
+    Route::get('/delete-contact', [App\Http\Controllers\DashboardController::class, 'deleteContact'])->name('deleteContact');
+
 
 
     Route::get('/blog-list', [App\Http\Controllers\BlogController::class, 'blogList'])->name('blogList');
@@ -43,5 +59,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/edit-testimonial/{id}', [App\Http\Controllers\TestimonialController::class, 'editTestimonial'])->name('editTestimonial');
     Route::get('/delete-testimonial', [App\Http\Controllers\TestimonialController::class, 'deleteTestimonial'])->name('deleteTestimonial');
 
+
+    Route::get('/payment-list', [App\Http\Controllers\RazorpayPaymentController::class, 'PaymentList'])->name('PaymentList');
 
 });

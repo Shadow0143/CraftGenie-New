@@ -165,134 +165,6 @@
                     </div>
 
                 </div>
-
-                <div class="item">
-
-                    <div class="inr-slider-box ">
-
-                        <div class="img-area">
-
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
-
-                        </div>
-
-                        <div class="w-100 d-block qtext">
-
-                            <h5>Blog post
-
-                            </h5>
-
-                            <p>Posts that position thought leadership & innovation of the brand in a crisp & engaging
-                                narrative
-
-                            </p>
-
-
-
-                            <div class="bar-list">
-
-                                <ul>
-
-
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
-
-                                </ul>
-
-                                <a href="" class="order"> order</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="item">
-
-                    <div class="inr-slider-box ">
-
-                        <div class="img-area">
-
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
-
-                        </div>
-
-                        <div class="w-100 d-block qtext">
-
-                            <h5>Press Release dissemination
-
-                            </h5>
-
-                            <p>Nation-wide dissemination service based on the target markets that are relevant for the
-                                business
-
-                            </p>
-
-
-
-                            <div class="bar-list">
-
-                                <ul>
-
-
-                                    <li><img src="{{asset('img/excel.png')}}" alt="ppt.png"></li>
-
-                                </ul>
-
-                                <a href="" class="order"> order</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="item">
-
-                    <div class="inr-slider-box ">
-
-                        <div class="img-area">
-
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
-
-                        </div>
-
-                        <div class="w-100 d-block qtext">
-
-                            <h5>Comprehensive PR Strategy
-
-                            </h5>
-
-                            <p>No shortcut to the art of story-telling. Long term PR strategy which creates a
-                                quarter-on-quarter impact for the brand and aides in achieving the perception vision of
-                                the business.
-
-                            </p>
-
-
-
-                            <div class="bar-list">
-
-                                <ul>
-
-
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="pdf.png"></li>
-
-                                </ul>
-
-                                <a href="" class="order"> order</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
             </div>
 
 
@@ -309,84 +181,37 @@
 
 </section>
 
-<!--end New Arrivals-->
-<!-- What do we do -->
-
 <div class="Whatdo my-5 pt-5">
-
     <h2 class="titleall mb-3">How do we do?</h2>
-
     <div class="col-md-6 m-auto py-4 text-center">
-
         <p>Depending on the stage of your company ~ we work across Indiaâ€™s fastest growing startups to some of
             Indiaâ€™s biggest unicorn founders..</p>
-
     </div>
-
     <div class="container">
-
         <div class="row">
-
             <ul class="stape-area">
-
                 <li>
-
                     <div class="rw-box">
-
                         <img src="{{asset('img/icon.png')}}" alt="">
-
                     </div>
-
                     <span>Questionair </span>
-
                 </li>
-
                 <li>
-
                     <div class="rw-box">
-
                         <img src="{{asset('img/icon2.png')}}" alt="">
-
                     </div>
-
                     <span>What is your story? </span>
-
                 </li>
-
                 <li>
-
                     <div class="rw-box">
-
                         <img src="{{asset('img/icon4.png')}}" alt="">
-
                     </div>
-
                     <span>Solutions</span>
-
                 </li>
-
             </ul>
-
         </div>
-
-
-
     </div>
-
-
-
 </div>
-
-
-
-<!-- end What do we do -->
-
-
-
-
-
-
-
 
 
 <!-- CLIENTS SPEAK -->
@@ -459,18 +284,12 @@
                                 </div>
                             </div>
                         </a>
-
                     </div>
                 </div>
                 @endforeach
             </div>
-
         </div>
-
     </div>
-
-
-
     <!-- our blogs end -->
 
 

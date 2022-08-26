@@ -52,6 +52,9 @@
                     <li class="nav-item">
                         <a class="nav-link " href="<?php echo e(route('login')); ?>">LOGIN</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="<?php echo e(route('startPay')); ?>">Pay</a>
+                    </li>
                 </ul>
             </div>
         </nav>

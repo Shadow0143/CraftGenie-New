@@ -184,20 +184,21 @@
                                     <li class="nav-item">
                                         <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm"> Testimonial </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm">  Contact Lists     </a>
+                                    </li>
                                     
                                 </ul>
                             </div>
-                        </li> <!-- end Dashboard Menu -->
+                        </li> 
 
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
+                        <li class="nav-item">
+                            <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
             </div>
             <div class="sidebar-background"></div>
         </div>
-        <!-- Left Sidebar End -->
-
-
-        <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>

@@ -739,7 +739,7 @@ header a.navbar-brand img {
     width: 28px;
     display: inline-block;
     height: 20px;
-    background: url(img/in.png) no-repeat;
+    /* background: url(img/in.png) no-repeat; */
     opacity: 0.1;
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CMS;
+use App\Models\ContactUs;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
@@ -81,5 +82,13 @@ class DashboardController extends Controller
         return view('admin.banner.addBanner',compact('cms'));
     }
 
+    public function contactList(){
+        $all_contact = ContactUs::get();
+        return view('admin.contact.contact',compact('all_contact'));
+    }
+
+    public function deleteContact(Request $request){
+        $delete = ContactUs::where('id',$request->id)->delete();
+    }
 
 }
