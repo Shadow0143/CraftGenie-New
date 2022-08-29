@@ -27,8 +27,6 @@ class RazorpayPaymentController extends Controller
         $data = $request->all();
         // $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));  
         $api = new Api('rzp_test_mpwfYrksWHIGnE', 'J58wvxhjPgH6Pky9Ct97Anjn');  
-
-        // dd($api);
         $payment = $api->payment->fetch($data['razorpay_payment_id']);
         $data['payment'] = $payment;
         if(count($data)  && !empty($data['razorpay_payment_id'])) {
@@ -76,7 +74,7 @@ class RazorpayPaymentController extends Controller
 
     public function PaymentList()
     {
-        $payments = Payment::get();
+        $payments = Payment::orderBy('id','desc')->get();
         return view('admin.payment.paymentList',compact('payments'));
     }
 }

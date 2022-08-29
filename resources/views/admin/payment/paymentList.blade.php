@@ -62,7 +62,7 @@
                                             {{$val->transaction_no}}
                                             @endif
                                         </td>
-                                        <td>{{$val->user_name}}</td>
+                                        <td>{{ucfirst($val->user_name)}}</td>
                                         <td>{{$val->user_email}}</td>
                                         <td>{{$val->contact_no}}</td>
                                         <td>
