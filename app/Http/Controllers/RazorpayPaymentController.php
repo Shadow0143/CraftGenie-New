@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RazorpayPaymentController extends Controller
 {
@@ -38,7 +39,8 @@ class RazorpayPaymentController extends Controller
                 Session::put('error',$e->getMessage());                
             }
         }
-        return redirect('razorpay-payment');
+        Alert::success('Thank you','Payment success');
+        return redirect()->route('welcome');
     }
 
     public function paymentOrderSave(Request $request) {

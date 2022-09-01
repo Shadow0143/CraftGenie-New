@@ -102,8 +102,9 @@
                             <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
-                                    <img class="rounded-circle header-profile-user"
-                                        src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
+                                    {{-- <img class="rounded-circle header-profile-user" --}}
+                                        {{-- src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar"> --}}
+                                        {{-- <p class="rounded-circle header-profile-user" > {{substr(Auth::user()->name,0,1)}} </p> --}}
                                     <span class="text-start ms-xl-2">
                                         <span
                                             class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
@@ -114,9 +115,9 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome {{Auth::user()->name}}!</h6>
-                                <a class="dropdown-item" href="pages-profile.html"><i
+                                {{-- <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Profile</span></a>
+                                        class="align-middle">Profile</span></a> --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
@@ -167,34 +168,40 @@
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">CMS</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarDashboards">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{route('bannerList')}}" class="nav-link" data-key="t-analytics">
-                                            Banners </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('blogList')}}" class="nav-link" data-key="t-crm"> Blogs </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm"> Testimonial </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm">  Contact Lists     </a>
-                                    </li>
-                                    
-                                </ul>
-                            </div>
-                        </li> 
+                        @if(Auth::user()->role=='0')
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                    <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">CMS</span>
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{route('bannerList')}}" class="nav-link" data-key="t-analytics">
+                                                Banners </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('blogList')}}" class="nav-link" data-key="t-crm"> Blogs </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm"> Testimonial </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm">  Contact Lists     </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li> 
 
-                        <li class="nav-item">
-                            <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-crm">My Orders</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- Sidebar -->

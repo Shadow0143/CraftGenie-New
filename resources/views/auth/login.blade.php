@@ -86,7 +86,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Craftgenie Registration</title>
+    <title>Craftgenie | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @laravelPWA
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
@@ -105,7 +105,7 @@
             <img src="{{asset('register_assets/images/image-1.png')}}" alt="" class="image-1">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <h3>New Account?</h3>
+                <h3>Welcome !</h3>
                 <div class="col-12" style="text-align: center; margin-bottom:3px;margin-top:0px">
                     <img src="{{asset('img/logo.png')}}" alt="main-logo" style="width: 100px; height:30px">
                 </div>
@@ -142,6 +142,11 @@
                         {{ __('Remember Me') }}
                     </label>
                 </div>
+                @if (Route::has('password.request'))
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+                @endif
 
                 <button type="submit">
                     <span>LOGIN</span>
