@@ -19,17 +19,10 @@ Route::get('/blog-details/{id}', [App\Http\Controllers\WelcomeController::class,
 Route::get('/submit-contact', [App\Http\Controllers\WelcomeController::class, 'submitContact'])->name('submitContact');
 
 
-
-
-
 Route::get('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
 Route::post('/razorpay-payment/order-save', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentOrderSave'])->name('razorpayPaymentOrderSave');
 Route::get('/payment/CreateOrder', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentCreateOrder'])->name('razorpay.payment.create.order');
 Route::post('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
-
-
-
-
 
 
 Auth::routes();

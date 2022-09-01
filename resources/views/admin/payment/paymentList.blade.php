@@ -44,6 +44,7 @@
                                         <th>User Name </th>
                                         <th>Email Id</th>
                                         <th>Contact No.</th>
+                                        <th>Order Details</th>
                                         <th>Payment Method</th>
                                         <th>Amount</th>
                                         <th>Status</th>
@@ -65,6 +66,7 @@
                                         <td>{{ucfirst($val->user_name)}}</td>
                                         <td>{{$val->user_email}}</td>
                                         <td>{{$val->contact_no}}</td>
+                                        <td></td>
                                         <td>
                                             @if($val->payment_mode == 'DC')
                                             <p>Debit Card</p>
@@ -97,7 +99,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="text-center" colspan="8"> No banner added yet </td>
+                                        <td class="text-center" colspan="9"> No banner added yet </td>
                                     </tr>
                                     @endforelse
 
