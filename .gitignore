@@ -3,6 +3,7 @@
 /public/banners
 /public/blogs
 /public/storage
+/public/testimonial
 /storage/*.key
 /storage/framework
 /vendor
