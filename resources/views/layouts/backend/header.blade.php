@@ -168,7 +168,7 @@
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                        @if(Auth::user()->role=='0')
+                        
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="sidebarDashboards">
@@ -189,6 +189,9 @@
                                         <li class="nav-item">
                                             <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm">  Contact Lists     </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('packagesList')}}" class="nav-link" data-key="t-crm">Packages</a>
+                                        </li>
                                         
                                     </ul>
                                 </div>
@@ -197,11 +200,9 @@
                             <li class="nav-item">
                                 <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
                             </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-crm">My Orders</a>
-                            </li>
-                        @endif
+                       
+                           
+                       
                     </ul>
                 </div>
                 <!-- Sidebar -->

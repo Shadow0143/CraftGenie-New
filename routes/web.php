@@ -55,4 +55,10 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/payment-list', [App\Http\Controllers\RazorpayPaymentController::class, 'PaymentList'])->name('PaymentList');
 
+    Route::get('/packages-list', [App\Http\Controllers\PackagesController::class, 'packagesList'])->name('packagesList');
+    Route::get('/add-packages', [App\Http\Controllers\PackagesController::class, 'addPackages'])->name('addPackages');
+    Route::post('/submit-packages', [App\Http\Controllers\PackagesController::class, 'submitPackages'])->name('submitPackages');
+    Route::get('/edit-packages/{id}', [App\Http\Controllers\PackagesController::class, 'editPackages'])->name('editPackages');
+    Route::get('/delete-packages', [App\Http\Controllers\PackagesController::class, 'deletePackages'])->name('deletePackages');
+
 });

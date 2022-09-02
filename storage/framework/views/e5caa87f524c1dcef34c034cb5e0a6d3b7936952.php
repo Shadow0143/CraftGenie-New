@@ -81,90 +81,27 @@
         <h2 class="titleall mb-5">Quick packages</h2>
         <div class="row mt-4">
             <div id="owl-demo1" class="tips-area owl-carousel owl-theme px-3">
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="<?php echo e(asset('img/qp1.jpg')); ?>" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Start-up PR packages </h5>
-                            <p>Unsure about whether you need PR for your Small business or a new start-up? Hit this
-                                package up for a consultation and press strategy solutions </p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="<?php echo e(asset('img/ppt.png')); ?>" alt="pdf.png"></li>
-                                    <li><img src="<?php echo e(asset('img/excel.png')); ?>" alt="excel.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
+                
+                <?php $__currentLoopData = $package; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="item">
+                        <div class="inr-slider-box ">
+                            <div class="img-area">
+                                <img src="<?php echo e(asset('packages')); ?>/<?php echo e($val->image); ?>" alt="quic3.png">
+                            </div>
+                            <div class="w-100 d-block qtext">
+                                <h5><?php echo e($val->title); ?> </h5>
+                                <p><?php echo $val->description; ?></p>
+                                <div class="bar-list">
+                                    <ul>
+                                        <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
+                                    </ul>
+                                    <a href="" class="order"> order</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="<?php echo e(asset('img/qp2.jpg')); ?>" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Press Release/ Press documents </h5>
-                            <p>Quick PR fixes? Hit this package for singular press documents and press releases</p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="<?php echo e(asset('img/qp3.jpg')); ?>" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Crisis Communication </h5>
-                            <p>Focused PR strategy and official statement for combating negative press coverage
-                            </p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="<?php echo e(asset('img/quic3.png')); ?>" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Influencer Marketing
-                            </h5>
-                            <p>Content curation & creation with relevant influencers with actual influence
-                            </p>
-                            <div class="bar-list">
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                <ul>
-
-
-                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
-
-                                    <li><img src="<?php echo e(asset('img/excel.png')); ?>" alt="excel.png"></li>
-
-                                </ul>
-
-                                <a href="" class="order"> order</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
 
 

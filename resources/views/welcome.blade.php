@@ -81,90 +81,27 @@
         <h2 class="titleall mb-5">Quick packages</h2>
         <div class="row mt-4">
             <div id="owl-demo1" class="tips-area owl-carousel owl-theme px-3">
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="{{asset('img/qp1.jpg')}}" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Start-up PR packages </h5>
-                            <p>Unsure about whether you need PR for your Small business or a new start-up? Hit this
-                                package up for a consultation and press strategy solutions </p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="{{asset('img/ppt.png')}}" alt="pdf.png"></li>
-                                    <li><img src="{{asset('img/excel.png')}}" alt="excel.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
+                
+                @foreach($package as $key => $val)
+                    <div class="item">
+                        <div class="inr-slider-box ">
+                            <div class="img-area">
+                                <img src="{{asset('packages')}}/{{$val->image}}" alt="quic3.png">
+                            </div>
+                            <div class="w-100 d-block qtext">
+                                <h5>{{$val->title}} </h5>
+                                <p>{!! $val->description !!}</p>
+                                <div class="bar-list">
+                                    <ul>
+                                        <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    </ul>
+                                    <a href="" class="order"> order</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="{{asset('img/qp2.jpg')}}" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Press Release/ Press documents </h5>
-                            <p>Quick PR fixes? Hit this package for singular press documents and press releases</p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="{{asset('img/qp3.jpg')}}" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Crisis Communication </h5>
-                            <p>Focused PR strategy and official statement for combating negative press coverage
-                            </p>
-                            <div class="bar-list">
-                                <ul>
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
-                                </ul>
-                                <a href="" class="order"> order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="inr-slider-box ">
-                        <div class="img-area">
-                            <img src="{{asset('img/quic3.png')}}" alt="quic3.png">
-                        </div>
-                        <div class="w-100 d-block qtext">
-                            <h5>Influencer Marketing
-                            </h5>
-                            <p>Content curation & creation with relevant influencers with actual influence
-                            </p>
-                            <div class="bar-list">
+                @endforeach
 
-                                <ul>
-
-
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
-
-                                    <li><img src="{{asset('img/excel.png')}}" alt="excel.png"></li>
-
-                                </ul>
-
-                                <a href="" class="order"> order</a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
 
 

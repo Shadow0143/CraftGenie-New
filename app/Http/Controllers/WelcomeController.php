@@ -12,7 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use App\Mail\UserContactMail;
-
+use App\Models\Package;
 
 
 class WelcomeController extends Controller
@@ -22,7 +22,8 @@ class WelcomeController extends Controller
         $cms = CMS::where('status','1')->orderBy('id','desc')->get();
         $blogs = Blog::where('status',1)->orderBy('id','desc')->get();
         $testimonial = Testimonial::where('status',1)->orderBy('id','desc')->get();
-        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial);
+        $package = Package::where('status','YES')->orderBy('id','desc')->get();
+        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial)->with('package',$package);
     }
 
     public function blogDetails($id)
