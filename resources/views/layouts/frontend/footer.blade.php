@@ -39,6 +39,8 @@
       <script src="{{asset('js/owl.carousel.js')}}"></script>
       <!-- Custom jquery -->
       <script src="{{asset('js/script.js')}}"></script>
+	  
+
       <!-- fontawesome -->
       <script src="https://use.fontawesome.com/8ae5a19cac.js"></script>
    </body>

@@ -452,7 +452,7 @@ header a.navbar-brand img {
 }
 
 .quick-packages .inr-slider-box p {
-    min-height: 88px;
+    min-height: 40px;
     color: #484848;
     font-weight: 400;
     font-size: 12px;

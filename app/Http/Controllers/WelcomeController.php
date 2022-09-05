@@ -92,16 +92,16 @@ class WelcomeController extends Controller
         $answer->user_id = '1';
         $answer->question_id = $request->question_id;
         $answer->question_type = $request->question_type;
-        if($request->question_type == 'radio' || $request->question_type =='checkbox'){
-            $answer->answers = implode(", ", $request->answer);
+        if($request->question_type == 'checkbox'){
+            $newvalue = implode(", ",  $request->checkBoxValue);
+            $answer->answers = $newvalue;
         }
         else{
             $answer->answers = $request->answer;
         }
         $answer->save();
         
-        Alert::success('Success');
-        return back();
+        return 1;
     }
 
 
