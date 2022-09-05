@@ -10409,6 +10409,10 @@ div.code-toolbar>.toolbar button:hover {
     color: #fff;
 }
 
+#after_select {
+    display: none;
+}
+
 .shepherd-button.btn-light:not(:disabled):hover {
     background: rgba(var(--vz-light-rgb), 0.75);
     color: var(--vz-dark);

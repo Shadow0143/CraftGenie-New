@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use App\Mail\UserContactMail;
 use App\Models\Package;
-
+use App\Models\Questions;
+use App\Models\Answer;
 
 class WelcomeController extends Controller
 {
@@ -23,7 +24,13 @@ class WelcomeController extends Controller
         $blogs = Blog::where('status',1)->orderBy('id','desc')->get();
         $testimonial = Testimonial::where('status',1)->orderBy('id','desc')->get();
         $package = Package::where('status','YES')->orderBy('id','desc')->get();
-        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial)->with('package',$package);
+        $question = Questions::orderBy('sequence','ASC')->get();
+        foreach($question as $key=>$val)
+        {
+            $values = explode(", ", $val->values);
+            $question[$key]->values = $values;
+        }
+        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial)->with('package',$package)->with('question',$question);
     }
 
     public function blogDetails($id)
@@ -66,6 +73,35 @@ class WelcomeController extends Controller
             Alert::success('Thank you for contact','We will contact you soon');
             return back();
 
+    }
+
+    public function questionaries(){
+        $question = Questions::orderBy('sequence','ASC')->get();
+        foreach($question as $key=>$val)
+        {
+            $values = explode(", ", $val->values);
+            $question[$key]->values = $values;
+        }
+        return view('admin.question.question',compact('question'));
+    }
+
+    public function submitAnswer(Request $request){
+        // dd($request->all());
+        $answer = new Answer();
+        // $answer->user_id = Auth::user()->id;
+        $answer->user_id = '1';
+        $answer->question_id = $request->question_id;
+        $answer->question_type = $request->question_type;
+        if($request->question_type == 'radio' || $request->question_type =='checkbox'){
+            $answer->answers = implode(", ", $request->answer);
+        }
+        else{
+            $answer->answers = $request->answer;
+        }
+        $answer->save();
+        
+        Alert::success('Success');
+        return back();
     }
 
 

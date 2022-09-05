@@ -1,5 +1,13 @@
 <?php $__env->startSection('title', ''); ?>
 <?php echo $__env->make('layouts.frontend.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<style>
+    input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    border: none;
+    padding: 0px;
+    margin-top: -20px;
+}
+</style>
 <div class="banner">
     <div id="home"> </div>
 
@@ -81,25 +89,25 @@
         <h2 class="titleall mb-5">Quick packages</h2>
         <div class="row mt-4">
             <div id="owl-demo1" class="tips-area owl-carousel owl-theme px-3">
-                
+
                 <?php $__currentLoopData = $package; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="item">
-                        <div class="inr-slider-box ">
-                            <div class="img-area">
-                                <img src="<?php echo e(asset('packages')); ?>/<?php echo e($val->image); ?>" alt="quic3.png">
-                            </div>
-                            <div class="w-100 d-block qtext">
-                                <h5><?php echo e($val->title); ?> </h5>
-                                <p><?php echo $val->description; ?></p>
-                                <div class="bar-list">
-                                    <ul>
-                                        <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
-                                    </ul>
-                                    <a href="" class="order"> order</a>
-                                </div>
+                <div class="item">
+                    <div class="inr-slider-box ">
+                        <div class="img-area">
+                            <img src="<?php echo e(asset('packages')); ?>/<?php echo e($val->image); ?>" alt="quic3.png">
+                        </div>
+                        <div class="w-100 d-block qtext">
+                            <h5><?php echo e($val->title); ?> </h5>
+                            <p><?php echo $val->description; ?></p>
+                            <div class="bar-list">
+                                <ul>
+                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
+                                </ul>
+                                <a href="" class="order"> order</a>
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </div>
@@ -127,11 +135,16 @@
     <div class="container">
         <div class="row">
             <ul class="stape-area">
-                <li>
+                <li data-toggle="modal" data-target="#exampleModalCenter">
                     <div class="rw-box">
                         <img src="<?php echo e(asset('img/icon.png')); ?>" alt="">
                     </div>
-                    <span>Questionair </span>
+                    <span>
+                        
+                        
+                            Questionnaire
+                          
+                        </span>
                 </li>
                 <li>
                     <div class="rw-box">
@@ -147,9 +160,101 @@
                 </li>
             </ul>
         </div>
+
+        
     </div>
 </div>
 
+
+<style>
+   
+    .tab {
+      display: none;
+    }
+    .step {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbbbbb;
+      border: none;  
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+    }
+    .step.active {
+      opacity: 1;
+    }
+   
+</style>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <?php $__currentLoopData = $question; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <form action="<?php echo e(route('submitAnswer')); ?>" method="post" id="question_form<?php echo e($val->id); ?>">
+                <?php echo csrf_field(); ?>
+                <div class="tab">
+                    <p>
+                       <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
+
+                        <input type="hidden" name="question_id" id="question_id" value="<?php echo e($val->id); ?>">
+                        <input type="hidden" name="question_type" id="question_type"
+                            value="<?php echo e($val->question_type); ?>">
+                    </p>
+                    <p class="mb-5">
+                        <?php if($val->question_type == 'text'): ?>
+                        <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control">
+                        <?php elseif($val->question_type == 'textarea'): ?>
+                        <textarea name="answer" id="answer__of_<?php echo e($val->id); ?>" cols="30" rows="10"
+                            class="form-control"></textarea>
+                        <?php elseif($val->question_type == 'radio' || $val->question_type == 'checkbox'): ?>
+                        <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                        <input type="<?php echo e($val->question_type); ?>" name="answer[]" class="form-control"
+                            value="<?php echo e($value); ?>">
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php elseif($val->question_type == 'select'): ?>
+                        <select name="answer" id="answer_of_<?php echo e($val->id); ?>" class="form-control">
+                            <option value="">--Select please--</option>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e(ucfirst($value)); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                        <?php endif; ?>
+                    </p>
+                    
+                </div>
+            
+
+                
+
+            </form>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <button class="btn btn-outline-primary" onclick="submit_form('<?php echo e($val->id); ?>')" type="submit">Submit</button>
+                  <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-default">Previous</button>
+                  <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-outline-success">Next</button>
+                </div>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <?php $__currentLoopData = $question; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <span class="step"></span>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 <!-- CLIENTS SPEAK -->
 
@@ -332,7 +437,7 @@
                         <input type="text" name="name" placeholder="Full Name" id="name">
                         <input type="text" name="email" placeholder="Email Id" id="email">
                         <input type="text" name="contact" placeholder="Contact Number" id="contact">
-                        <button  onClick="submitForm()"> Submit</button>
+                        <button onClick="submitForm()"> Submit</button>
                     </form>
                 </div>
             </div>
@@ -367,4 +472,79 @@
         }
 
 
+    </script>
+
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+        
+        function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+        }
+        
+        function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+        }
+        
+        function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+            // add an "invalid" class to the field:
+            y[i].className += " invalid";
+            // and set the current valid status to false
+            valid = false;
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
+        }
+        
+        function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+        }
     </script><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>

@@ -200,6 +200,9 @@
                             <li class="nav-item">
                                 <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('questionsList')}}" class="nav-link" data-key="t-crm">Questions</a>
+                            </li>
                        
                            
                        

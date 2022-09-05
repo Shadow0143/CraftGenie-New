@@ -18,6 +18,9 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->nam
 Route::get('/blog-details/{id}', [App\Http\Controllers\WelcomeController::class, 'blogDetails'])->name('blogDetails');
 Route::get('/submit-contact', [App\Http\Controllers\WelcomeController::class, 'submitContact'])->name('submitContact');
 
+Route::get('/questionaries', [App\Http\Controllers\WelcomeController::class, 'questionaries'])->name('questionaries');
+Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 'submitAnswer'])->name('submitAnswer');
+
 
 Route::get('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
 Route::post('/razorpay-payment/order-save', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentOrderSave'])->name('razorpayPaymentOrderSave');
@@ -60,5 +63,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/submit-packages', [App\Http\Controllers\PackagesController::class, 'submitPackages'])->name('submitPackages');
     Route::get('/edit-packages/{id}', [App\Http\Controllers\PackagesController::class, 'editPackages'])->name('editPackages');
     Route::get('/delete-packages', [App\Http\Controllers\PackagesController::class, 'deletePackages'])->name('deletePackages');
+
+
+    Route::get('/question-list', [App\Http\Controllers\QuestionController::class, 'questionsList'])->name('questionsList');
+    Route::get('/add-question', [App\Http\Controllers\QuestionController::class, 'addQuestions'])->name('addQuestions');
+    Route::post('/submit-question', [App\Http\Controllers\QuestionController::class, 'submitQuestions'])->name('submitQuestions');
+    Route::get('/edit-question/{id}', [App\Http\Controllers\QuestionController::class, 'editQuestions'])->name('editQuestions');
+    Route::get('/delete-question', [App\Http\Controllers\QuestionController::class, 'deleteQuestions'])->name('deleteQuestions');
 
 });
