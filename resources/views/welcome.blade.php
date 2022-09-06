@@ -128,7 +128,7 @@
     <div class="container">
         <div class="row">
             <ul class="stape-area">
-                <li data-toggle="modal" data-target="#exampleModalCenter">
+                <li data-toggle="modal" data-target="#QuestionAnswerModeal">
                     <div class="rw-box">
                         <img src="{{asset('img/icon.png')}}" alt="">
                     </div>
@@ -181,7 +181,7 @@
 </style>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -229,23 +229,25 @@
                             </select>
                         @endif
                     </p>
+                    <div style="overflow:auto;">
+                        <div style="float:right;">
+                            
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-default">Previous</button>
+                            <a class="btn btn-outline-primary submitAnswer{{$val->id}}"  type="submit"  id="nextBtn" onclick="nextPrev(1,'{{$val->id}}')">Save & Next</a>
+                            
+                        </div>
+                    </div>
                     
                 </div>
-                <div style="overflow:auto;">
-                    <div style="float:right;">
-                        
-                        <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-default">Previous</button>
-                        <a class="btn btn-outline-primary submitAnswer{{$val->id}}"  type="submit"  id="nextBtn" onclick="nextPrev(1,'{{$val->id}}')">Save & Next</a>
-                        
-                    </div>
-                </div>
+
+               
                 
                 @endforeach
         </form>
 
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;">
-                @for( $i =0; $i< (count($question)-1);$i++)
+                @for( $i =0; $i< (count($question) -1 );$i++)
                 <span class="step"></span>
                 @endfor
             </div>
@@ -487,14 +489,21 @@
             document.getElementById("prevBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
+            
         }
-        if (n == (x.length - 1)) {
+        
+        if (n == x.length  ) {
             document.getElementById("nextBtn").innerHTML = "Submit"; 
+            $('#QuestionAnswerModeal').modal('hide');
             
         } else {
             document.getElementById("nextBtn").innerHTML = " Save & Next";
             
         }
+
+        // alert(n);
+        // alert(x.length);
+
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
         }
@@ -526,11 +535,17 @@
                     encode: true,
                     success: function(res){
                     if(res==1){ 
-                        alert('done');
+                        // alert('done');
                         var x = document.getElementsByClassName("tab");
                         if (n == 1 && !validateForm()) return false;
                         x[currentTab].style.display = "none";
+                        
                         currentTab = currentTab + n;
+                        if (currentTab == x.length  ) {
+                            $('#QuestionAnswerModeal').modal('hide');
+                            
+                        } 
+                        
                         showTab(currentTab);
                         }
                         
@@ -557,17 +572,17 @@
         //     valid = false;
         //     }
         // }
-        // If the valid status is true, mark the step as finished and valid:
-        if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-        }
+        // // If the valid status is true, mark the step as finished and valid:
+        // if (valid) {
+        //     document.getElementsByClassName("step")[currentTab].className += " finish";
+        // }
         return valid; // return the valid status
         }
         
         function fixStepIndicator(n) {
         // This function removes the "active" class of all steps...
         var i, x = document.getElementsByClassName("step");
-        for (i = 0; i < x.length; i++) {
+        for (i = 0; i <( x.length)-1; i++) {
             x[i].className = x[i].className.replace(" active", "");
         }
         //... and adds the "active" class on the current step:
