@@ -13,8 +13,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RazorpayPaymentController extends Controller
 {
-    public function index() {        
-        return view('admin.payment.razorpayView');
+    public function index($id) {  
+        $id = $id;      
+        return view('admin.payment.razorpayView',compact('id'));
     }
 
     public function store(Request $request) {
@@ -47,6 +48,8 @@ class RazorpayPaymentController extends Controller
 
         $payment = new Payment();
         $payment->user_name = $request->name; 
+        $payment->user_id = Auth::user()->id; 
+        $payment->package_id = $request->package_id; 
         $payment->user_email = $request->email; 
         $payment->contact_no = $request->contactNumber; 
         $payment->address = $request->address; 

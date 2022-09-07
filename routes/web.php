@@ -22,7 +22,12 @@ Route::get('/questionaries', [App\Http\Controllers\WelcomeController::class, 'qu
 Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 'submitAnswer'])->name('submitAnswer');
 
 
-Route::get('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
+Route::get('/order-list', [App\Http\Controllers\WelcomeController::class, 'orderList'])->name('orderList');
+Route::get('/profile', [App\Http\Controllers\WelcomeController::class, 'profile'])->name('profile');
+Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solution'])->name('solution');
+
+
+Route::get('/razorpay-payment/{id}', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
 Route::post('/razorpay-payment/order-save', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentOrderSave'])->name('razorpayPaymentOrderSave');
 Route::get('/payment/CreateOrder', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentCreateOrder'])->name('razorpay.payment.create.order');
 Route::post('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController::class, 'store'])->name('razorpay.payment.store');
@@ -30,7 +35,7 @@ Route::post('/razorpay-payment', [App\Http\Controllers\RazorpayPaymentController
 
 Auth::routes();
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/banner-list', [App\Http\Controllers\DashboardController::class, 'bannerList'])->name('bannerList');

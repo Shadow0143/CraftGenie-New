@@ -15,6 +15,7 @@ use App\Mail\UserContactMail;
 use App\Models\Package;
 use App\Models\Questions;
 use App\Models\Answer;
+use App\Models\Payment;
 
 class WelcomeController extends Controller
 {
@@ -88,8 +89,7 @@ class WelcomeController extends Controller
     public function submitAnswer(Request $request){
         // dd($request->all());
         $answer = new Answer();
-        // $answer->user_id = Auth::user()->id;
-        $answer->user_id = '1';
+        $answer->user_id = Auth::user()->id;
         $answer->question_id = $request->question_id;
         $answer->question_type = $request->question_type;
         if($request->question_type == 'checkbox'){
@@ -102,6 +102,12 @@ class WelcomeController extends Controller
         $answer->save();
         
         return 1;
+    }
+
+    public function orderList()
+    {
+        $orderList = Payment::leftjoin('packages','packages.id','=','payments.package_id')->where('user_id',Auth::user()->id)->orderBy('payments.id','DESC')->get();
+        return view('user.orderList',compact('orderList'));
     }
 
 

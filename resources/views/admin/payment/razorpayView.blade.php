@@ -86,6 +86,7 @@
                                                 <div class="login-card-text">
                                                     <label for="name">Customer Name <span class="text-danger">*</span></label>
                                                     <input class="form-control" id="name" name="name" type="text" value="" required/>
+                                                    <input class="form-control" id="package_id" name="package_id" type="hidden" value="{{$id}}" readonly />
                                                 </div>
                                                 <div class="login-card-text">
                                                     <label for="email">Email ID <span class="text-danger">*</span></label>

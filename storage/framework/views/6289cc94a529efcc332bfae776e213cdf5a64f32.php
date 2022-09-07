@@ -49,12 +49,42 @@
                     <li class="nav-item">
                         <a class="nav-link " href="<?php echo e(route('welcome')); ?>#contact">CONTACT</a>
                     </li>
+
+                    <?php if(Auth::user()): ?>
+                        <?php if(Auth::user()->role=='0'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link " href="<?php echo e(route('home')); ?>">DASHBOARD</a>
+                            </li>
+                        <?php else: ?>
+                        <ul class="dropdown">
+                            <li  class="dropdown-toggle nav-link " data-toggle="dropdown">
+                             MY ACCOUNT
+                            </li>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="<?php echo e(route('profile')); ?>">Profile</a>
+                              <a class="dropdown-item" href="<?php echo e(route('orderList')); ?>">Orders</a>
+                              <a class="dropdown-item" href="<?php echo e(route('solution')); ?>">Solutions</a>
+                              <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();"><i
+                                      class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                      class="align-middle" data-key="t-logout">Logout</span></a>
+
+
+                              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                                  <?php echo csrf_field(); ?>
+                              </form>
+
+
+
+                            </div>
+                          </ul>
+                        <?php endif; ?>
+                    <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link " href="<?php echo e(route('login')); ?>">LOGIN</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="<?php echo e(route('startPay')); ?>">Pay</a>
-                    </li>
+                    <?php endif; ?>
+
                 </ul>
             </div>
         </nav>
