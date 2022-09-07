@@ -56,11 +56,26 @@
                                         @enderror
 
                                     </div>
+                                    
+                                    <div col-12 mt-3">
+                                        <label for="price">Package Price <span class="text-danger">*</span></label>
+                                        <input type="number" name="price" id="price"
+                                            class="form-control @error('price') is-invalid @enderror">
+                                        @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror
+                                    </div>
                                   
                                     <div class="col-12 mt-3">
                                         <label for="package_description">Package Description</label>
                                         <textarea name="package_description" id="package_description" cols="30" rows="10" class="form-control snow-editor ckeditor-classic" > @if(!empty($cms)) {!! $cms->description!!} @endif</textarea>
                                     </div>
+
+                                  
+
+
                                     <div class="row">
                                         <div class=" @if(empty($cms))col-12 @else col-6 @endif mt-3">
                                             <label for="package_image">Package Image <span class="text-danger">*</span></label>
@@ -82,6 +97,13 @@
                                         </div>
                                     @endif
                                     </div>
+
+                                    <div class="col-12 mt-3">
+                                        <label for="package_description">File Upload</label>
+                                        <input type="file" name="extra_file" id="extra_file" class="form-control">
+                                    </div>
+
+
                                    
                                     <div class="col-12 text-center mt-5">
                                         <button type="submit" class="btn btn-outline-primary">Submit</button>

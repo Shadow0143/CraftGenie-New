@@ -42,10 +42,12 @@
                                 class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                 style="width:100%">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>SR No.</th>
                                         <th>Package Title </th>
                                         <th>Description </th>
+                                        <th>Price</th>
+                                        <th>Uploaded File</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -53,10 +55,16 @@
                                 <tbody>
 
                                     @forelse($packages as $key => $val)
-                                    <tr id="removeRow{{$val->id}}">
+                                    <tr id="removeRow{{$val->id}}" class="text-center">
                                         <td>{{$key+1}}</td>
                                         <td>{{$val->title}}</td>
                                         <td>{!!$val->description!!}</td>
+                                        <td>{{$val->price}}</td>
+                                        <td>
+                                            @if(!empty($val->extra_file))
+                                                <a href="{{asset('extra_files')}}/{{$val->extra_file}}" target="_blank">View</a>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($val->status =='YES')
                                                 <span class="badge badge-soft-success">Active</span>

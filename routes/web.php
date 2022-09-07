@@ -24,6 +24,11 @@ Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 's
 
 Route::get('/order-list', [App\Http\Controllers\WelcomeController::class, 'orderList'])->name('orderList');
 Route::get('/profile', [App\Http\Controllers\WelcomeController::class, 'profile'])->name('profile');
+Route::post('/update-contact-info', [App\Http\Controllers\WelcomeController::class, 'contactInfo'])->name('contactInfo');
+Route::post('/add-address', [App\Http\Controllers\WelcomeController::class, 'addAddress'])->name('addAddress');
+Route::get('/edit-address', [App\Http\Controllers\WelcomeController::class, 'editAddress'])->name('editAddress');
+Route::get('/delete-address', [App\Http\Controllers\WelcomeController::class, 'deleteAddress'])->name('deleteAddress');
+Route::get('/default-address', [App\Http\Controllers\WelcomeController::class, 'defaultAddress'])->name('defaultAddress');
 Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solution'])->name('solution');
 
 

@@ -91,10 +91,16 @@
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5>{{$val->title}} </h5>
+                            <p> Price : <strong>{{$val->price}} /-</strong></p>
                             <span>{!! $val->description !!}</span>
                             <div class="bar-list">
                                 <ul>
-                                    <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li>
+                                    {{-- <li><img src="{{asset('img/pdf.png')}}" alt="ppt.png"></li> --}}
+                                    @if(!empty($val->extra_file))
+                                    <li>
+                                        <a href="{{asset('extra_files')}}/{{$val->extra_file}}" target="_blank"> <i class="fa fa-download" aria-hidden="true"></i> File</a>
+                                    </li>
+                                    @endif
                                 </ul>
                                 <a href="javaScript:void(0);" class="order"  data-id="{{$val->id}}" > order</a>
                             </div>
@@ -581,6 +587,7 @@
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
             $('#QuestionAnswerModeal').modal('show');
+            $('.paynowbtn').show();
             $('.paynowbtn').attr('href','/razorpay-payment/'+packageId);
             
         });

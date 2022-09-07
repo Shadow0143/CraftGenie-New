@@ -91,10 +91,16 @@
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5><?php echo e($val->title); ?> </h5>
+                            <p> Price : <strong><?php echo e($val->price); ?> /-</strong></p>
                             <span><?php echo $val->description; ?></span>
                             <div class="bar-list">
                                 <ul>
-                                    <li><img src="<?php echo e(asset('img/pdf.png')); ?>" alt="ppt.png"></li>
+                                    
+                                    <?php if(!empty($val->extra_file)): ?>
+                                    <li>
+                                        <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($val->extra_file); ?>" target="_blank"> <i class="fa fa-download" aria-hidden="true"></i> File</a>
+                                    </li>
+                                    <?php endif; ?>
                                 </ul>
                                 <a href="javaScript:void(0);" class="order"  data-id="<?php echo e($val->id); ?>" > order</a>
                             </div>
@@ -584,6 +590,7 @@
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
             $('#QuestionAnswerModeal').modal('show');
+            $('.paynowbtn').show();
             $('.paynowbtn').attr('href','/razorpay-payment/'+packageId);
             
         });

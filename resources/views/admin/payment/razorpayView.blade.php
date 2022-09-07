@@ -85,24 +85,24 @@
                                                 @csrf
                                                 <div class="login-card-text">
                                                     <label for="name">Customer Name <span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="name" name="name" type="text" value="" required/>
-                                                    <input class="form-control" id="package_id" name="package_id" type="hidden" value="{{$id}}" readonly />
+                                                    <input class="form-control" id="name" name="name" type="text" value="{{Auth::user()->name}}" required readonly/>
+                                                    <input class="form-control" id="package_id" name="package_id" type="hidden" value="{{$package->id}}" readonly />
                                                 </div>
                                                 <div class="login-card-text">
                                                     <label for="email">Email ID <span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="email" name="email" type="text" value="" required/>
+                                                    <input class="form-control" id="email" name="email" type="text" value="{{Auth::user()->email}}" readonly required/>
                                                 </div>
                                                 <div class="login-card-text">
                                                     <label for="contactNumber">Contact Number <span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="contactNumber" name="contactNumber" type="text" value="" required/>
+                                                    <input class="form-control" id="contactNumber" name="contactNumber" type="text" value="{{Auth::user()->phone_no}}" readonly required/>
                                                 </div>
                                                 <div class="login-card-text">
                                                     <label for="address">Address</label>
-                                                    <input class="form-control" id="address" name="address" type="text" value="" />
+                                                    <input class="form-control" id="address" name="address" type="text" value="{{$address->address}}" readonly/>
                                                 </div>
                                                 <div class="login-card-text">
                                                     <label for="amount">Amount (INR) <span class="text-danger">*</span></label>
-                                                    <input class="form-control" data-val="true" data-val-number="The field amount must be a number." data-val-required="The amount field is required." id="amount" name="amount" type="text" value="" required/>
+                                                    <input class="form-control" data-val="true" data-val-number="The field amount must be a number." data-val-required="The amount field is required." id="amount" name="amount" type="text" value="{{$package->price}}" required readonly/>
                                                     <div id="PGChanrge" style="color:orange"></div>
                                                 </div>
                                                 <div class="login-card-text">

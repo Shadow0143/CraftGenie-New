@@ -33,6 +33,7 @@ class PackagesController extends Controller
             $cms =  Package::find($request->id);
             $cms->title = $request->title;
             $cms->description = $request->package_description;
+            $cms->price = $request->price;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .
@@ -41,6 +42,18 @@ class PackagesController extends Controller
                 $packages->move($result, $packagephoto);
                 $cms->image  = $packagephoto;
             }
+            if (!empty($request->file('extra_file'))) {
+                $extra_files = $request->file('extra_file');
+                $extraFiles = 'extra-file-' . rand(000, 999) . '.' .
+                    $extra_files->getClientOriginalExtension();
+                $result = public_path('extra_files');
+                $extra_files->move($result, $extraFiles);
+                $cms->extra_file  = $extraFiles;
+                $extension =  $extra_files->getClientOriginalExtension();
+                $cms->file_type  = $extension;
+
+            }
+            
             $cms->status = $request->changestatus;
             $cms->save();
             Alert::success('Success', 'Blog updated !');
@@ -52,6 +65,7 @@ class PackagesController extends Controller
             $cms = new Package();
             $cms->title = $request->title;
             $cms->description = $request->package_description;
+            $cms->price = $request->price;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .
@@ -60,6 +74,20 @@ class PackagesController extends Controller
                 $packages->move($result, $packagephoto);
                 $cms->image  = $packagephoto;
             }
+
+            if (!empty($request->file('extra_file'))) {
+                $extra_files = $request->file('extra_file');
+                $extraFiles = 'extra-file-' . rand(000, 999) . '.' .
+                    $extra_files->getClientOriginalExtension();
+                $result = public_path('extra_files');
+                $extra_files->move($result, $extraFiles);
+                $cms->extra_file  = $extraFiles;
+                $extension =  $extra_files->getClientOriginalExtension();
+                $cms->file_type  = $extension;
+
+            }
+
+
             $cms->save();
             Alert::success('Success', 'Package added !');
         }

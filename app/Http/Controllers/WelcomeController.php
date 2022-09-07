@@ -16,6 +16,8 @@ use App\Models\Package;
 use App\Models\Questions;
 use App\Models\Answer;
 use App\Models\Payment;
+use App\Models\User;
+use App\Models\Address;
 
 class WelcomeController extends Controller
 {
@@ -109,6 +111,84 @@ class WelcomeController extends Controller
         $orderList = Payment::leftjoin('packages','packages.id','=','payments.package_id')->where('user_id',Auth::user()->id)->orderBy('payments.id','DESC')->get();
         return view('user.orderList',compact('orderList'));
     }
+
+    public function profile()
+    {
+        $address = Address::where('user_id',Auth::user()->id)->get();
+        return view('user.profile',compact('address'));
+    }
+
+    public function contactInfo(Request $request){
+        // dd($request->username);
+        $data = [
+            'name'=>$request->username,
+            'email'=>$request->email,
+            'phone_no'=>$request->phone_no,
+        ];
+        
+        $user = User::where('id',$request->user_id)->update($data);
+        if($user){
+            Alert::success('Updated','Contact Information Updated !');
+        }else{
+            Alert::error('Sorry','Please try again later !');
+
+        }
+        return back();
+    }
+
+    public function addAddress(Request $request){
+    // dd($request->all());
+
+    if (!empty($request->address_id)) {
+        $address =  Address::find($request->address_id);
+        $address->address = $request->address ;
+        $address->locality = $request->locality ;
+        $address->city = $request->city ;
+        $address->state = $request->state ;
+        $address->country = $request->country ;
+        $address->pin = $request->pin ;
+        $address->save();
+        Alert::success('Success', 'Address Updated  !');
+    } else {
+    
+        $address = new Address();
+        $address->user_id = Auth::user()->id;
+        $address->address = $request->address ;
+        $address->locality = $request->locality ;
+        $address->city = $request->city ;
+        $address->state = $request->state ;
+        $address->country = $request->country ;
+        $address->pin = $request->pin ;
+        $address->save();
+        Alert::success('Success', 'Address added  !');
+    }
+        return back();
+    }
+
+    public function deleteAddress(Request $request){
+        // dd($request->al());
+        $delete = Address::find($request->id);
+        $delete->delete();
+        return back();
+    }
+
+
+    public function defaultAddress(Request $request){
+        $change = Address::where('user_id',Auth::user()->id)->update(['is_default'=>'0']);
+        $default = Address::find($request->id);
+        $default->is_default = '1';
+        $default->save();
+        return back();
+    }
+
+
+    public function editAddress(Request $request){
+        $default = Address::where('id',$request->id)->first();
+        return $default;
+    }
+
+
+    
 
 
 }

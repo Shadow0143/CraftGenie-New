@@ -10,12 +10,16 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Package;
+use App\Models\Address;
 
 class RazorpayPaymentController extends Controller
 {
     public function index($id) {  
-        $id = $id;      
-        return view('admin.payment.razorpayView',compact('id'));
+        // $id = $id;     
+        $package =  Package::where('id',$id)->first();
+        $address = Address::where('user_id',Auth::user()->id)->where('is_default','1')->first();
+        return view('admin.payment.razorpayView',compact('package','address'));
     }
 
     public function store(Request $request) {
