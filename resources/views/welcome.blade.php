@@ -439,11 +439,13 @@
                 </div>
             </div>
             <div class="col-md-4 allform">
-                <form class="Contact_form" method="GET" action="{{route('submitContact')}}">
-                    <input type="text" name="name" placeholder="Full Name" id="name">
-                    <input type="text" name="email" placeholder="Email Id" id="email">
-                    <input type="text" name="contact" placeholder="Contact Number" id="contact">
-                    <button onClick="submitForm()"> Submit</button>
+                <form class="Contact_form" method="POST" action="{{route('submitContact')}}" enctype="multipart/form-data">
+                    @csrf
+                    <input type="text" name="name" placeholder="Full Name" id="name" required>
+                    <input type="text" name="email" placeholder="Email Id" id="email" required>
+                    <input type="text" name="contact" placeholder="Contact Number" id="contact" required>
+                    <input type="file" name="sharefile" placeholder="Share File" id="sharefile" class="form-control">
+                    <button  type="submit"> Submit</button>
                 </form>
             </div>
         </div>
@@ -453,36 +455,7 @@
 <!-- end incontact -->
 @include('layouts.frontend.footer')
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js">
-
-    <script>
-        function submitForm()
-        {
-            $(".Contact_form").submit(function (event) {
-            var formData = {
-                "_token": "{{ csrf_token() }}",
-                name: $("#name").val(),
-                email: $("#email").val(),
-                contact_no: $("#contact").val(),
-            };
-            $.ajax({
-                url: $(this).attr("action"),
-                type: $(this).attr("method"),
-                data: formData,
-                dataType: "json",
-                encode: true,
-                success: function(res){
-                    alert('Done');
-                },
-            });
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            });
-        }
-
-
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <script>
         jq162 = jQuery.noConflict( true );
@@ -597,7 +570,9 @@
         }
     </script>
 
+
     <script>
+        
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
             $('#QuestionAnswerModeal').modal('show');

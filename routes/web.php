@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 Route::get('/blog-details/{id}', [App\Http\Controllers\WelcomeController::class, 'blogDetails'])->name('blogDetails');
-Route::get('/submit-contact', [App\Http\Controllers\WelcomeController::class, 'submitContact'])->name('submitContact');
+Route::post('/submit-contact', [App\Http\Controllers\WelcomeController::class, 'submitContact'])->name('submitContact');
 
 Route::get('/questionaries', [App\Http\Controllers\WelcomeController::class, 'questionaries'])->name('questionaries');
 Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 'submitAnswer'])->name('submitAnswer');

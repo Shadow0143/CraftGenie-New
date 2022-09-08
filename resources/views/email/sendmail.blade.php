@@ -10,5 +10,9 @@
       <h1> {{ $details['title']}}</h1>
       <p> <strong> {{$details['username']}} </strong> wants to contact you. <br> Please call him/her on : {{$details['contact']}} or mail on : {{$details['useremail']}}</p>
       <p>Thank You</p>
+
+      @if (!empty($details['files']))
+        {{$details['files']}}
+      @endif
   </body>
 </html>

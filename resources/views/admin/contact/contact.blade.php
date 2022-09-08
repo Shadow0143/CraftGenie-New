@@ -40,11 +40,12 @@
                                 class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                 style="width:100%">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>SR No.</th>
                                         <th>User Name </th>
                                         <th>User Email </th>
                                         <th>User Contact no.</th>
+                                        <th>Receive Files</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -52,10 +53,16 @@
 
                                     @forelse($all_contact as $key => $val)
                                     <tr id="removeRow{{$val->id}}">
-                                        <td>{{$key+1}}</td>
+                                        <td class="text-center">{{$key+1}}</td>
                                         <td>{{$val->user_name}}</td>
                                         <td>{{$val->user_email}}</td>
                                         <td>{{$val->contact_no}}</td>
+                                        <td class="text-center">
+                                            @if($val->shared_file)
+                                                <a href="{{asset('extra_files')}}/{{$val->shared_file}}"><i class=" ri-download-2-line"> </i> File</a>
+                                            @endif
+                                            
+                                        </td>
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"

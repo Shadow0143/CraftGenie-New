@@ -50,6 +50,7 @@ class WelcomeController extends Controller
 
     public function submitContact(Request $request){
 
+        // dd($request->all());
         // for user
 
           $userdetails = [
@@ -61,24 +62,29 @@ class WelcomeController extends Controller
 
         // for admin
 
-        $details = [
-            'title' => $request->name. ' ' .' try to reach you',
-            'useremail' =>$request->email,
-            'username' =>$request->name,
-            'contact' =>$request->contact,
-        ];
 
-        Mail::to('shakilbluehorse@gmail.com')->send( new ContactMail($details)); 
-
-
-      
-            $contact = new ContactUs();
+        $contact = new ContactUs();
             $contact->user_name = $request->name;
             $contact->user_email = $request->email;
             $contact->contact_no = $request->contact;
+            if (!empty($request->file('sharefile'))) {
+                $contactfile = $request->file('sharefile');
+                $filename = 'contact-share-' . rand(000, 999) . '.' .
+                    $contactfile->getClientOriginalExtension();
+                $result = public_path('extra_files');
+                $contactfile->move($result, $filename);
+                $contact->shared_file  = $filename;
+            }
             $contact->save();
 
-        
+            $details = [
+                'title' => $request->name. ' ' .' try to reach you',
+                'useremail' =>$request->email,
+                'username' =>$request->name,
+                'contact' =>$request->contact,
+                'files'  => asset('extra_files'.'/'.$contact->shared_file),
+            ];
+            Mail::to('shakilbluehorse@gmail.com')->send( new ContactMail($details));
             Alert::success('Thank you for contact','We will contact you soon');
             return back();
 
@@ -143,31 +149,31 @@ class WelcomeController extends Controller
     }
 
     public function addAddress(Request $request){
-    // dd($request->all());
+        // dd($request->all());
 
-    if (!empty($request->address_id)) {
-        $address =  Address::find($request->address_id);
-        $address->address = $request->address ;
-        $address->locality = $request->locality ;
-        $address->city = $request->city ;
-        $address->state = $request->state ;
-        $address->country = $request->country ;
-        $address->pin = $request->pin ;
-        $address->save();
-        Alert::success('Success', 'Address Updated  !');
-    } else {
-    
-        $address = new Address();
-        $address->user_id = Auth::user()->id;
-        $address->address = $request->address ;
-        $address->locality = $request->locality ;
-        $address->city = $request->city ;
-        $address->state = $request->state ;
-        $address->country = $request->country ;
-        $address->pin = $request->pin ;
-        $address->save();
-        Alert::success('Success', 'Address added  !');
-    }
+        if (!empty($request->address_id)) {
+            $address =  Address::find($request->address_id);
+            $address->address = $request->address ;
+            $address->locality = $request->locality ;
+            $address->city = $request->city ;
+            $address->state = $request->state ;
+            $address->country = $request->country ;
+            $address->pin = $request->pin ;
+            $address->save();
+            Alert::success('Success', 'Address Updated  !');
+        } else {
+        
+            $address = new Address();
+            $address->user_id = Auth::user()->id;
+            $address->address = $request->address ;
+            $address->locality = $request->locality ;
+            $address->city = $request->city ;
+            $address->state = $request->state ;
+            $address->country = $request->country ;
+            $address->pin = $request->pin ;
+            $address->save();
+            Alert::success('Success', 'Address added  !');
+        }
         return back();
     }
 
