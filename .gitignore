@@ -4,6 +4,8 @@
 /public/blogs
 /public/storage
 /public/testimonial
+/public/packages
+/public/extra_files
 /storage/*.key
 /storage/framework
 /vendor

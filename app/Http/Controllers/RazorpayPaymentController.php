@@ -15,6 +15,12 @@ use App\Models\Address;
 
 class RazorpayPaymentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index($id) {  
         // $id = $id;     
         $package =  Package::where('id',$id)->first();

@@ -19,6 +19,7 @@ class RoleMiddleware
     {
        
         $user = Auth::user();
+        // dd($user);
         if($user->role =='0')
         {
             return $next($request);

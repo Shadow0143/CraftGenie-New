@@ -80,7 +80,7 @@
                                         <div class=" @if(empty($cms))col-12 @else col-6 @endif mt-3">
                                             <label for="package_image">Package Image <span class="text-danger">*</span></label>
                                             <input type="file" name="package_image" id="package_image"
-                                                class="form-control @error('package_image') is-invalid @enderror">
+                                                class="form-control @error('package_image') is-invalid @enderror"  accept=".jpg,.png,.jpeg,.JPG,.PNG,.JPEG">
                                             @error('package_image')
                                             <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
@@ -100,7 +100,7 @@
 
                                     <div class="col-12 mt-3">
                                         <label for="package_description">File Upload</label>
-                                        <input type="file" name="extra_file" id="extra_file" class="form-control">
+                                        <input type="file" name="extra_file[]" id="extra_file" class="form-control" multiple   accept=".doc,.docx,.ppt,.xlxs.xl">
                                     </div>
 
 

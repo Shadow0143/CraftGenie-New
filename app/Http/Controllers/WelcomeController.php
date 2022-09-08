@@ -18,6 +18,8 @@ use App\Models\Answer;
 use App\Models\Payment;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\PackageExtraFiles;
+
 
 class WelcomeController extends Controller
 {
@@ -27,6 +29,10 @@ class WelcomeController extends Controller
         $blogs = Blog::where('status',1)->orderBy('id','desc')->get();
         $testimonial = Testimonial::where('status',1)->orderBy('id','desc')->get();
         $package = Package::where('status','YES')->orderBy('id','desc')->get();
+        foreach($package as $key=>$val){
+            $files = PackageExtraFiles::where('package_id',$val->id)->get();
+            $package[$key]->file = $files;
+        }
         $question = Questions::orderBy('sequence','ASC')->get();
         foreach($question as $key=>$val)
         {

@@ -61,8 +61,19 @@
                                         <td>{!!$val->description!!}</td>
                                         <td>{{$val->price}}</td>
                                         <td>
-                                            @if(!empty($val->extra_file))
-                                                <a href="{{asset('extra_files')}}/{{$val->extra_file}}" target="_blank">View</a>
+                                            @if(!empty($val->file))
+                                                @foreach($val->file as $key => $value)
+                                                <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
+                                                    @if($value->extension == 'docx')
+                                                        <img src="{{asset('img/download.jpeg')}}" alt="word-img">
+                                                    @elseif($value->extension == 'ppt')
+                                                    <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
+                                                    @elseif($value->extension == 'xlxs' ||  $value->extension == 'xl')
+                                                    <img src="{{asset('img/excel.png')}}" alt="xl-img">
+                                                    @endif
+                                                    
+                                                </a>
+                                                @endforeach
                                             @endif
                                         </td>
                                         <td>

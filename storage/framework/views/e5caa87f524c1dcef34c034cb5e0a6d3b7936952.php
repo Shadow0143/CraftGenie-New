@@ -95,12 +95,26 @@
                             <span><?php echo $val->description; ?></span>
                             <div class="bar-list">
                                 <ul>
-                                    
-                                    <?php if(!empty($val->extra_file)): ?>
-                                    <li>
-                                        <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($val->extra_file); ?>" target="_blank"> <i class="fa fa-download" aria-hidden="true"></i> File</a>
-                                    </li>
+                                    <?php if(!empty($val->file)): ?>
+                                        <?php $__currentLoopData = $val->file; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li>
+                                            <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($value->file_name); ?>" target="_blank">
+                                                <?php if($value->extension == 'docx'): ?>
+                                                    <img src="<?php echo e(asset('img/download.jpeg')); ?>" alt="word-img">
+                                                <?php elseif($value->extension == 'ppt'): ?>
+                                                <img src="<?php echo e(asset('img/ppt.png')); ?>" alt="ppt-img">
+                                                <?php elseif($value->extension == 'xlxs' ||  $value->extension == 'xl'): ?>
+                                                <img src="<?php echo e(asset('img/excel.png')); ?>" alt="xl-img">
+                                                <?php endif; ?>
+                                                
+                                            </a>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
                                     <?php endif; ?>
+
+                                    </li>
+
+
+                                    
                                 </ul>
                                 <a href="javaScript:void(0);" class="order"  data-id="<?php echo e($val->id); ?>" > order</a>
                             </div>
