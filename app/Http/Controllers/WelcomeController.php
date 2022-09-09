@@ -33,13 +33,22 @@ class WelcomeController extends Controller
             $files = PackageExtraFiles::where('package_id',$val->id)->get();
             $package[$key]->file = $files;
         }
-        $question = Questions::orderBy('sequence','ASC')->get();
+        $question = Questions::where('use_for','questionnair')->orderBy('sequence','ASC')->get();
         foreach($question as $key=>$val)
         {
-            $values = explode(", ", $val->values);
+            $values = explode("~ ", $val->values);
             $question[$key]->values = $values;
         }
-        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial)->with('package',$package)->with('question',$question);
+
+        $story = Questions::where('use_for','story')->orderBy('sequence','ASC')->get();
+        foreach($story as $key=>$val)
+        {
+            $values = explode("~ ", $val->values);
+            $story[$key]->values = $values;
+        }
+
+
+        return view('welcome')->with('cms',$cms)->with('blog',$blogs)->with('testimonial',$testimonial)->with('package',$package)->with('question',$question)->with('story',$story);
     }
 
     public function blogDetails($id)
@@ -106,6 +115,7 @@ class WelcomeController extends Controller
         $answer->user_id = Auth::user()->id;
         $answer->question_id = $request->question_id;
         $answer->question_type = $request->question_type;
+        $answer->package_id = $request->packageId;
         if($request->question_type == 'checkbox'){
             $newvalue = implode(", ",  $request->checkBoxValue);
             $answer->answers = $newvalue;

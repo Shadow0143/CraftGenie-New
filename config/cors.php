@@ -17,6 +17,8 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
+    // 'paths' => ['api/*', 'http://localhost:8004/main/onetaphelp-iframe.js'],
+
     'allowed_methods' => ['*'],
 
     'allowed_origins' => ['*'],

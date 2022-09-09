@@ -56,8 +56,16 @@
                                         @enderror
 
                                     </div>
+                                    <div class="col-6 mt-3">
+                                        <label for="questionfor">Question Use For <span class="text-danger">*</span></label>
+                                        <select name="questionfor" id="questionfor" class="form-control" required>
+                                            <option value="">Select</option>
+                                            <option value="questionnair"    @if(!empty($cms)) {{$cms->use_for == 'questionnair'  ? 'selected' : ''}} @endif>Questionnair</option>
+                                            <option value="story"    @if(!empty($cms)) {{$cms->use_for == 'story'  ? 'selected' : ''}} @endif>Story</option>
+                                        </select>
+                                    </div>
                                   
-                                    <div class="col-12 mt-3">
+                                    <div class="col-6 mt-3">
                                         <label for="type">Question Type</label>
                                         <select name="question_type" id="question_type" class="form-control">
                                             <option value="text">Text</option>

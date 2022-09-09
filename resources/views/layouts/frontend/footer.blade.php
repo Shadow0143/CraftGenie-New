@@ -30,7 +30,7 @@
 
 
 
-
+{{-- <script src="http://localhost:8004/main/onetaphelp-iframe.js"></script> --}}
       <!--jquery min  -->
       <script src="{{asset('js/jquery-slim.min.js')}}" ></script>
       <!--bootstrap.min  -->

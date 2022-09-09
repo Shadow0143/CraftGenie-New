@@ -116,7 +116,11 @@
 
                                     
                                 </ul>
-                                <a href="javaScript:void(0);" class="order"  data-id="<?php echo e($val->id); ?>" > order</a>
+                                <?php if(Auth::user()): ?>
+                                    <a href="javaScript:void(0);" class="order"  data-id="<?php echo e($val->id); ?>" > order</a>
+                                <?php else: ?>
+                                    <a href="<?php echo e(route('login')); ?>" class="order"   > order</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -144,7 +148,7 @@
     <div class="container">
         <div class="row">
             <ul class="stape-area">
-                <li  class="Questionnaire">
+                <li  class="Questionnaires">
                     <div class="rw-box">
                         <img src="<?php echo e(asset('img/icon.png')); ?>" alt="">
                     </div>
@@ -193,7 +197,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
@@ -208,11 +212,13 @@
                 
                 <div class="tab">
                     <p>
-                       <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
+                        <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
 
                         <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>" class="question_id<?php echo e($val->id); ?>">
                         <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
-                            value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
+                        value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
+                        
+                        <input type="hidden" name="package_id" id="package_id" class="package_id" value="" readonly>
                     </p>
                     <p class="mb-5">
                         <?php if($val->question_type == 'text'): ?>
@@ -221,17 +227,29 @@
                              <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
                             class="form-control answer<?php echo e($val->id); ?>"></textarea>
                         <?php elseif($val->question_type == 'radio'): ?>
-                        <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
-                                value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
+                        <ul>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                                <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
+                                    value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
+                            </li>
+                           
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                        
                         <?php elseif($val->question_type == 'checkbox'): ?>
-                        <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                            <input type="<?php echo e($val->question_type); ?>" name="checkbox[]" class="form-control checkbox<?php echo e($val->id); ?>"
-                                value="<?php echo e($value); ?>" id="checkbox<?php echo e($val->id); ?>">
+                        <ul>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]" class="form-control checkbox<?php echo e($val->id); ?>"
+                                    value="<?php echo e($value); ?>" id="checkbox<?php echo e($val->id); ?>">
+                            </li>
+                                
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                            
                         <?php elseif($val->question_type == 'select'): ?>
                             <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
                                 <option value="">--Select please--</option>
@@ -247,7 +265,7 @@
                             <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-dark btn-sm"> << </a>
                             <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"  type="submit"  id="nextBtn" onclick="nextPrev(1,'<?php echo e($val->id); ?>')">Save & Next</a>
                             <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
-                            <a class="btn btn-outline-warning btn-sm" onclick="skip(1)" href="javaScript:void(0);"> >> </a>
+                            <a class="btn btn-outline-warning btn-sm skip" onclick="skip(1)" href="javaScript:void(0);"> >> </a>
                             
                         </div>
                     </div>
@@ -266,7 +284,96 @@
         
       </div>
     </div>
-  </div>
+</div>
+
+
+<div class="modal fade" id="StoryAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle2">What is your story?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <?php $__currentLoopData = $story; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <form action="<?php echo e(route('submitAnswer')); ?>" id="question_form<?php echo e($key+1); ?>">
+                <?php echo csrf_field(); ?>
+                
+                <div class="tab2">
+                    <p>
+                       <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
+
+                        <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>" class="question_id<?php echo e($val->id); ?>">
+                        <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
+                            value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
+                    </p>
+                    <p class="mb-5">
+                        <?php if($val->question_type == 'text'): ?>
+                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>" id="answer<?php echo e($val->id); ?>">
+                        <?php elseif($val->question_type == 'textarea'): ?>
+                             <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
+                            class="form-control answer<?php echo e($val->id); ?>"></textarea>
+                        <?php elseif($val->question_type == 'radio'): ?>
+                        <ul>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                                <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
+                                    value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
+                            </li>
+                           
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                        
+                        <?php elseif($val->question_type == 'checkbox'): ?>
+                        <ul>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li>
+                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]" class="form-control checkbox<?php echo e($val->id); ?>"
+                                    value="<?php echo e($value); ?>" id="checkbox<?php echo e($val->id); ?>">
+                            </li>
+                                
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                            
+                        <?php elseif($val->question_type == 'select'): ?>
+                            <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
+                                <option value="">--Select please--</option>
+                                <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($value); ?>"><?php echo e(ucfirst($value)); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        <?php endif; ?>
+                    </p>
+                    <div style="overflow:auto;">
+                        <div style="float:right">
+                            
+                            <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev2(-1)" class="btn btn-outline-dark btn-sm"> << </a>
+                            <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"  type="submit"  id="nextBtn" onclick="nextPrev2(1,'<?php echo e($val->id); ?>')">Save & Next</a>
+                            <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
+                            <a class="btn btn-outline-warning btn-sm" onclick="skip2(1)" href="javaScript:void(0);"> >> </a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </form>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                <?php for( $i =0; $i< (count($story) -1 );$i++): ?>
+                <span class="step2"></span>
+                <?php endfor; ?>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+</div>
 
 <!-- CLIENTS SPEAK -->
 
@@ -499,6 +606,7 @@
                     question_id: jq162(".question_id"+id).val(),
                     question_type: jq162(".question_type"+id).val(),
                     answer: jq162(".answer"+id).val(),
+                    packageId: jq162(".package_id").val(),
                     checkBoxValue:checkBoxValue,
 
                 };
@@ -516,9 +624,12 @@
                         x[currentTab].style.display = "none";
                         
                         currentTab = currentTab + n;
+                        // if(currentTab == x.length ){
+                        //     $('.skip').addClass('storymodal').removeClass('skip');
+                        // }
                         if (currentTab == x.length  ) {
-                            $('#QuestionAnswerModeal').modal('hide');
-                            
+                            $('#StoryAnswerModeal').modal('show');                          
+                            // $('#QuestionAnswerModeal').modal('hide');                          
                         } 
                         
                         showTab(currentTab);
@@ -573,22 +684,30 @@
         }
     </script>
 
-
+    
     <script>
         
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
+            $('.package_id').val(packageId);
             $('#QuestionAnswerModeal').modal('show');
             $('.paynowbtn').show();
             $('.paynowbtn').attr('href','/razorpay-payment/'+packageId);
             
         });
-        $('.Questionnaire').on('click',function(){
+
+
+        // $('.Questionnaire').on('click',function(){
            
-            $('#QuestionAnswerModeal').modal('show');
-            $('.paynowbtn').hide();
+        //     $('#QuestionAnswerModeal').modal('show');
+        //     $('.paynowbtn').hide();
             
+        // });
+
+        $('.storymodal').on('click',function(){
+            $('#storyAnswerModeal').modal('show');
         });
+
 
       
 

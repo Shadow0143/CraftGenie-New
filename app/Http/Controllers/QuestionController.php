@@ -30,21 +30,17 @@ class QuestionController extends Controller
     public function submitQuestions(Request $request)
     {
         // dd($request->all());
+        //update part is ni done yet.....
         if(!empty($request->id)){
-            $cms =  Questions::find($request->id);
-            $cms->title = $request->title;
-            $cms->description = $request->package_description;
-            if (!empty($request->file('package_image'))) {
-                $packages = $request->file('package_image');
-                $packagephoto = 'package-image-' . rand(000, 999) . '.' .
-                    $packages->getClientOriginalExtension();
-                $result = public_path('packages');
-                $packages->move($result, $packagephoto);
-                $cms->image  = $packagephoto;
-            }
-            $cms->status = $request->changestatus;
-            $cms->save();
-            Alert::success('Success', 'Blog updated !');
+            $question =  Questions::find($request->id);
+            $question->question = $request->question;
+            $question->use_for = $request->questionfor;
+            $question->question_type = $request->question_type;
+            $question->number_of_values = $request->number_of_values;
+            $question->sequence = $request->sequence; 
+           
+            $question->save();
+            Alert::success('Success', 'Question updated !');
         }else{
             $validated = $request->validate([
                 'question' => 'required',
@@ -53,13 +49,14 @@ class QuestionController extends Controller
 
             $value =  $request->values ;
             if(!empty($value)){
-                $new_value = implode(", ", $value);
+                $new_value = implode("~ ", $value);
             }
             else{
                 $new_value = '';
             }
             $question = new Questions();
             $question->question = $request->question;
+            $question->use_for = $request->questionfor;
             $question->question_type = $request->question_type;
             $question->number_of_values = $request->number_of_values;
             $question->values = $new_value;

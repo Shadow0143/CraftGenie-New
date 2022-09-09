@@ -67,6 +67,7 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
 
 
     Route::get('/payment-list', [App\Http\Controllers\RazorpayPaymentController::class, 'PaymentList'])->name('PaymentList');
+    Route::get('/order-details/{id}', [App\Http\Controllers\RazorpayPaymentController::class, 'orderDetails'])->name('orderDetails');
 
     Route::get('/packages-list', [App\Http\Controllers\PackagesController::class, 'packagesList'])->name('packagesList');
     Route::get('/add-packages', [App\Http\Controllers\PackagesController::class, 'addPackages'])->name('addPackages');
@@ -80,5 +81,11 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::post('/submit-question', [App\Http\Controllers\QuestionController::class, 'submitQuestions'])->name('submitQuestions');
     Route::get('/edit-question/{id}', [App\Http\Controllers\QuestionController::class, 'editQuestions'])->name('editQuestions');
     Route::get('/delete-question', [App\Http\Controllers\QuestionController::class, 'deleteQuestions'])->name('deleteQuestions');
+
+    Route::get('/solution-list', [App\Http\Controllers\SolutionController::class, 'solutionList'])->name('solutionList');
+    Route::get('/add-solution', [App\Http\Controllers\SolutionController::class, 'addSolution'])->name('addSolution');
+    Route::post('/submit-solution', [App\Http\Controllers\SolutionController::class, 'submitSolution'])->name('submitSolution');
+    Route::get('/edit-solution/{id}', [App\Http\Controllers\SolutionController::class, 'editSolution'])->name('editSolution');
+    Route::get('/delete-solution', [App\Http\Controllers\SolutionController::class, 'deleteSolution'])->name('deleteSolution');
 
 });

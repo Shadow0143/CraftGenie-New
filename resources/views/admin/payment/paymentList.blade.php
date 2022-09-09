@@ -39,23 +39,19 @@
                                 class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                 style="width:100%">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>Transaction No. </th>
+                                        <th>Package Name</th>
                                         <th>User Name </th>
-                                        <th>Email Id</th>
-                                        <th>Contact No.</th>
-                                        <th>Order Details</th>
-                                        <th>Payment Method</th>
                                         <th>Amount</th>
                                         <th>Status</th>
-                                        <th>Transaction Start On</th>
-                                        <th>Transaction Done On</th>
+                                        <th>Order Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     @forelse($payments as $key => $val)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>
                                             @if($val->transaction_no =='')
                                             <p class="text-primary text-center">---</p>
@@ -63,21 +59,12 @@
                                             {{$val->transaction_no}}
                                             @endif
                                         </td>
-                                        <td>{{ucfirst($val->user_name)}}</td>
-                                        <td>{{$val->user_email}}</td>
-                                        <td>{{$val->contact_no}}</td>
-                                        <td></td>
                                         <td>
-                                            @if($val->payment_mode == 'DC')
-                                            <p>Debit Card</p>
-                                            @elseif($val->payment_mode == 'CC')
-                                            <p>Credit Card</p>
-                                            @elseif($val->payment_mode == 'NET')
-                                            <p>Net Banking</p>
-                                            @elseif($val->payment_mode == 'UPI')
-                                            <p>UPI</p>
-                                            @endif
+                                            {{$val->title}}
                                         </td>
+                                        <td>{{ucfirst($val->user_name)}}</td>
+                                       
+                                       
                                         <td>{{$val->amount}} /-</td>
                                         <td>
                                             @if($val->is_pay =='NO')
@@ -86,15 +73,9 @@
                                             <p class="text-center text-success"> Payment Done.</p>
                                             @endif
                                         </td>
+                                        
                                         <td>
-                                            {{date('d-m-Y',strtotime($val->created_at))}}
-                                        </td>
-                                        <td>
-                                            @if($val->payment_date =='')
-                                            <p class="text-center text-primary">---</p>
-                                            @else
-                                            {{date('d-m-Y',strtotime($val->payment_date))}}
-                                            @endif
+                                            <a href="{{route('orderDetails',['id'=>$val->paymentid])}}" class="btn btn-outline-primary"> Order Details </a>
                                         </td>
                                     </tr>
                                     @empty

@@ -56,19 +56,23 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
+
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
+
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+
                                 </span>
                             </a>
                         </div>
@@ -140,19 +144,19 @@
                 <!-- Dark Logo-->
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
+                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="17">
+                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
                     </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{asset('assets/images/logo-sm.png')}}" alt="" height="22">
+                         <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="17">
+                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -167,7 +171,11 @@
                     <div id="two-column-menu">
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
+                        
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                        <li class="nav-item">
+                            <a href="{{route('home')}}" class="nav-link" data-key="t-crm">Dashboard</a>
+                        </li>
                         
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
@@ -198,10 +206,13 @@
                             </li> 
 
                             <li class="nav-item">
-                                <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Payment Records</a>
+                                <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Orders</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('questionsList')}}" class="nav-link" data-key="t-crm">Questions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('solutionList')}}" class="nav-link" data-key="t-crm">Solutions</a>
                             </li>
                        
                            

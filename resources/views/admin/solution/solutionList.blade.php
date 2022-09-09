@@ -1,4 +1,4 @@
-@section('title', 'Question List')
+@section('title', 'Solutions List')
 @include('layouts.backend.header')
 <div class="main-content">
 
@@ -9,15 +9,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Questions </h4>
+                        <h4 class="mb-sm-0">Solutions </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                <li class="breadcrumb-item active">Questions </li>
+                                <li class="breadcrumb-item active">Solutions </li>
                             </ol>
                         </div>
                     </div>
+
                 </div>
             </div>
             <!-- end page title -->
@@ -28,11 +29,11 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <h5 class="card-title mb-0">Question List </h5>
+                                    <h5 class="card-title mb-0">Solutions List </h5>
                                 </div>
                                 <div class="col-2 text-right">
-                                    <a href="{{route('addQuestions')}}" class="btn btn-outline-success add-btn"><i
-                                            class="ri-add-line align-bottom me-1"></i> Add Question</a>
+                                    <a href="{{route('addSolution')}}" class="btn btn-outline-success add-btn"><i
+                                            class="ri-add-line align-bottom me-1"></i> Add Solutions</a>
                                 </div>
                             </div>
 
@@ -43,31 +44,27 @@
                                 style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Question </th>
-                                        <th>Question Use For</th>
-                                        <th> Question Type </th>
-                                        <th>values</th>
-                                        <th>Sequence</th>
-                                        <th>Status</th>
+                                        <th>SR No.</th>
+                                        <th>Package Name </th>
+                                        <th>Remarks </th>
+                                        <th>Solutions</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @forelse($question as $key => $val)
+                                    @forelse($solutions as $key => $val)
                                     <tr id="removeRow{{$val->id}}">
-                                        <td>{{$val->question}}</td>
-                                        <td>{{ucfirst($val->use_for)}}</td>
-                                        <td>{{$val->question_type}}</td>
-                                        <td>{{$val->values}}</td>
-                                        <td>{{$val->sequence}}</td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$val->title}}</td>
+                                        <td>{!! $val->remarks !!}</td>
                                         <td>
-                                            @if($val->status =='1')
-                                                <span class="badge badge-soft-success">Active</span>
-                                            @else
-                                                <span class="badge badge-soft-danger">Inctive</span>
-                                            @endif
+                                            @foreach($val->file as $key => $value)
+                                                <a href="{{asset('extra_files')}}/{{$value->file}}" target="_blank"> <i class=" ri-file-download-fill"></i> File,  </a>
+                                            @endforeach
+                                           
                                         </td>
+                                        
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
@@ -75,10 +72,13 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    {{-- <li>
-                                                        <a class="dropdown-item edit-item-btn" href="{{route('editPackages',['id'=>$val->id])}}"><i                                                   class="ri-pencil-fill align-bottom me-2 text-muted"></i>
-                                                            Edit</a>
-                                                    </li> --}}
+                                                    <li><a href="{{asset('blogs')}}/{{$val->image}}"
+                                                            class="dropdown-item" target="_blank"><i
+                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
+                                                            View blog image</a></li>
+                                                    <li><a class="dropdown-item edit-item-btn" href="{{route('editSolution',['id'=>$val->id])}}"><i
+                                                                class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            Edit</a></li>
                                                     <li>
                                                         <a href="javaScript:void(0);"
                                                             class="dropdown-item remove-item-btn delete_btn" data-id="{{$val->id}}">
@@ -92,7 +92,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="text-center" colspan="6"> No question added yet </td>
+                                        <td class="text-center" colspan="5"> No Solutions added yet </td>
                                     </tr>
                                     @endforelse
 
@@ -113,10 +113,10 @@
 
     <script>
         $('.delete_btn').on('click',function(){
-            var question_id = $(this).data('id');
+            var blog_id = $(this).data('id');
             swal({
                 title: 'Are you sure?',
-                text: "You won't delete this Question!",
+                text: "You won't delete this blog!",
                 icon: 'warning',
                 buttons: true,
                 buttonsStyling: false,
@@ -125,8 +125,8 @@
                 if (confirm) {
                     $.ajax({
                         type: "GET",
-                        url: "{{route('deleteQuestions')}}",
-                        data: { id: question_id },
+                        url: "{{route('deleteBlog')}}",
+                        data: { id: blog_id },
                         success: function(data) {
                             swal({
                                 title: 'Success',
@@ -136,7 +136,7 @@
                                 buttonsStyling: false,
                                 reverseButtons: true
                             });
-                            $('#removeRow'+question_id).hide();
+                            $('#removeRow'+blog_id).hide();
                         }
                     });
                 }

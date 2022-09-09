@@ -116,7 +116,11 @@
 
                                     
                                 </ul>
-                                <a href="javaScript:void(0);" class="order"  data-id="{{$val->id}}" > order</a>
+                                @if(Auth::user())
+                                    <a href="javaScript:void(0);" class="order"  data-id="{{$val->id}}" > order</a>
+                                @else
+                                    <a href="{{route('login')}}" class="order"   > order</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -144,7 +148,7 @@
     <div class="container">
         <div class="row">
             <ul class="stape-area">
-                <li  class="Questionnaire">
+                <li  class="Questionnaires">
                     <div class="rw-box">
                         <img src="{{asset('img/icon.png')}}" alt="">
                     </div>
@@ -193,7 +197,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
@@ -208,10 +212,12 @@
                 
                 <div class="tab">
                     <p>
-                       {{$key+1}} ). &nbsp;  {{$val->question}}
+                        {{$key+1}} ). &nbsp;  {{$val->question}}
                         <input type="hidden" name="question_id" id="question_id{{$val->id}}" value="{{$val->id}}" class="question_id{{$val->id}}">
                         <input type="hidden" name="question_type" id="question_type{{$val->id}}"
-                            value="{{$val->question_type}}" class="question_type{{$val->id}}">
+                        value="{{$val->question_type}}" class="question_type{{$val->id}}">
+                        
+                        <input type="hidden" name="package_id" id="package_id" class="package_id" value="" readonly>
                     </p>
                     <p class="mb-5">
                         @if($val->question_type == 'text')
@@ -220,17 +226,29 @@
                              <textarea name="answer" id="answer{{$val->id}}" cols="30" rows="10"
                             class="form-control answer{{$val->id}}"></textarea>
                         @elseif($val->question_type == 'radio')
-                        @foreach($val->values as $key => $value)
-                            <label for="{{$value}}">{{$value}}</label>
-                            <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
-                                value="{{$value}}" id="answer{{$val->id}}">
+                        <ul>
+                            @foreach($val->values as $key => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
+                                    value="{{$value}}" id="answer{{$val->id}}">
+                            </li>
+                           
                         @endforeach
+                        </ul>
+                        
                         @elseif($val->question_type == 'checkbox')
-                        @foreach($val->values as $key => $value)
-                            <label for="{{$value}}">{{$value}}</label>
-                            <input type="{{$val->question_type}}" name="checkbox[]" class="form-control checkbox{{$val->id}}"
-                                value="{{$value}}" id="checkbox{{$val->id}}">
+                        <ul>
+                            @foreach($val->values as $key2 => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="checkbox[]" class="form-control checkbox{{$val->id}}"
+                                    value="{{$value}}" id="checkbox{{$val->id}}">
+                            </li>
+                                
                         @endforeach
+                        </ul>
+                            
                         @elseif($val->question_type == 'select')
                             <select name="answer" id=" answer{{$val->id}}" class="form-control answer{{$val->id}}">
                                 <option value="">--Select please--</option>
@@ -246,7 +264,7 @@
                             <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-dark btn-sm"> << </a>
                             <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer{{$val->id}}"  type="submit"  id="nextBtn" onclick="nextPrev(1,'{{$val->id}}')">Save & Next</a>
                             <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
-                            <a class="btn btn-outline-warning btn-sm" onclick="skip(1)" href="javaScript:void(0);"> >> </a>
+                            <a class="btn btn-outline-warning btn-sm skip" onclick="skip(1)" href="javaScript:void(0);"> >> </a>
                             
                         </div>
                     </div>
@@ -265,7 +283,95 @@
         
       </div>
     </div>
-  </div>
+</div>
+
+
+<div class="modal fade" id="StoryAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle2">What is your story?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            @foreach($story as $key => $val)
+            <form action="{{route('submitAnswer')}}" id="question_form{{$key+1}}">
+                @csrf
+                
+                <div class="tab2">
+                    <p>
+                       {{$key+1}} ). &nbsp;  {{$val->question}}
+                        <input type="hidden" name="question_id" id="question_id{{$val->id}}" value="{{$val->id}}" class="question_id{{$val->id}}">
+                        <input type="hidden" name="question_type" id="question_type{{$val->id}}"
+                            value="{{$val->question_type}}" class="question_type{{$val->id}}">
+                    </p>
+                    <p class="mb-5">
+                        @if($val->question_type == 'text')
+                            <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}" id="answer{{$val->id}}">
+                        @elseif($val->question_type == 'textarea')
+                             <textarea name="answer" id="answer{{$val->id}}" cols="30" rows="10"
+                            class="form-control answer{{$val->id}}"></textarea>
+                        @elseif($val->question_type == 'radio')
+                        <ul>
+                            @foreach($val->values as $key => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
+                                    value="{{$value}}" id="answer{{$val->id}}">
+                            </li>
+                           
+                        @endforeach
+                        </ul>
+                        
+                        @elseif($val->question_type == 'checkbox')
+                        <ul>
+                            @foreach($val->values as $key2 => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="checkbox[]" class="form-control checkbox{{$val->id}}"
+                                    value="{{$value}}" id="checkbox{{$val->id}}">
+                            </li>
+                                
+                        @endforeach
+                        </ul>
+                            
+                        @elseif($val->question_type == 'select')
+                            <select name="answer" id=" answer{{$val->id}}" class="form-control answer{{$val->id}}">
+                                <option value="">--Select please--</option>
+                                @foreach($val->values as $key => $value)
+                                    <option value="{{$value}}">{{ucfirst($value)}}</option>
+                                @endforeach
+                            </select>
+                        @endif
+                    </p>
+                    <div style="overflow:auto;">
+                        <div style="float:right">
+                            
+                            <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev2(-1)" class="btn btn-outline-dark btn-sm"> << </a>
+                            <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer{{$val->id}}"  type="submit"  id="nextBtn" onclick="nextPrev2(1,'{{$val->id}}')">Save & Next</a>
+                            <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
+                            <a class="btn btn-outline-warning btn-sm" onclick="skip2(1)" href="javaScript:void(0);"> >> </a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                @endforeach
+        </form>
+
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+                @for( $i =0; $i< (count($story) -1 );$i++)
+                <span class="step2"></span>
+                @endfor
+            </div>
+        </div>
+        
+      </div>
+    </div>
+</div>
 
 <!-- CLIENTS SPEAK -->
 
@@ -496,6 +602,7 @@
                     question_id: jq162(".question_id"+id).val(),
                     question_type: jq162(".question_type"+id).val(),
                     answer: jq162(".answer"+id).val(),
+                    packageId: jq162(".package_id").val(),
                     checkBoxValue:checkBoxValue,
 
                 };
@@ -513,9 +620,12 @@
                         x[currentTab].style.display = "none";
                         
                         currentTab = currentTab + n;
+                        // if(currentTab == x.length ){
+                        //     $('.skip').addClass('storymodal').removeClass('skip');
+                        // }
                         if (currentTab == x.length  ) {
-                            $('#QuestionAnswerModeal').modal('hide');
-                            
+                            $('#StoryAnswerModeal').modal('show');                          
+                            // $('#QuestionAnswerModeal').modal('hide');                          
                         } 
                         
                         showTab(currentTab);
@@ -570,22 +680,30 @@
         }
     </script>
 
-
+    
     <script>
         
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
+            $('.package_id').val(packageId);
             $('#QuestionAnswerModeal').modal('show');
             $('.paynowbtn').show();
             $('.paynowbtn').attr('href','/razorpay-payment/'+packageId);
             
         });
-        $('.Questionnaire').on('click',function(){
+
+
+        // $('.Questionnaire').on('click',function(){
            
-            $('#QuestionAnswerModeal').modal('show');
-            $('.paynowbtn').hide();
+        //     $('#QuestionAnswerModeal').modal('show');
+        //     $('.paynowbtn').hide();
             
+        // });
+
+        $('.storymodal').on('click',function(){
+            $('#storyAnswerModeal').modal('show');
         });
+
 
       
 
