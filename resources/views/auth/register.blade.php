@@ -137,6 +137,38 @@
                     </span>
                     @enderror
                 </div>
+
+                <div class="form-holder">
+                    <span class="lnr lnr-phone-handset"></span>
+
+                    <input id="phone_no" type="number" class="form-control @error('phone_no') is-invalid @enderror"
+                        name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no"
+                        placeholder="Phone Number">
+
+                    @error('phone_no')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="form-holder">
+                    <span class="lnr lnr-location"></span>
+                    <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address"
+                        value="{{ old('address') }}" required autocomplete="address" placeholder="Address " cols="30"
+                        rows="10"></textarea>
+
+                    @error('address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+
+
+
+
                 <div class="form-holder">
                     <span class="lnr lnr-lock"></span>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"

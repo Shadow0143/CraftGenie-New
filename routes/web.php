@@ -23,6 +23,7 @@ Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 's
 
 
 Route::get('/order-list', [App\Http\Controllers\WelcomeController::class, 'orderList'])->name('orderList');
+Route::get('/user-order-details/{id}', [App\Http\Controllers\WelcomeController::class, 'userOrderDetails'])->name('userOrderDetails');
 Route::get('/profile', [App\Http\Controllers\WelcomeController::class, 'profile'])->name('profile');
 Route::post('/update-contact-info', [App\Http\Controllers\WelcomeController::class, 'contactInfo'])->name('contactInfo');
 Route::post('/add-address', [App\Http\Controllers\WelcomeController::class, 'addAddress'])->name('addAddress');
@@ -87,5 +88,4 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::post('/submit-solution', [App\Http\Controllers\SolutionController::class, 'submitSolution'])->name('submitSolution');
     Route::get('/edit-solution/{id}', [App\Http\Controllers\SolutionController::class, 'editSolution'])->name('editSolution');
     Route::get('/delete-solution', [App\Http\Controllers\SolutionController::class, 'deleteSolution'])->name('deleteSolution');
-
 });

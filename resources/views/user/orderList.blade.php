@@ -4,14 +4,14 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">z
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
                                     <h5 class="card-title mb-0">Order List </h5>
                                 </div>
-                            
+
                             </div>
                         </div>
                         <div class="card-body">
@@ -26,6 +26,7 @@
                                         <th>Payment</th>
                                         <th>Amount</th>
                                         <th>Payment Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,10 +43,14 @@
                                         <td>
                                             {{date('d-M-Y',strtotime($val->created_at))}}
                                         </td>
+                                        <td>
+                                            <a href="{{route('userOrderDetails',['id'=>$val->id])}}"
+                                                class="btn btn-outline-primary">Details</a>
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="text-center" colspan="6"> No order done  yet </td>
+                                        <td class="text-center" colspan="6"> No order done yet </td>
                                     </tr>
                                     @endforelse
 

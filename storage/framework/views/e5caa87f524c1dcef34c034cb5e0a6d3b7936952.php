@@ -96,30 +96,30 @@
                             <div class="bar-list">
                                 <ul>
                                     <?php if(!empty($val->file)): ?>
-                                        <?php $__currentLoopData = $val->file; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <li>
-                                            <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($value->file_name); ?>" target="_blank">
-                                                <?php if($value->extension == 'docx'): ?>
-                                                    <img src="<?php echo e(asset('img/download.jpeg')); ?>" alt="word-img">
-                                                <?php elseif($value->extension == 'ppt'): ?>
-                                                <img src="<?php echo e(asset('img/ppt.png')); ?>" alt="ppt-img">
-                                                <?php elseif($value->extension == 'xlxs' ||  $value->extension == 'xl'): ?>
-                                                <img src="<?php echo e(asset('img/excel.png')); ?>" alt="xl-img">
-                                                <?php endif; ?>
-                                                
-                                            </a>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
-                                    <?php endif; ?>
+                                    <?php $__currentLoopData = $val->file; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li>
+                                        <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($value->file_name); ?>" target="_blank">
+                                            <?php if($value->extension == 'docx'): ?>
+                                            <img src="<?php echo e(asset('img/download.jpeg')); ?>" alt="word-img">
+                                            <?php elseif($value->extension == 'ppt'): ?>
+                                            <img src="<?php echo e(asset('img/ppt.png')); ?>" alt="ppt-img">
+                                            <?php elseif($value->extension == 'xlxs' || $value->extension == 'xl'): ?>
+                                            <img src="<?php echo e(asset('img/excel.png')); ?>" alt="xl-img">
+                                            <?php endif; ?>
+
+                                        </a>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
 
                                     </li>
 
 
-                                    
+
                                 </ul>
                                 <?php if(Auth::user()): ?>
-                                    <a href="javaScript:void(0);" class="order"  data-id="<?php echo e($val->id); ?>" > order</a>
+                                <a href="javaScript:void(0);" class="order" data-id="<?php echo e($val->id); ?>"> order</a>
                                 <?php else: ?>
-                                    <a href="<?php echo e(route('login')); ?>" class="order"   > order</a>
+                                <a href="<?php echo e(route('login')); ?>" class="order"> order</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -148,11 +148,11 @@
     <div class="container">
         <div class="row">
             <ul class="stape-area">
-                <li  class="Questionnaires">
+                <li class="Questionnaires">
                     <div class="rw-box">
                         <img src="<?php echo e(asset('img/icon.png')); ?>" alt="">
                     </div>
-                    <span>     Questionnaire  </span>
+                    <span> Questionnaire </span>
                 </li>
                 <li>
                     <div class="rw-box">
@@ -169,209 +169,172 @@
             </ul>
         </div>
 
-        
+
     </div>
 </div>
 
 
 <style>
-   
     .tab {
-      display: none;
+        display: none;
     }
+
+    .tab2 {
+        display: none;
+    }
+
     .step {
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbbbbb;
-      border: none;  
-      border-radius: 50%;
-      display: inline-block;
-      opacity: 0.5;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
     }
+
+    .step2 {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
     .step.active {
-      opacity: 1;
+        opacity: 1;
     }
-   
+
+    .step2.active {
+        opacity: 1;
+    }
 </style>
 
 <!-- Modal -->
-<div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <?php $__currentLoopData = $question; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <form action="<?php echo e(route('submitAnswer')); ?>" id="question_form<?php echo e($key+1); ?>">
-                <?php echo csrf_field(); ?>
-                
-                <div class="tab">
-                    <p>
-                        <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php $__currentLoopData = $question; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <form action="<?php echo e(route('submitAnswer')); ?>" id="question_form<?php echo e($key+1); ?>">
+                    <?php echo csrf_field(); ?>
 
-                        <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>" class="question_id<?php echo e($val->id); ?>">
-                        <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
-                        value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
-                        
-                        <input type="hidden" name="package_id" id="package_id" class="package_id" value="" readonly>
-                    </p>
-                    <p class="mb-5">
-                        <?php if($val->question_type == 'text'): ?>
-                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>" id="answer<?php echo e($val->id); ?>">
-                        <?php elseif($val->question_type == 'textarea'): ?>
-                             <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
-                            class="form-control answer<?php echo e($val->id); ?>"></textarea>
-                        <?php elseif($val->question_type == 'radio'): ?>
+                    <div class="tab">
+                        <p>
+                            <?php echo e($key+1); ?> ). &nbsp; <?php echo e($val->question); ?>
+
+                            <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>"
+                                class="question_id<?php echo e($val->id); ?>">
+                            <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
+                                value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
+
+                            <input type="hidden" name="package_id" id="package_id" class="package_id" value="" readonly>
+                        </p>
+                        <p class="mb-5">
+                            <?php if($val->question_type == 'text'): ?>
+                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
+                                id="answer<?php echo e($val->id); ?>">
+                            <?php elseif($val->question_type == 'textarea'): ?>
+                            <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
+                                class="form-control answer<?php echo e($val->id); ?>"></textarea>
+                            <?php elseif($val->question_type == 'radio'): ?>
                         <ul>
                             <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
                                 <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                                <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
-                                    value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
+                                <input type="<?php echo e($val->question_type); ?>" name="answer"
+                                    class="form-control answer<?php echo e($val->id); ?>" value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
                             </li>
-                           
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
-                        
+
                         <?php elseif($val->question_type == 'checkbox'): ?>
                         <ul>
                             <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li>
                                 <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]" class="form-control checkbox<?php echo e($val->id); ?>"
-                                    value="<?php echo e($value); ?>" id="checkbox<?php echo e($val->id); ?>">
+                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]"
+                                    class="form-control checkbox<?php echo e($val->id); ?>" value="<?php echo e($value); ?>"
+                                    id="checkbox<?php echo e($val->id); ?>">
                             </li>
-                                
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                            
-                        <?php elseif($val->question_type == 'select'): ?>
-                            <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
-                                <option value="">--Select please--</option>
-                                <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($value); ?>"><?php echo e(ucfirst($value)); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        <?php endif; ?>
-                    </p>
-                    <div style="overflow:auto;">
-                        <div style="float:right">
-                            
-                            <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-outline-dark btn-sm"> << </a>
-                            <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"  type="submit"  id="nextBtn" onclick="nextPrev(1,'<?php echo e($val->id); ?>')">Save & Next</a>
-                            <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
-                            <a class="btn btn-outline-warning btn-sm skip" onclick="skip(1)" href="javaScript:void(0);"> >> </a>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </form>
 
-            <!-- Circles which indicates the steps of the form: -->
-            <div style="text-align:center;margin-top:40px;">
-                <?php for( $i =0; $i< (count($question) -1 );$i++): ?>
-                <span class="step"></span>
-                <?php endfor; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+
+                        <?php elseif($val->question_type == 'select'): ?>
+                        <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
+                            <option value="">--Select please--</option>
+                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e(ucfirst($value)); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                        <?php endif; ?>
+                        </p>
+                        <div style="overflow:auto;">
+                            <div style="float:right">
+
+                                <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev(-1)"
+                                    class="btn btn-outline-dark btn-sm">
+                                    << </a>
+                                        <a href="javaScript:void(0);"
+                                            class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"
+                                            type="submit" id="nextBtn" onclick="nextPrev(1,'<?php echo e($val->id); ?>')">Save &
+                                            Next</a>
+                                        <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
+                                        <a class="btn btn-outline-warning btn-sm skip" onclick="skip(1)"
+                                            href="javaScript:void(0);"> >> </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </form>
+
+                <!-- Circles which indicates the steps of the form: -->
+                <div style="text-align:center;margin-top:40px;">
+                    <?php for( $i =0; $i< (count($question) -1 );$i++): ?> <span class="step"></span>
+                        <?php endfor; ?>
+                </div>
             </div>
+
         </div>
-        
-      </div>
     </div>
 </div>
 
 
-<div class="modal fade" id="StoryAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle2">What is your story?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <?php $__currentLoopData = $story; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <form action="<?php echo e(route('submitAnswer')); ?>" id="question_form<?php echo e($key+1); ?>">
-                <?php echo csrf_field(); ?>
-                
-                <div class="tab2">
-                    <p>
-                       <?php echo e($key+1); ?> ). &nbsp;  <?php echo e($val->question); ?>
 
-                        <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>" class="question_id<?php echo e($val->id); ?>">
-                        <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
-                            value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
-                    </p>
-                    <p class="mb-5">
-                        <?php if($val->question_type == 'text'): ?>
-                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>" id="answer<?php echo e($val->id); ?>">
-                        <?php elseif($val->question_type == 'textarea'): ?>
-                             <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
-                            class="form-control answer<?php echo e($val->id); ?>"></textarea>
-                        <?php elseif($val->question_type == 'radio'): ?>
-                        <ul>
-                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li>
-                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                                <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
-                                    value="<?php echo e($value); ?>" id="answer<?php echo e($val->id); ?>">
-                            </li>
-                           
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                        
-                        <?php elseif($val->question_type == 'checkbox'): ?>
-                        <ul>
-                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li>
-                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]" class="form-control checkbox<?php echo e($val->id); ?>"
-                                    value="<?php echo e($value); ?>" id="checkbox<?php echo e($val->id); ?>">
-                            </li>
-                                
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                            
-                        <?php elseif($val->question_type == 'select'): ?>
-                            <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
-                                <option value="">--Select please--</option>
-                                <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($value); ?>"><?php echo e(ucfirst($value)); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        <?php endif; ?>
-                    </p>
-                    <div style="overflow:auto;">
-                        <div style="float:right">
-                            
-                            <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev2(-1)" class="btn btn-outline-dark btn-sm"> << </a>
-                            <a  href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"  type="submit"  id="nextBtn" onclick="nextPrev2(1,'<?php echo e($val->id); ?>')">Save & Next</a>
-                            <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
-                            <a class="btn btn-outline-warning btn-sm" onclick="skip2(1)" href="javaScript:void(0);"> >> </a>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </form>
 
-            <!-- Circles which indicates the steps of the form: -->
-            <div style="text-align:center;margin-top:40px;">
-                <?php for( $i =0; $i< (count($story) -1 );$i++): ?>
-                <span class="step2"></span>
-                <?php endfor; ?>
+<!------ Wait  for solution MODAL -------->
+
+<div class="modal fade" id="waitForSolution" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"> Congrates </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <p>All answers are submitted successfully.</p>
+                <p>Please wait, you will get your solution within 12hr.</p>
+            </div>
+
         </div>
-        
-      </div>
     </div>
 </div>
 
@@ -454,69 +417,71 @@
 
 
 
-<!-- our work -->
+    <!-- our work -->
 
-<div class="work-sec my-5 py-5">
+    <div class="work-sec my-5 py-5">
 
-    <h2 class="titleall mb-5">OUR WORK</h2>
+        <h2 class="titleall mb-5">OUR WORK</h2>
 
-    <div class="container">
+        <div class="container">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-md-4">
+                <div class="col-md-4">
 
-                <div class="work-item">
+                    <div class="work-item">
 
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
 
-                    <div class="work-p">
+                        <div class="work-p">
 
-                        <h3>Lorem Ipsum is simply</h3>
+                            <h3>Lorem Ipsum is simply</h3>
 
-                        <p>Ipsum passages, and more
+                            <p>Ipsum passages, and more
 
-                            recently withIpsum passages, and more</p>
+                                recently withIpsum passages, and more</p>
 
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="work-item">
-
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
-
-                    <div class="work-p">
-
-                        <h3>Lorem Ipsum is simply</h3>
-
-                        <p>Ipsum passages, and more
-
-                            recently withIpsum passages, and more</p>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="col-md-4">
 
-            <div class="col-md-4">
+                    <div class="work-item">
 
-                <div class="work-item">
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
 
-                    <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
+                        <div class="work-p">
 
-                    <div class="work-p">
+                            <h3>Lorem Ipsum is simply</h3>
 
-                        <h3>Lorem Ipsum is simply</h3>
+                            <p>Ipsum passages, and more
 
-                        <p>Ipsum passages, and more
+                                recently withIpsum passages, and more</p>
 
-                            recently withIpsum passages, and more</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="work-item">
+
+                        <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
+
+                        <div class="work-p">
+
+                            <h3>Lorem Ipsum is simply</h3>
+
+                            <p>Ipsum passages, and more
+
+                                recently withIpsum passages, and more</p>
+
+                        </div>
 
                     </div>
 
@@ -526,46 +491,48 @@
 
         </div>
 
+        <div id="contact"></div>
+
     </div>
 
-    <div id="contact"></div>
+    <!-- our work end -->
 
-</div>
-
-<!-- our work end -->
-
-<div class="incontact py-5">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5">
-                <h2 class="titleall mb-3">Contact Us</h2>
-                <p>Your time matters, so we work across our network to turn around your story within 24 hours.</p>
-                <div class="col-md-12 support-box">
-                    <label class="d-flex ">
-                        <span><i class="fa fa-envelope-o" aria-hidden="true"></i> </span> support @gmail.com
-                    </label>
-                    <label class="d-flex ">
-                        <span><i class="fa fa-phone" aria-hidden="true"></i> </span> 8548785485 </label>
+    <div class="incontact py-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-5">
+                    <h2 class="titleall mb-3">Contact Us</h2>
+                    <p>Your time matters, so we work across our network to turn around your story within 24 hours.</p>
+                    <div class="col-md-12 support-box">
+                        <label class="d-flex ">
+                            <span><i class="fa fa-envelope-o" aria-hidden="true"></i> </span> support @gmail.com
+                        </label>
+                        <label class="d-flex ">
+                            <span><i class="fa fa-phone" aria-hidden="true"></i> </span> 8548785485 </label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 allform">
-                <form class="Contact_form" method="POST" action="<?php echo e(route('submitContact')); ?>" enctype="multipart/form-data">
-                    <?php echo csrf_field(); ?>
-                    <input type="text" name="name" placeholder="Full Name" id="name" required>
-                    <input type="text" name="email" placeholder="Email Id" id="email" required>
-                    <input type="text" name="contact" placeholder="Contact Number" id="contact" required>
-                    <input type="file" name="sharefile" placeholder="Share File" id="sharefile" class="form-control">
-                    <button  type="submit"> Submit</button>
-                </form>
+                <div class="col-md-4 allform">
+                    <form class="Contact_form" method="POST" action="<?php echo e(route('submitContact')); ?>"
+                        enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+                        <input type="text" name="name" placeholder="Full Name" id="name" required>
+                        <input type="text" name="email" placeholder="Email Id" id="email" required>
+                        <input type="text" name="contact" placeholder="Contact Number" id="contact" required>
+                        <input type="file" name="sharefile" placeholder="Share File" id="sharefile"
+                            class="form-control">
+                        <button type="submit"> Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- end incontact -->
-<?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <!-- end incontact -->
+    <?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
 
     <script>
         jq162 = jQuery.noConflict( true );
@@ -627,9 +594,17 @@
                         // if(currentTab == x.length ){
                         //     $('.skip').addClass('storymodal').removeClass('skip');
                         // }
+                        if(currentTab >= 12){
+
+                            $('#exampleModalLongTitle').html('What is Your story ? ');                          
+                        }
+                        else{
+                            $('#exampleModalLongTitle').html('Questions  ');                          
+
+                        }
                         if (currentTab == x.length  ) {
-                            $('#StoryAnswerModeal').modal('show');                          
-                            // $('#QuestionAnswerModeal').modal('hide');                          
+                            $('#QuestionAnswerModeal').modal('hide');                          
+                            $('#waitForSolution').modal('show');                          
                         } 
                         
                         showTab(currentTab);
@@ -639,6 +614,7 @@
                 });
                 event.preventDefault();
                 event.stopImmediatePropagation();
+
             });
 
             if(n ==-1){
@@ -646,6 +622,16 @@
                 if (n == 1 && !validateForm()) return false;
                 x[currentTab].style.display = "none";
                 currentTab = currentTab + n;
+
+                if(currentTab >= 12){
+                    $('#exampleModalLongTitle').html('What is Your story ? ');                          
+                    }
+                    else{
+                    $('#exampleModalLongTitle').html('Questions  ');                          
+
+                    }
+
+
                 showTab(currentTab);
                 
             }
@@ -659,9 +645,17 @@
             if (n == 1 && !validateForm()) return false;
             x[currentTab].style.display = "none";
             currentTab = currentTab + n;
+
+            if(currentTab >= 12){
+                $('#exampleModalLongTitle').html('What is Your story ? ');                          
+            }else{
+                $('#exampleModalLongTitle').html('Questions  ');                          
+
+            }
+
+
             if (currentTab == x.length  ) {
                 $('#QuestionAnswerModeal').modal('hide');
-                
             } 
             showTab(currentTab);
                         
@@ -684,9 +678,8 @@
         }
     </script>
 
-    
+
     <script>
-        
         $('.order').on('click',function(){
             var packageId = $(this).data('id');
             $('.package_id').val(packageId);
@@ -696,19 +689,9 @@
             
         });
 
-
-        // $('.Questionnaire').on('click',function(){
-           
-        //     $('#QuestionAnswerModeal').modal('show');
-        //     $('.paynowbtn').hide();
-            
-        // });
-
         $('.storymodal').on('click',function(){
             $('#storyAnswerModeal').modal('show');
         });
+    </script>
 
-
-      
-
-    </script><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>
+    <?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>
