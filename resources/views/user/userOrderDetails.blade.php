@@ -88,22 +88,8 @@
                                     @if(empty($solution))
 
                                     <div class="col-6 card mt-5 mb-3">
-                                        <h3>Send Solution</h3>
-                                        <form action="{{route('submitSolution')}}" method="POST"
-                                            enctype="multipart/form-data">
-
-                                            @csrf
-                                            <input type="hidden" name="payment_id" id="payment_id" class="form-control"
-                                                value="{{$payments->paymentid}}" readonly>
-                                            <label for="remark">Remark</label>
-                                            <textarea name="remarks" id="remarks" cols="30" rows="10"
-                                                class="form-control" required></textarea><br>
-                                            <label for="solutionFile">Document File</label>
-                                            <input type="file" name="document" id="document" class="form-control"
-                                                required>
-                                            <br>
-                                            <button type="submit" class="btn btn-outline-primary mb-5">Send</button>
-                                        </form>
+                                        <h3>Please wait !</h3>
+                                        <p>You will get your solution very soon.</p>
                                     </div>
                                     @else
 

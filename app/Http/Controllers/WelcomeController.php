@@ -225,4 +225,9 @@ class WelcomeController extends Controller
 
         return view('user.userOrderDetails', compact('payments', 'solution', 'answer'));
     }
+
+    public function faq()
+    {
+        return view('user.faq');
+    }
 }

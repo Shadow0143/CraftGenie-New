@@ -58,22 +58,22 @@
                                 <span class="logo-sm">
                                     <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
 
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
 
-                                </span>
+                            </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
 
-                                </span>
-                                <span class="logo-lg">
-                                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
 
-                                </span>
+                            </span>
                             </a>
                         </div>
 
@@ -106,9 +106,10 @@
                             <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
-                                    {{-- <img class="rounded-circle header-profile-user" --}}
-                                        {{-- src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar"> --}}
-                                        {{-- <p class="rounded-circle header-profile-user" > {{substr(Auth::user()->name,0,1)}} </p> --}}
+                                    {{-- <img class="rounded-circle header-profile-user" --}} {{--
+                                        src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar"> --}}
+                                    {{-- <p class="rounded-circle header-profile-user">
+                                        {{substr(Auth::user()->name,0,1)}} </p> --}}
                                     <span class="text-start ms-xl-2">
                                         <span
                                             class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
@@ -145,19 +146,19 @@
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
-                    </span>
+                </span>
+                <span class="logo-lg">
+                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+                </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                         <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
-                    </span>
+                        <img src="{{asset('img/logo.png')}}" alt="main-logo" height="22"></a>
+                </span>
+                <span class="logo-lg">
+                    <img src="{{asset('img/logo.png')}}" alt="main-logo" height="17"></a>
+                </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
                     id="vertical-hover">
@@ -171,52 +172,53 @@
                     <div id="two-column-menu">
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
-                        
+
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
                             <a href="{{route('home')}}" class="nav-link" data-key="t-crm">Dashboard</a>
                         </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                    <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">CMS</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarDashboards">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="{{route('bannerList')}}" class="nav-link" data-key="t-analytics">
-                                                Banners </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('blogList')}}" class="nav-link" data-key="t-crm"> Blogs </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm"> Testimonial </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm">  Contact Lists     </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{route('packagesList')}}" class="nav-link" data-key="t-crm">Packages</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                            </li> 
 
-                            <li class="nav-item">
-                                <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Orders</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('questionsList')}}" class="nav-link" data-key="t-crm">Questions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('solutionList')}}" class="nav-link" data-key="t-crm">Solutions</a>
-                            </li>
-                       
-                           
-                       
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">CMS</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('bannerList')}}" class="nav-link" data-key="t-analytics">
+                                            Banners </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('blogList')}}" class="nav-link" data-key="t-crm"> Blogs </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('testimonialList')}}" class="nav-link" data-key="t-crm">
+                                            Testimonial </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('contactList')}}" class="nav-link" data-key="t-crm"> Contact
+                                            Lists </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('packagesList')}}" class="nav-link"
+                                            data-key="t-crm">Packages</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('PaymentList')}}" class="nav-link" data-key="t-crm">Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('questionsList')}}" class="nav-link" data-key="t-crm">Questions</a>
+                        </li>
+
+
+
+
                     </ul>
                 </div>
                 <!-- Sidebar -->

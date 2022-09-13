@@ -31,6 +31,8 @@ Route::get('/edit-address', [App\Http\Controllers\WelcomeController::class, 'edi
 Route::get('/delete-address', [App\Http\Controllers\WelcomeController::class, 'deleteAddress'])->name('deleteAddress');
 Route::get('/default-address', [App\Http\Controllers\WelcomeController::class, 'defaultAddress'])->name('defaultAddress');
 Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solution'])->name('solution');
+Route::get('/faq', [App\Http\Controllers\WelcomeController::class, 'faq'])->name('faq');
+
 
 
 Route::get('/razorpay-payment/{id}', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
@@ -83,9 +85,6 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::get('/edit-question/{id}', [App\Http\Controllers\QuestionController::class, 'editQuestions'])->name('editQuestions');
     Route::get('/delete-question', [App\Http\Controllers\QuestionController::class, 'deleteQuestions'])->name('deleteQuestions');
 
-    Route::get('/solution-list', [App\Http\Controllers\SolutionController::class, 'solutionList'])->name('solutionList');
-    Route::get('/add-solution', [App\Http\Controllers\SolutionController::class, 'addSolution'])->name('addSolution');
     Route::post('/submit-solution', [App\Http\Controllers\SolutionController::class, 'submitSolution'])->name('submitSolution');
-    Route::get('/edit-solution/{id}', [App\Http\Controllers\SolutionController::class, 'editSolution'])->name('editSolution');
     Route::get('/delete-solution', [App\Http\Controllers\SolutionController::class, 'deleteSolution'])->name('deleteSolution');
 });
