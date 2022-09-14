@@ -20,6 +20,7 @@ use App\Models\User;
 use App\Models\Address;
 use App\Models\PackageExtraFiles;
 use App\Models\Solutions;
+use App\Models\Chat;
 
 
 class WelcomeController extends Controller
@@ -216,14 +217,16 @@ class WelcomeController extends Controller
     public function userOrderDetails($id)
     {
         // dd($id);
-        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
+        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date', 'package_id')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
 
         $solution = Solutions::leftjoin('solutions_files', 'solutions_files.solution_id', '=', 'solutions.id')->where('payment_id', $id)->first();
 
         $payment = Payment::select('user_id', 'package_id')->where('id', $id)->first();
         $answer = Answer::leftjoin('questions', 'questions.id', '=', 'answers.question_id')->where('user_id', $payment->user_id)->where('package_id', $payment->package_id)->get();
 
-        return view('user.userOrderDetails', compact('payments', 'solution', 'answer'));
+        $chats = Chat::select('chats.*', 'users.name')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $id)->get();
+
+        return view('user.userOrderDetails', compact('payments', 'solution', 'answer', 'chats'));
     }
 
     public function faq()

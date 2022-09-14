@@ -34,6 +34,10 @@ Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solutio
 Route::get('/faq', [App\Http\Controllers\WelcomeController::class, 'faq'])->name('faq');
 
 
+Route::get('/chat', [App\Http\Controllers\ChatController::class, 'allChats'])->name('allChats');
+Route::post('/submit-chat', [App\Http\Controllers\ChatController::class, 'submitChats'])->name('submitChats');
+
+
 
 Route::get('/razorpay-payment/{id}', [App\Http\Controllers\RazorpayPaymentController::class, 'index'])->name('startPay');
 Route::post('/razorpay-payment/order-save', [App\Http\Controllers\RazorpayPaymentController::class, 'paymentOrderSave'])->name('razorpayPaymentOrderSave');
