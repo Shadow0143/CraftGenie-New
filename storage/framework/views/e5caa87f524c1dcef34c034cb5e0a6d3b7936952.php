@@ -229,11 +229,10 @@
                 <?php $__currentLoopData = $question; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <form action="<?php echo e(route('submitAnswer')); ?>" id="question_form<?php echo e($key+1); ?>">
                     <?php echo csrf_field(); ?>
+
                     <div class="tab">
                         <p>
                             <?php echo e($key+1); ?> ). &nbsp; <?php echo e($val->question); ?>
-
-
 
                             <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>"
                                 class="question_id<?php echo e($val->id); ?>">
@@ -282,14 +281,11 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <?php endif; ?>
-
-
                         <span>
                             <strong> Don’t know the answer to any of these questions? </strong>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo e(route('faq')); ?>">Find FAQ's</a> or <a
                                 href="<?php echo e(route('welcome')); ?>#contact" onclick="$('#QuestionAnswerModeal').modal('hide')">
-                                Click
-                                here</a>
+                                Contact Us</a>
                         </span>
                         </p>
                         <div style="overflow:auto;">
@@ -562,7 +558,7 @@
             $('#QuestionAnswerModeal').modal('hide');
             
         } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").innerHTML = " Next";
             
         }
         fixStepIndicator(n)

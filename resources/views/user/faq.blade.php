@@ -1,7 +1,8 @@
 @section('title', '| FAQs')
 @include('layouts.frontend.header')
 
-<div class="main-content mt-5 pt-5 pl-5 mb-5 pb-3" style="background-color: #efefef;">
+<div class="main-content mt-5 pt-5 pl-5  pb-3"
+    style="background-color: #efefef; border-bottom:1px solid rgb(206, 196, 196)">
     <div class="page-content">
         <div class="container-fluid">
             <div class="row mr-2 mb-5">

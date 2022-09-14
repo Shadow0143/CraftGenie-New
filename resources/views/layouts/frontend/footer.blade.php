@@ -1,62 +1,66 @@
 <!-- footer-box -->
-<div class="container">
-	<footer>
-		<div class="row">
-			<div class="col-6 mt-2">
-				<h3>QUICK LINKS</h3>
-				<div class="row">
-					{{-- <div class="col-3">
-						<ul>
-							<li>
-								<a href="">Home </a>
-							</li>
-							<li>
-								<a href="">About </a>
-							</li>
-							<li>
-								<a href="">Quick Packages </a>
-							</li>
-							<li>
-								<a href="">How Do We Do</a>
-							</li>
-							<li>
-								<a href="">Blogs </a>
-							</li>
-							<li>
-								<a href="">Contact </a>
-							</li>
-						</ul>
-					</div> --}}
-					<div class="col-3">
-						<ul>
-							<li>
-								<a href="{{route('faq')}}">FAQs</a>
-							</li>
-							<li>
-								<a href="">Terms & Condition</a>
-							</li>
-							<li>
-								<a href="">Booking Policies</a>
-							</li>
-							<li>
-								<a href="">Refund Policie</a>
-							</li>
-						</ul>
+<div class="" style="background-color: #efefef">
+	<div class="container pt-5 pl-5">
+
+		<footer>
+			<div class="row">
+				<div class="col-6 mt-2">
+					<h3>QUICK LINKS</h3>
+					<div class="row">
+						{{-- <div class="col-3">
+							<ul>
+								<li>
+									<a href="">Home </a>
+								</li>
+								<li>
+									<a href="">About </a>
+								</li>
+								<li>
+									<a href="">Quick Packages </a>
+								</li>
+								<li>
+									<a href="">How Do We Do</a>
+								</li>
+								<li>
+									<a href="">Blogs </a>
+								</li>
+								<li>
+									<a href="">Contact </a>
+								</li>
+							</ul>
+						</div> --}}
+						<div class="col-3">
+							<ul>
+								<li>
+									<a href="{{route('faq')}}">FAQs</a>
+								</li>
+								<li>
+									<a href="">Terms & Condition</a>
+								</li>
+								<li>
+									<a href="">Booking Policies</a>
+								</li>
+								<li>
+									<a href="">Refund Policie</a>
+								</li>
+							</ul>
+						</div>
 					</div>
+
+
 				</div>
-
-
+				<div class="col-6 mt-3">
+					<h3>CONTACT </h3>
+					<ul>
+						<li>
+							<a href="">fasdfadsf</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-6 mt-3">
-				<h3>CONTACT </h3>
-				<ul>
-					<li>
-						<a href="">fasdfadsf</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</footer>
+		</footer>
+	</div>
+
 </div>
 <div class="footer-box">
 	<div class="container">

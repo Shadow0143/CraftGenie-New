@@ -6,8 +6,6 @@
     <?php $config = (new \LaravelPWA\Services\ManifestService)->generate(); echo $__env->make( 'laravelpwa::meta' , ['config' => $config])->render(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<?php echo e(asset('assets/images/favicon.ico')); ?>">
-    
-
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -19,6 +17,12 @@
     <link href="<?php echo e(asset('css/owl.theme.default.min.css')); ?>" rel="stylesheet">
     <!-- custom -->
     <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
+
+    <!-- LINEARICONS -->
+    
+
+    <script src="<?php echo e(asset('register_assets/js/jquery-3.3.1.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('register_assets/js/main.js')); ?>"></script>
 </head>
 
 <body>
@@ -85,11 +89,16 @@
                     <?php endif; ?>
                     <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?php echo e(route('login')); ?>">LOGIN</a>
+                        <a class="nav-link " href="#" data-toggle="modal" data-target="#login55">LOGIN</a>
                     </li>
                     <?php endif; ?>
 
                 </ul>
             </div>
         </nav>
+
+
+
+
+
     </header><?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/layouts/frontend/header.blade.php ENDPATH**/ ?>

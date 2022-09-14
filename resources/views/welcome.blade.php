@@ -229,11 +229,10 @@
                 @foreach($question as $key => $val)
                 <form action="{{route('submitAnswer')}}" id="question_form{{$key+1}}">
                     @csrf
+
                     <div class="tab">
                         <p>
                             {{$key+1}} ). &nbsp; {{$val->question}}
-
-
                             <input type="hidden" name="question_id" id="question_id{{$val->id}}" value="{{$val->id}}"
                                 class="question_id{{$val->id}}">
                             <input type="hidden" name="question_type" id="question_type{{$val->id}}"
@@ -281,8 +280,6 @@
                             @endforeach
                         </select>
                         @endif
-
-
                         <span>
                             <strong> Don’t know the answer to any of these questions? </strong>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{route('faq')}}">Find FAQ's</a> or <a
@@ -653,7 +650,7 @@
             $('#QuestionAnswerModeal').modal('hide');
             
         } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").innerHTML = " Next";
             
         }
         fixStepIndicator(n)

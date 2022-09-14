@@ -964,3 +964,34 @@ header a.navbar-brand img {
     height: 140px;
     object-fit: cover;
 }
+
+.login458 {
+    position: relative;
+}
+
+.login458 .close {
+    position: absolute;
+    right: 16px;
+    top: 2px;
+    color: #000;
+    z-index: 200;
+    margin: 0;
+    left: auto;
+    text-align: right;
+    width: auto;
+    border: 0;
+    box-shadow: none;
+}
+
+.formpop589 {
+    padding: 30px 20px;
+    box-shadow: none
+}
+
+.formpop589 p {
+    padding: 10px 0 0;
+}
+
+.remb45 {
+    padding-left: 27px;
+}

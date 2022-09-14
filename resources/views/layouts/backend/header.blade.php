@@ -215,6 +215,9 @@
                         <li class="nav-item">
                             <a href="{{route('questionsList')}}" class="nav-link" data-key="t-crm">Questions</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('adminuserList')}}" class="nav-link" data-key="t-crm">Admin User</a>
+                        </li>
 
 
 

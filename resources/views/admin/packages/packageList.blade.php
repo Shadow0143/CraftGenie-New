@@ -65,7 +65,7 @@
                                                 @foreach($val->file as $key => $value)
                                                 <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
                                                     @if($value->extension == 'docx')
-                                                        <img src="{{asset('img/download.jpeg')}}" alt="word-img">
+                                                        <img class="file-img" src="{{asset('img/download.jpeg')}}" alt="word-img">
                                                     @elseif($value->extension == 'ppt')
                                                     <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
                                                     @elseif($value->extension == 'xlxs' ||  $value->extension == 'xl')

@@ -87,4 +87,11 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
 
     Route::post('/submit-solution', [App\Http\Controllers\SolutionController::class, 'submitSolution'])->name('submitSolution');
     Route::get('/delete-solution', [App\Http\Controllers\SolutionController::class, 'deleteSolution'])->name('deleteSolution');
+
+
+    Route::get('/adminuser-list', [App\Http\Controllers\AdminuserController::class, 'adminuserList'])->name('adminuserList');
+    Route::get('/add-admin-user', [App\Http\Controllers\AdminuserController::class, 'addAdminuser'])->name('addAdminuser');
+    Route::post('/submit-admin-user', [App\Http\Controllers\AdminuserController::class, 'submitAdminuser'])->name('submitAdminuser');
+    Route::get('/edit-admin-user/{id}', [App\Http\Controllers\AdminuserController::class, 'editAdminuser'])->name('editAdminuser');
+    Route::get('/delete-admin-user', [App\Http\Controllers\AdminuserController::class, 'deleteAdminuser'])->name('deleteAdminuser');
 });

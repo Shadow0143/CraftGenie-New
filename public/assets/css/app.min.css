@@ -17429,6 +17429,24 @@ span.flatpickr-weekday {
     .section {
         padding: 50px 0;
     }
+    .btn-outline-success {
+        margin-left: -94px;
+        padding: 5px 7px;
+    }
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: left;
+    }
+    table.dataTable>tbody>tr.child span.dtr-title {
+        min-width: 120px !important;
+        font-size: 10px;
+    }
+    .dtr-data {
+        font-size: 9px;
+        font-weight: 500;
+    }
 }
 
 .icon-effect {
@@ -17714,6 +17732,22 @@ span.flatpickr-weekday {
 #explorecard-list .list-element:nth-child(-n+10) {
     display: block;
 }
+
+
+/*----------------changes-----------*/
+
+.dtr-data img {
+    width: 30px;
+}
+
+.sorting_asc {
+    width: 50.4px !important;
+}
+
+
+/* .file-img {
+    width: 6%;
+} */
 
 
 /*# sourceMappingURL=app.min.css.map */

@@ -6,6 +6,9 @@
     @laravelPWA
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+    {{--
+    <link rel="shortcut icon" href="{{asset('img/logo.png')}}"> --}}
+
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -17,16 +20,6 @@
     <link href="{{asset('css/owl.theme.default.min.css')}}" rel="stylesheet">
     <!-- custom -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-
-    <!-- LINEARICONS -->
-    {{--
-    <link rel="stylesheet" href="{{asset('register_assets/fonts/linearicons/style.css')}}">
-
-    <!-- STYLE CSS -->
-    <link rel="stylesheet" href="{{asset('register_assets/css/style.css')}}"> --}}
-
-    <script src="{{asset('register_assets/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('register_assets/js/main.js')}}"></script>
 </head>
 
 <body>
@@ -93,16 +86,11 @@
                     @endif
                     @else
                     <li class="nav-item">
-                        <a class="nav-link " href="#" data-toggle="modal" data-target="#login55">LOGIN</a>
+                        <a class="nav-link " href="{{route('login')}}">LOGIN</a>
                     </li>
                     @endif
 
                 </ul>
             </div>
         </nav>
-
-
-
-
-
     </header>
