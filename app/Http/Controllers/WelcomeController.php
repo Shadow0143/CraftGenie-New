@@ -224,7 +224,7 @@ class WelcomeController extends Controller
         $payment = Payment::select('user_id', 'package_id')->where('id', $id)->first();
         $answer = Answer::leftjoin('questions', 'questions.id', '=', 'answers.question_id')->where('user_id', $payment->user_id)->where('package_id', $payment->package_id)->get();
 
-        $chats = Chat::select('chats.*', 'users.name')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $id)->get();
+        $chats = Chat::select('chats.*', 'users.name', 'users.id as uid')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $id)->get();
 
         return view('user.userOrderDetails', compact('payments', 'solution', 'answer', 'chats'));
     }

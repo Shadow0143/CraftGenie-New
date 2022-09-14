@@ -32,5 +32,33 @@ class ChatController extends Controller
             ' . $newChat->created_at->diffForHumans() . ' </span>';
 
         return \Response::json(['success' => true, 'data' => $data]);
+
+        // return 1;
+    }
+
+    public function allChats(Request $request)
+    {
+        $chats = Chat::select('chats.*', 'users.name', 'users.id as uid')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $request->id)->get();
+        $chatsresult = '';
+        foreach ($chats as $key => $val) {
+            if ($val->uid == Auth::user()->id) {
+
+                $chatsresult .= '<div class=" mychat ">';
+            } else {
+                $chatsresult .= '<div class=" otherchat ">';
+            }
+            $chatsresult .= '
+            <p class="pt-2">' . $val->message . '</p>';
+            if ($val->uid == Auth::user()->id) {
+                $chatsresult .= '<span class=" mychatdate">';
+            } else {
+                $chatsresult .= '<span class="otherchatdate">';
+            }
+            $chatsresult .= 'By : ' . $val->name . ' &nbsp;
+                ' . $val->created_at->diffForHumans() . ' </span>
+        </div>';
+        }
+
+        return $chatsresult;
     }
 }

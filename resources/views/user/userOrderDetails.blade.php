@@ -1,6 +1,37 @@
 @section('title', '| Order Detail')
 @include('layouts.frontend.header')
 
+<style>
+    .mychat {
+        background-color: #8edb8e3b;
+
+        width: 400px;
+        float: right;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .otherchat {
+        background-color: #b391df3b;
+
+        width: 400px;
+        float: left;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .mychatdate {
+        padding-left: 55%;
+        font-size: 10px;
+    }
+
+    .otherchatdate {
+        padding-right: 55%;
+        font-size: 10px;
+    }
+</style>
 
 
 <div class="main-content  mt-5 pt-5 pl-5 mb-5">
@@ -14,14 +45,12 @@
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Order Details </h4>
                     </div>
-
                 </div>
             </div>
             <!-- end page title -->
 
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
@@ -40,7 +69,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="col-12 card mt-5  mb-3">
-                                        <h3>User Details</h3>
+                                        <h3 class="mt-3">User Details</h3>
                                         <p><strong> User Name : </strong> {{$payments->user_name}}</p>
                                         <p><strong> User Email : </strong> {{$payments->user_email}} </p>
                                         <p><strong> Phone No : </strong> {{$payments->contact_no}}</p>
@@ -49,7 +78,7 @@
                                     </div>
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3>Order / Payment Details</h3>
+                                        <h3 class="mt-3">Order / Payment Details</h3>
                                         <p><strong>Package Name : </strong> {{$payments->title}}</p>
                                         <p><strong>Transaction/Order Id : </strong> {{$payments->transaction_no}}</p>
                                         <p><strong>Amount : </strong> {{$payments->PaymentAmount}} /-</p>
@@ -66,7 +95,7 @@
                                     {{-- Question & Answer section --}}
                                     @if(!empty($answer))
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3>Questions &Answers</h3>
+                                        <h3 class="mt-3">Questions &Answers</h3>
                                         @forelse($answer as $key2 => $val2)
                                         <label for="">Q {{$key2+1}}) . {{$val2->question}}</label>
                                         <p>Ans .{{$val2->answers}}</p>
@@ -82,13 +111,13 @@
                                     @if(empty($solution))
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3>Please wait !</h3>
+                                        <h3 class="mt-3">Please wait !</h3>
                                         <p>You will get your solution very soon.</p>
                                     </div>
                                     @else
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3>Solution</h3>
+                                        <h3 class="mt-3">Solution</h3>
                                         <p>{{$solution->remarks}}</p>
                                         <a href="{{asset('extra_files')}}/{{$solution->file }}" target="_blank">
                                             @if($solution->extension == 'docx')
@@ -109,20 +138,29 @@
 
                                 </div>
 
-                                <div class="col-6 mt-5 pl-5 card">
-                                    <div class="allMessages mt-3 mb-3">
-                                        @forelse($chats as $chatkey => $chatval)
-                                        <div class="col">
-                                            <p class="pt-2">{{$chatval->message}}</p>
-                                            <span style="font-size:10px"> By : {{$chatval->name}} &nbsp;
-                                                {{$chatval->created_at->diffForHumans()}} </span>
+                                <div class="col-6 mt-5 pl-5 card" style="height:650px;">
+                                    <h3 class="mt-3">Chat With Admin</h3>
+                                    <div class=" mt-3 mb-3" style="overflow-y: scroll;">
+                                        <div class="allMessages" style="">
+                                            @forelse($chats as $chatkey => $chatval)
+                                            <div
+                                                class="col @if($chatval->uid == Auth::user()->id) mychat @else otherchat @endif">
+                                                <p class="pt-2">{{$chatval->message}}</p>
+                                                <span style="font-size:10px" class="@if($chatval->uid == Auth::user()->id)
+                                                    mychatdate @else otherchatdate @endif"> By : {{$chatval->name}}
+                                                    &nbsp;
+                                                    {{$chatval->created_at->diffForHumans()}} </span>
+                                            </div>
+                                            @empty
+                                            <div class="col-12 text-center pt-5">
+                                                <p class="text-danger">No chat begin yet.</p>
+                                            </div>
+                                            @endforelse
+                                            <div class="result pl-3 mychat " style="display: none;">
+                                            </div>
                                         </div>
-                                        @empty
-                                        <div class="col-12 text-center pt-5">
-                                            <p class="text-danger">No chat begin yet.</p>
-                                        </div>
-                                        @endforelse
-                                        <div class="result pl-3"></div>
+                                    </div>
+                                    <div class="mb-3">
                                         <form action="" id="chatForm">
                                             <div class="row mt-5">
                                                 <div class="col-10">
@@ -142,31 +180,20 @@
                                         </form>
                                     </div>
 
-
-                                    <div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <!--end col-->
             </div>
-            <!--end row-->
+
 
         </div>
-        <!-- container-fluid -->
+        <!--end col-->
     </div>
-    <!-- End Page-content -->
+    <!--end row-->
+
 </div>
-
-
-
-
-
 
 @include('layouts.frontend.footer')
 
@@ -194,6 +221,7 @@
                 success:function(res){
                     if(res.success==true){ 
                         $("#sendMessage").val('');
+                        $(".result").css('display','block');
                         $(".result").append(res.data);
                     }
                 }
@@ -203,4 +231,20 @@
         });
     }
 
+</script>
+
+<script>
+    conf2 = jQuery.noConflict( true );
+    var id = $("#order_id").val();
+    window.setInterval(function() {
+        $.ajax({
+                type: "GET",
+                url: "{{route('allChats')}}",
+                data: {id:id},
+                success:function(res){
+                        $(".allMessages").html(res);
+                        window.scrollTo(0, 200);
+                }
+            });
+}, 30000);
 </script>
