@@ -119,8 +119,21 @@
                                     @if(empty($solution))
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3 class="mt-3">Please wait !</h3>
-                                        <p>You will get your solution very soon.</p>
+                                        <h3>Send Solution</h3>
+                                        <form action="{{route('submitSolution')}}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <label for="remarks">Remarks</label>
+                                            <input type="hidden" name="payment_id" id="payment_id"
+                                                value="{{$payments->paymentid}}">
+                                            <textarea name="remarks" id="remarks" cols="30" rows="10"
+                                                class="form-control" required></textarea>
+                                            <label for="document" class="mt-2">Document</label>
+                                            <input type="file" name="document" id="document" class="form-control"
+                                                required accept=".doc,.docx,.ppt,.pptx,.xl,.xlsx">
+                                            <button type="submit"
+                                                class="btn btn-outline-primary mt-3 mb-3">Send</button>
+                                        </form>
                                     </div>
                                     @else
 

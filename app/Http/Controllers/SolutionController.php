@@ -19,41 +19,28 @@ class SolutionController extends Controller
         $this->middleware('auth');
     }
 
-    public function solutionList(){
-        $solutions = Solutions::select('packages.*','solutions.id as sid','solutions.remarks')->leftjoin('packages','packages.id','=','solutions.package_id')->get();
-        foreach($solutions as $key=>$val){
-            $files = SolutionFiles::where('solution_id',$val->sid)->get();
+    public function solutionList()
+    {
+        $solutions = Solutions::select('packages.*', 'solutions.id as sid', 'solutions.remarks')->leftjoin('packages', 'packages.id', '=', 'solutions.package_id')->get();
+        foreach ($solutions as $key => $val) {
+            $files = SolutionFiles::where('solution_id', $val->sid)->get();
             $solutions[$key]->file = $files;
         }
         // dd($solutions);
-        return view('admin.solution.solutionList',compact('solutions'));
+        return view('admin.solution.solutionList', compact('solutions'));
     }
 
     public function addSolution()
     {
-        $packages = Package::where('status','YES')->get();
-        return view('admin.solution.addSolution',compact('packages'));
+        $packages = Package::where('status', 'YES')->get();
+        return view('admin.solution.addSolution', compact('packages'));
     }
 
     public function submitSolution(Request $request)
     {
         // dd($request->all());
-        if(!empty($request->id)){
-            $cms =  Questions::find($request->id);
-            $cms->title = $request->title;
-            $cms->description = $request->package_description;
-            if (!empty($request->file('package_image'))) {
-                $packages = $request->file('package_image');
-                $packagephoto = 'package-image-' . rand(000, 999) . '.' .
-                    $packages->getClientOriginalExtension();
-                $result = public_path('packages');
-                $packages->move($result, $packagephoto);
-                $cms->image  = $packagephoto;
-            }
-            $cms->status = $request->changestatus;
-            $cms->save();
-            Alert::success('Success', 'Blog updated !');
-        }else{
+        if (!empty($request->id)) {
+        } else {
             $validated = $request->validate([
                 'remarks' => 'required',
                 'document' => 'required',
@@ -71,7 +58,7 @@ class SolutionController extends Controller
                 $result = public_path('extra_files');
                 $extra_files->move($result, $extraFiles);
                 $postimage = new SolutionFiles();
-                $postimage->solution_id	 = $cms->id;
+                $postimage->solution_id     = $cms->id;
                 $postimage->file = $extraFiles;
                 $extension =  $extra_files->getClientOriginalExtension();
                 $postimage->extension  = $extension;
@@ -80,10 +67,9 @@ class SolutionController extends Controller
 
 
 
-            Alert::success('Success','Solution Added ');
-
+            Alert::success('Success', 'Solution Added ');
         }
-        
+
         return back();
     }
 
@@ -95,7 +81,7 @@ class SolutionController extends Controller
 
     public function editSolution($id)
     {
-        $pakage = Questions::where('id',$id)->first();
-        return view('admin.question.addPackages')->with('cms',$pakage);
+        $pakage = Questions::where('id', $id)->first();
+        return view('admin.question.addPackages')->with('cms', $pakage);
     }
 }

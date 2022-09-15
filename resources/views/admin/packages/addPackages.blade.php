@@ -48,7 +48,8 @@
                                         @endif
                                         <label for="ttile">Tilte <span class="text-danger">*</span></label>
                                         <input type="text" name="title" id="title"
-                                            class="form-control @error('title') is-invalid @enderror" @if(!empty($cms))  value="{{$cms->title}}" @endif>
+                                            class="form-control @error('title') is-invalid @enderror" @if(!empty($cms))
+                                            value="{{$cms->title}}" @endif>
                                         @error('title')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
@@ -56,8 +57,8 @@
                                         @enderror
 
                                     </div>
-                                    
-                                    <div col-12 mt-3">
+
+                                    <div class="col-12 mt-3">
                                         <label for="price">Package Price <span class="text-danger">*</span></label>
                                         <input type="number" name="price" id="price"
                                             class="form-control @error('price') is-invalid @enderror">
@@ -67,20 +68,24 @@
                                         </span>
                                         @enderror
                                     </div>
-                                  
+
                                     <div class="col-12 mt-3">
                                         <label for="package_description">Package Description</label>
-                                        <textarea name="package_description" id="package_description" cols="30" rows="10" class="form-control snow-editor ckeditor-classic" > @if(!empty($cms)) {!! $cms->description!!} @endif</textarea>
+                                        <textarea name="package_description" id="package_description" cols="30"
+                                            rows="10"
+                                            class="form-control snow-editor ckeditor-classic"> @if(!empty($cms)) {!! $cms->description!!} @endif</textarea>
                                     </div>
 
-                                  
+
 
 
                                     <div class="row">
                                         <div class=" @if(empty($cms))col-12 @else col-6 @endif mt-3">
-                                            <label for="package_image">Package Image <span class="text-danger">*</span></label>
+                                            <label for="package_image">Package Image <span
+                                                    class="text-danger">*</span></label>
                                             <input type="file" name="package_image" id="package_image"
-                                                class="form-control @error('package_image') is-invalid @enderror"  accept=".jpg,.png,.jpeg,.JPG,.PNG,.JPEG">
+                                                class="form-control @error('package_image') is-invalid @enderror"
+                                                accept=".jpg,.png,.jpeg,.JPG,.PNG,.JPEG">
                                             @error('package_image')
                                             <span class="invalid-feedback" role="alert">
                                                 {{ $message }}
@@ -91,20 +96,23 @@
                                         <div class="col-6 mt-3 ml-5">
                                             <label for="status">Status</label>
                                             <select name="changestatus" id="changestatus" class="form-control">
-                                                <option value="YES" {{$cms->status == 'YES'  ? 'selected' : ''}}>Active</option>
-                                                <option value="NO" {{$cms->status == 'NO'  ? 'selected' : ''}}>Inactive</option>
+                                                <option value="YES" {{$cms->status == 'YES' ? 'selected' : ''}}>Active
+                                                </option>
+                                                <option value="NO" {{$cms->status == 'NO' ? 'selected' : ''}}>Inactive
+                                                </option>
                                             </select>
                                         </div>
-                                    @endif
+                                        @endif
                                     </div>
 
                                     <div class="col-12 mt-3">
                                         <label for="package_description">File Upload</label>
-                                        <input type="file" name="extra_file[]" id="extra_file" class="form-control" multiple   accept=".doc,.docx,.ppt,.xlxs.xl">
+                                        <input type="file" name="extra_file[]" id="extra_file" class="form-control"
+                                            multiple accept=".doc,.docx,.ppt,.xlxs.xl">
                                     </div>
 
 
-                                   
+
                                     <div class="col-12 text-center mt-5">
                                         <button type="submit" class="btn btn-outline-primary">Submit</button>
                                     </div>

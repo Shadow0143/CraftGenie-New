@@ -98,4 +98,10 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::post('/submit-admin-user', [App\Http\Controllers\AdminuserController::class, 'submitAdminuser'])->name('submitAdminuser');
     Route::get('/edit-admin-user/{id}', [App\Http\Controllers\AdminuserController::class, 'editAdminuser'])->name('editAdminuser');
     Route::get('/delete-admin-user', [App\Http\Controllers\AdminuserController::class, 'deleteAdminuser'])->name('deleteAdminuser');
+
+    Route::get('/quick-link-list', [App\Http\Controllers\QuickLinkController::class, 'quickLinksList'])->name('quickLinksList');
+    Route::get('/add-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'addQuicklinks'])->name('addQuicklinks');
+    Route::post('/submit-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'submitQuicklinks'])->name('submitQuicklinks');
+    Route::get('/edit-quick-link-user/{id}', [App\Http\Controllers\QuickLinkController::class, 'editQuicklinks'])->name('editQuicklinks');
+    Route::get('/delete-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'deleteQuicklinks'])->name('deleteQuicklinks');
 });

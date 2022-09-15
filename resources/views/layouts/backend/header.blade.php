@@ -219,6 +219,10 @@
                             <a href="{{route('adminuserList')}}" class="nav-link" data-key="t-crm">Admin User</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{route('quickLinksList')}}" class="nav-link" data-key="t-crm">Quick Links</a>
+                        </li>
+
 
 
 
