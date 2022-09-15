@@ -79,7 +79,7 @@
 <!-- quick-packages-->
 <section class="quick-packages mb-5">
     <div class="container">
-        <h2 class="titleall mb-5">Quick packages</h2>
+        <h2 class="titleall titleall-text mb-5">Quick packages</h2>
         <div class="row mt-4">
             <div id="owl-demo1" class="tips-area owl-carousel owl-theme px-3">
 
@@ -116,10 +116,12 @@
 
 
                                 </ul>
-                                <?php if(Auth::user()): ?>
-                                <a href="javaScript:void(0);" class="order" data-id="<?php echo e($val->id); ?>"> order</a>
+                                <?php if(!Auth::user()): ?>
+                                <a class="order2" href="javaScript:void(0);" data-toggle="modal"
+                                    data-target="#login55">Order</a>
                                 <?php else: ?>
-                                <a href="<?php echo e(route('login')); ?>" class="order"> order</a>
+                                
+                                <a href="javaScript:void(0);" class="order" data-id="<?php echo e($val->id); ?>"> Order</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -348,7 +350,7 @@
 
 <div class="client-sp my-5 py-5">
 
-    <h2 class="titleall mb-5">CLIENTS SPEAK</h2>
+    <h2 class="titleall titleall-text2 mb-5">CLIENTS SPEAK</h2>
 
     <div class="container">
 
@@ -386,7 +388,7 @@
 <!-- our blogs -->
 
 <div class="blog-sec mb-5 ">
-    <h2 class="titleall mb-5">OUR BLOGS</h2>
+    <h2 class="titleall titleall-text3 mb-5">OUR BLOGS</h2>
     <div class="container">
         <div class="row">
             <div id="blogslide" class="owl-carousel owl-theme">

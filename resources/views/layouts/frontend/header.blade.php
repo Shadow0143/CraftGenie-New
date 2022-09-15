@@ -19,11 +19,14 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <!-- LINEARICONS -->
+
     {{--
-    <link rel="stylesheet" href="{{asset('register_assets/fonts/linearicons/style.css')}}">
+    <link rel="stylesheet" href="{{asset('register_assets/fonts/linearicons/style.css')}}"> --}}
 
     <!-- STYLE CSS -->
+    {{--
     <link rel="stylesheet" href="{{asset('register_assets/css/style.css')}}"> --}}
+
 
     <script src="{{asset('register_assets/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('register_assets/js/main.js')}}"></script>
@@ -68,7 +71,7 @@
                         <a class="nav-link " href="{{route('home')}}">DASHBOARD</a>
                     </li>
                     @else
-                    <ul class="dropdown">
+                    <ul class="dropdown my-account">
                         <li class="dropdown-toggle nav-link " data-toggle="dropdown">
                             MY ACCOUNT
                         </li>

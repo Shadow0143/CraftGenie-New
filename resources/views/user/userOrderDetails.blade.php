@@ -156,7 +156,7 @@
                                                 <p class="text-danger">No chat begin yet.</p>
                                             </div>
                                             @endforelse
-                                            <div class="result pl-3 mychat " style="display: none;">
+                                            <div class="result pl-3 mychat pt-3" style="display: none;">
                                             </div>
                                         </div>
                                     </div>

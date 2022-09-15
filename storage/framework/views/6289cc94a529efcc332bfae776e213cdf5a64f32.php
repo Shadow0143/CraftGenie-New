@@ -19,7 +19,12 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/style.css')); ?>">
 
     <!-- LINEARICONS -->
+
     
+
+    <!-- STYLE CSS -->
+    
+
 
     <script src="<?php echo e(asset('register_assets/js/jquery-3.3.1.min.js')); ?>"></script>
     <script src="<?php echo e(asset('register_assets/js/main.js')); ?>"></script>
@@ -64,7 +69,7 @@
                         <a class="nav-link " href="<?php echo e(route('home')); ?>">DASHBOARD</a>
                     </li>
                     <?php else: ?>
-                    <ul class="dropdown">
+                    <ul class="dropdown my-account">
                         <li class="dropdown-toggle nav-link " data-toggle="dropdown">
                             MY ACCOUNT
                         </li>

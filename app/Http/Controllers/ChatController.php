@@ -27,9 +27,9 @@ class ChatController extends Controller
 
         $newChat = Chat::select('chats.*', 'users.name')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('chats.id', $chat->id)->first();
 
-        $data = ' <p class="pt-2">' . $newChat->message . '</p>
+        $data = ' <div class=""mt-5>  <p class="pt-2">' . $newChat->message . '</p>
         <span style="font-size:10px"> By : ' . $newChat->name . ' &nbsp;
-            ' . $newChat->created_at->diffForHumans() . ' </span>';
+            ' . $newChat->created_at->diffForHumans() . ' </span> </div>';
 
         return \Response::json(['success' => true, 'data' => $data]);
 
@@ -48,7 +48,7 @@ class ChatController extends Controller
                 $chatsresult .= '<div class=" otherchat ">';
             }
             $chatsresult .= '
-            <p class="pt-2">' . $val->message . '</p>';
+            <p class="pt-2 ">' . $val->message . '</p>';
             if ($val->uid == Auth::user()->id) {
                 $chatsresult .= '<span class=" mychatdate">';
             } else {

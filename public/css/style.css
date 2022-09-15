@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     overflow-x: hidden;
 }
 
@@ -53,7 +53,7 @@ html {
 }
 
 .titleall:after {
-    content: '';
+    content: "";
     display: block;
     background: url(../img/title.png) no-repeat;
     width: 90px;
@@ -64,6 +64,7 @@ html {
 @media (max-width: 767px) {
     .titleall {
         font-size: 27px;
+        margin-top: -80px;
     }
 }
 
@@ -173,7 +174,7 @@ header a.navbar-brand img {
 }
 
 .banner:after {
-    content: '';
+    content: "";
     background: rgb(0 0 0 / 22%);
     width: 100%;
     position: absolute;
@@ -298,7 +299,7 @@ header a.navbar-brand img {
 }
 
 .incontact:after {
-    content: '';
+    content: "";
     position: absolute;
     right: -85%;
     top: 0;
@@ -365,13 +366,13 @@ header a.navbar-brand img {
 #QuestionAnswerModeal .tab ul li input[type="checkbox"] {
     width: 25px;
     position: absolute;
-    left: 10px
+    left: 10px;
 }
 
 #QuestionAnswerModeal .tab ul li input[type="radio"] {
     width: 25px;
     position: absolute;
-    left: 10px
+    left: 10px;
 }
 
 @media (max-width: 767px) {
@@ -418,7 +419,7 @@ header a.navbar-brand img {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 .rw-box:after {
@@ -427,7 +428,7 @@ header a.navbar-brand img {
     left: 100%;
     border-bottom: 2px dashed #c3c3c3;
     position: absolute;
-    content: '';
+    content: "";
 }
 
 .stape-area li:hover .rw-box {
@@ -556,6 +557,17 @@ header a.navbar-brand img {
 }
 
 .order {
+    border: 0;
+    color: #fff;
+    border-radius: 5px;
+    background: #896eff;
+    padding: 6px 24px;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.order2 {
     border: 0;
     color: #fff;
     border-radius: 5px;
@@ -695,7 +707,7 @@ header a.navbar-brand img {
 .about-bnr {
     width: 100%;
     float: left;
-    background: url('../img/about-1.jpg');
+    background: url("../img/about-1.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -766,8 +778,8 @@ header a.navbar-brand img {
 
 .client-sp .boxinn p:after,
 .client-sp .boxinn p:before {
-    content: '';
-    width: 28px;
+    content: "";
+    /* width: 28px; */
     display: inline-block;
     height: 20px;
     /* background: url(img/in.png) no-repeat; */
@@ -784,18 +796,19 @@ header a.navbar-brand img {
 
 .profile {
     position: relative;
-    padding: 30px 0;
+    padding: 15px 0;
+    margin-top: -105px;
 }
 
 .client-sp .profile img {
     position: relative;
     z-index: 9;
-    width: 180px !important;
+    /* width: 180px !important; */
     margin: auto;
 }
 
 .profile:after {
-    content: '';
+    content: "";
     width: 70px;
     height: 152px;
     background: #011c9d;
@@ -810,16 +823,33 @@ header a.navbar-brand img {
     .client-sp .boxinn p {
         width: 90%;
         margin: auto;
-        text-align: center;
+        text-align: justify;
+        margin-bottom: -30px;
     }
     .client-sp .boxinn {
         flex-flow: wrap;
     }
     .client-sp .boxinn h2 {
         text-align: center;
+        padding-top: 35px;
     }
     .client-sp .owl-theme .owl-nav.disabled+.owl-dots {
         bottom: -25px;
+    }
+    .profile {
+        margin-top: unset;
+    }
+    .profile img {
+        width: 265px !important;
+    }
+    .incontact {
+        margin-top: -45px;
+    }
+    .work-item {
+        margin-bottom: 20px;
+    }
+    .my-account {
+        margin-left: -40px;
     }
 }
 
@@ -889,6 +919,28 @@ header a.navbar-brand img {
     .box-dtlstext {
         min-height: auto;
         padding: 45px;
+    }
+    .about-sec p {
+        margin-bottom: -30px;
+    }
+    .bg-inner {
+        margin-top: -50px;
+        margin-bottom: 50px;
+    }
+    .titleall-text {
+        margin-top: -130px;
+    }
+    .titleall-text2 {
+        margin-top: -25px;
+    }
+    .client-sp {
+        margin-top: -55px !important;
+    }
+    .titleall-text3 {
+        margin-top: -25px;
+    }
+    .contact ul li {
+        font-size: 15px;
     }
 }
 
@@ -985,7 +1037,7 @@ header a.navbar-brand img {
 
 .formpop589 {
     padding: 30px 20px;
-    box-shadow: none
+    box-shadow: none;
 }
 
 .formpop589 p {
@@ -994,4 +1046,39 @@ header a.navbar-brand img {
 
 .remb45 {
     padding-left: 27px;
+}
+
+.quick ul li {
+    list-style: none;
+    margin-left: -20px;
+}
+
+.quick ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.contact ul li {
+    list-style: none;
+    margin-left: -35px;
+}
+
+.contact ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.phone-text,
+.message-text {
+    margin-top: 10px;
+}
+
+.message-text i {
+    padding-right: 7px;
+}
+
+.marker,
+.phone {
+    font-size: 13px;
+    padding-right: 10px;
 }

@@ -257,8 +257,8 @@ button {
 }
 
 button:focus {
-    outline: 1px dotted;
-    outline: 5px auto -webkit-focus-ring-color
+    /* outline: 1px dotted; */
+    /* outline: 5px auto -webkit-focus-ring-color; */
 }
 
 button,
@@ -2052,17 +2052,16 @@ pre code {
 }
 
 .form-control {
+    border: none;
+    border-bottom: 1px solid #e6e6e6;
     display: block;
     width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+    height: 38px;
+    background: none;
+    padding: 3px 42px 0px;
+    color: #666;
+    font-family: "Muli-SemiBold";
+    font-size: 16px;
 }
 
 .form-control::-ms-expand {
@@ -2941,10 +2940,24 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-    color: #007bff;
-    background-color: transparent;
-    background-image: none;
-    border-color: #007bff
+    /* border: none; */
+    width: 100%;
+    height: 49px;
+    margin-top: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #0511a3;
+    color: #fff;
+    text-transform: uppercase;
+    /* font-family: "Muli-SemiBold"; */
+    font-size: 15px;
+    letter-spacing: 2px;
+    transition: all 0.5s;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-outline-primary:hover {
@@ -3247,7 +3260,10 @@ fieldset:disabled a.btn {
 .btn-link {
     font-weight: 400;
     color: #007bff;
-    background-color: transparent
+    background-color: transparent;
+    padding-left: 0px;
+    text-decoration: none !important;
+    padding-bottom: 5px;
 }
 
 .btn-link:hover {
@@ -5635,6 +5651,10 @@ button.close {
     -webkit-appearance: none
 }
 
+.button.close:hover {
+    background-color: transparent;
+}
+
 .modal-open {
     overflow: hidden
 }
@@ -6979,6 +6999,69 @@ button.bg-dark:hover {
     align-self: stretch!important
 }
 
+
+/*---------------popup--------------*/
+
+.holder-gap {
+    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+    /* border: 2px solid #ced4da !important; */
+}
+
+.holder-gap2 {
+    /* border: 2px solid #ced4da !important; */
+}
+
+.holder-gap:focus {
+    box-shadow: unset;
+}
+
+.holder-gap2:focus {
+    box-shadow: unset;
+}
+
+.check-gap {
+    margin-left: 20px !important;
+    margin-top: 18px !important;
+}
+
+.click-gap {
+    text-decoration: none !important;
+}
+
+.click-text {
+    padding-top: 5px;
+}
+
+.popup-text {
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.login-gap {
+    padding: 0px 46px;
+    margin-bottom: 10px;
+}
+
+.envelope,
+.lock {
+    position: absolute;
+    left: 64px;
+    top: 26%;
+    /* transform: translateY(-50%); */
+    font-size: 18px;
+    color: #333;
+}
+
+.lock {
+    top: 40%;
+}
+
+
+/* .lnr-envelope:before {
+    content: "\e818";
+} */
+
 @media (min-width:576px) {
     .flex-sm-row {
         -webkit-box-orient: horizontal!important;
@@ -7248,6 +7331,18 @@ button.bg-dark:hover {
     .align-self-md-stretch {
         -ms-flex-item-align: stretch!important;
         align-self: stretch!important
+    }
+}
+
+@media (max-width:767px) {
+    .envelope {
+        top: 25%;
+    }
+    .lock {
+        top: 39%;
+    }
+    .click-text {
+        font-size: 13px;
     }
 }
 
