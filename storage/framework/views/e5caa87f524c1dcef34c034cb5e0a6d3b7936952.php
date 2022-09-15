@@ -177,53 +177,53 @@
 
 
 <style>
-    .tab {
-        display: none;
-    }
+.tab {
+    display: none;
+}
 
-    .tab2 {
-        display: none;
-    }
+.tab2 {
+    display: none;
+}
 
-    .step {
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbbbbb;
-        border: none;
-        border-radius: 50%;
-        display: inline-block;
-        opacity: 0.5;
-    }
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
 
-    .step2 {
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbbbbb;
-        border: none;
-        border-radius: 50%;
-        display: inline-block;
-        opacity: 0.5;
-    }
+.step2 {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
 
-    .step.active {
-        opacity: 1;
-    }
+.step.active {
+    opacity: 1;
+}
 
-    .step2.active {
-        opacity: 1;
-    }
+.step2.active {
+    opacity: 1;
+}
 </style>
 
 <!-- Modal -->
 <div class="modal fade" id="QuestionAnswerModeal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Questions</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal-content questions-model question_short_modal">
+            <div class="modal-header header-gap">
+                <h5 class="modal-title title-text" id="exampleModalLongTitle">Questions</h5>
+                <button type="button" class="close close-icon" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -233,20 +233,19 @@
                     <?php echo csrf_field(); ?>
 
                     <div class="tab">
-                        <p>
-                            <?php echo e($key+1); ?> ). &nbsp; <?php echo e($val->question); ?>
-
+                        <div class="name-text">
+                            <p><?php echo e($key+1); ?> ). &nbsp; <?php echo e($val->question); ?></p>
                             <input type="hidden" name="question_id" id="question_id<?php echo e($val->id); ?>" value="<?php echo e($val->id); ?>"
                                 class="question_id<?php echo e($val->id); ?>">
                             <input type="hidden" name="question_type" id="question_type<?php echo e($val->id); ?>"
                                 value="<?php echo e($val->question_type); ?>" class="question_type<?php echo e($val->id); ?>">
 
                             <input type="hidden" name="package_id" id="package_id" class="package_id" value="" readonly>
-                        </p>
+                        </div>
                         <p class="mb-5">
                             <?php if($val->question_type == 'text'): ?>
-                            <input type="<?php echo e($val->question_type); ?>" name="answer" class="form-control answer<?php echo e($val->id); ?>"
-                                id="answer<?php echo e($val->id); ?>">
+                            <input type="<?php echo e($val->question_type); ?>" name="answer"
+                                class="form-control answer<?php echo e($val->id); ?> name-text2" id="answer<?php echo e($val->id); ?>">
                             <?php elseif($val->question_type == 'textarea'): ?>
                             <textarea name="answer" id="answer<?php echo e($val->id); ?>" cols="30" rows="10"
                                 class="form-control answer<?php echo e($val->id); ?>"></textarea>
@@ -263,18 +262,19 @@
                         </ul>
 
                         <?php elseif($val->question_type == 'checkbox'): ?>
-                        <ul>
-                            <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li>
-                                <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
-                                <input type="<?php echo e($val->question_type); ?>" name="checkbox[]"
-                                    class="form-control checkbox<?php echo e($val->id); ?>" value="<?php echo e($value); ?>"
-                                    id="checkbox<?php echo e($val->id); ?>">
-                            </li>
+                        <div class="name-gap">
+                            <ul>
+                                <?php $__currentLoopData = $val->values; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key2 => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li>
+                                    <label for="<?php echo e($value); ?>"><?php echo e($value); ?></label>
+                                    <input type="<?php echo e($val->question_type); ?>" name="checkbox[]"
+                                        class="form-control checkbox<?php echo e($val->id); ?>" value="<?php echo e($value); ?>"
+                                        id="checkbox<?php echo e($val->id); ?>">
+                                </li>
 
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
                         <?php elseif($val->question_type == 'select'): ?>
                         <select name="answer" id=" answer<?php echo e($val->id); ?>" class="form-control answer<?php echo e($val->id); ?>">
                             <option value="">--Select please--</option>
@@ -284,25 +284,29 @@
                         </select>
                         <?php endif; ?>
                         <span>
-                            <strong> Don’t know the answer to any of these questions? </strong>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo e(route('faq')); ?>">Find FAQ's</a> or <a
-                                href="<?php echo e(route('welcome')); ?>#contact" onclick="$('#QuestionAnswerModeal').modal('hide')">
-                                Contact Us</a>
+                            <strong class="que"> Don’t know the answer to any of these questions? </strong>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div class="faq-text"><a href="<?php echo e(route('faq')); ?>">Find
+                                    FAQ's</a> or <a href="<?php echo e(route('welcome')); ?>#contact"
+                                    onclick="$('#QuestionAnswerModeal').modal('hide')">
+                                    Contact Us</a>
+
+                            </div>
                         </span>
                         </p>
                         <div style="overflow:auto;">
-                            <div style="float:right">
+                            <div class="next-gap">
 
                                 <a href="javaScript:void(0);" id="prevBtn" onclick="nextPrev(-1)"
                                     class="btn btn-outline-dark btn-sm">
                                     << </a>
                                         <a class="btn btn-outline-warning btn-sm skip" onclick="skip(1)"
-                                            href="javaScript:void(0);"> >> </a>
+                                            href="javaScript:void(0);"> Skip</a>
                                         <a class="btn btn-outline-danger btn-sm paynowbtn " href="#">Skip & Checkout</a>
                                         <a href="javaScript:void(0);"
                                             class="btn btn-outline-success btn-sm submitAnswer<?php echo e($val->id); ?>"
                                             type="submit" id="nextBtn" onclick="nextPrev(1,'<?php echo e($val->id); ?>')">
-                                            Next</a>
+                                            >> </a>
 
                             </div>
                         </div>
@@ -312,10 +316,10 @@
                 </form>
 
                 <!-- Circles which indicates the steps of the form: -->
-                <div style="text-align:center;margin-top:40px;">
+                <!-- <div style="text-align:center;margin-top:40px;">
                     <?php for( $i =0; $i< (count($question) -1 );$i++): ?> <span class="step"></span>
                         <?php endfor; ?>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -330,10 +334,10 @@
 <div class="modal fade" id="waitForSolution" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content questions-model">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle"> Congrates </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close close-icon" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -524,10 +528,10 @@
                         enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                         <input type="text" name="name" placeholder="Full Name" id="name" required>
-                        <input type="text" name="email" placeholder="Email Id" id="email" required>
-                        <input type="text" name="contact" placeholder="Contact Number" id="contact" required>
-                        <input type="file" name="sharefile" placeholder="Share File" id="sharefile"
-                            class="form-control">
+                        <input type="email" name="email" placeholder="Email Id" id="email" required>
+                        <input type="text" name="contact" placeholder="Contact Number" id="contact" required
+                            class="numericOnly"><input type="file" class="file-gap" name="sharefile"
+                            placeholder="Share File" id="sharefile" class="form-control">
                         <button type="submit"> Submit</button>
                     </form>
                 </div>
@@ -543,163 +547,168 @@
 
 
     <script>
-        jq162 = jQuery.noConflict( true );
-        var currentTab = 0; // Current tab is set to be the first tab (0)
-        showTab(currentTab); // Display the current tab
-        function showTab(n) {
+    jq162 = jQuery.noConflict(true);
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+    function showTab(n) {
         var x = document.getElementsByClassName("tab");
         x[n].style.display = "block";
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
-            
+
         }
-        if (n == x.length  ) {
-            document.getElementById("nextBtn").innerHTML = "Submit"; 
+        if (n == x.length) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
             $('#QuestionAnswerModeal').modal('hide');
-            
+
         } else {
             document.getElementById("nextBtn").innerHTML = " Next";
-            
+
         }
         fixStepIndicator(n)
-        }
-        
-        function nextPrev(n,id) {
-            jq162(".submitAnswer"+id).click(function (event) {
-                var checkBoxValue = [];
-                jq162(".checkbox"+id).each(function() {
-                    if (jq162(this).is(':checked')) {
-                        var checked = ($(this).val());
-                        checkBoxValue.push(checked);
-                    }
-                });
+    }
 
-                    var formData = {
-                    "_token": "<?php echo e(csrf_token()); ?>",
-                    question_id: jq162(".question_id"+id).val(),
-                    question_type: jq162(".question_type"+id).val(),
-                    answer: jq162(".answer"+id).val(),
-                    packageId: jq162(".package_id").val(),
-                    checkBoxValue:checkBoxValue,
+    function nextPrev(n, id) {
+        jq162(".submitAnswer" + id).click(function(event) {
+            var checkBoxValue = [];
+            jq162(".checkbox" + id).each(function() {
+                if (jq162(this).is(':checked')) {
+                    var checked = ($(this).val());
+                    checkBoxValue.push(checked);
+                }
+            });
 
-                };
-                jq162.ajax({
-                    type: "POST",
-                    url: "<?php echo e(route('submitAnswer')); ?>",
-                    data: formData,
-                    dataType: "json",
-                    encode: true,
-                    success: function(res){
-                    if(res==1){ 
+            var formData = {
+                "_token": "<?php echo e(csrf_token()); ?>",
+                question_id: jq162(".question_id" + id).val(),
+                question_type: jq162(".question_type" + id).val(),
+                answer: jq162(".answer" + id).val(),
+                packageId: jq162(".package_id").val(),
+                checkBoxValue: checkBoxValue,
+
+            };
+            jq162.ajax({
+                type: "POST",
+                url: "<?php echo e(route('submitAnswer')); ?>",
+                data: formData,
+                dataType: "json",
+                encode: true,
+                success: function(res) {
+                    if (res == 1) {
                         // alert('done');
                         var x = document.getElementsByClassName("tab");
                         if (n == 1 && !validateForm()) return false;
                         x[currentTab].style.display = "none";
-                        
+
                         currentTab = currentTab + n;
                         // if(currentTab == x.length ){
                         //     $('.skip').addClass('storymodal').removeClass('skip');
                         // }
-                        if(currentTab >= 12){
+                        if (currentTab >= 12) {
 
-                            $('#exampleModalLongTitle').html('What is Your story ? ');                          
-                        }
-                        else{
-                            $('#exampleModalLongTitle').html('Questions  ');                          
+                            $('#exampleModalLongTitle').html('What is Your story ? ');
+                        } else {
+                            $('#exampleModalLongTitle').html('Questions  ');
 
                         }
-                        if (currentTab == x.length  ) {
-                            $('#QuestionAnswerModeal').modal('hide');                          
-                            $('#waitForSolution').modal('show');                          
-                        } 
-                        
+                        if (currentTab == x.length) {
+                            $('#QuestionAnswerModeal').modal('hide');
+                            $('#waitForSolution').modal('show');
+                        }
+
                         showTab(currentTab);
-                        }
-                        
-                    },
-                });
-                event.preventDefault();
-                event.stopImmediatePropagation();
+                    }
 
+                },
             });
+            event.preventDefault();
+            event.stopImmediatePropagation();
 
-            if(n ==-1){
-                var x = document.getElementsByClassName("tab");
-                if (n == 1 && !validateForm()) return false;
-                x[currentTab].style.display = "none";
-                currentTab = currentTab + n;
+        });
 
-                if(currentTab >= 12){
-                    $('#exampleModalLongTitle').html('What is Your story ? ');                          
-                    }
-                    else{
-                    $('#exampleModalLongTitle').html('Questions  ');                          
-
-                    }
-
-
-                showTab(currentTab);
-                
-            }
-            
-        }
-
-
-        function skip(n) {
-
+        if (n == -1) {
             var x = document.getElementsByClassName("tab");
             if (n == 1 && !validateForm()) return false;
             x[currentTab].style.display = "none";
             currentTab = currentTab + n;
 
-            if(currentTab >= 12){
-                $('#exampleModalLongTitle').html('What is Your story ? ');                          
-            }else{
-                $('#exampleModalLongTitle').html('Questions  ');                          
+            if (currentTab >= 12) {
+                $('#exampleModalLongTitle').html('What is Your story ? ');
+            } else {
+                $('#exampleModalLongTitle').html('Questions  ');
 
             }
 
 
-            if (currentTab == x.length  ) {
-                $('#QuestionAnswerModeal').modal('hide');
-            } 
             showTab(currentTab);
-                        
+
         }
 
-        function validateForm() {
-            var x, y, i, valid = true;
-            x = document.getElementsByClassName("tab");
-            y = x[currentTab].getElementsByTagName("input");
-            return valid; 
-        }
-        
+    }
 
-        function fixStepIndicator(n) {
-            var i, x = document.getElementsByClassName("step");
-            for (i = 0; i <( x.length)-1; i++) {
-                x[i].className = x[i].className.replace(" active", "");
-            }
-        
+
+    function skip(n) {
+
+        var x = document.getElementsByClassName("tab");
+        if (n == 1 && !validateForm()) return false;
+        x[currentTab].style.display = "none";
+        currentTab = currentTab + n;
+
+        if (currentTab >= 12) {
+            $('#exampleModalLongTitle').html('What is Your story ? ');
+        } else {
+            $('#exampleModalLongTitle').html('Questions  ');
+
         }
+
+
+        if (currentTab == x.length) {
+            $('#QuestionAnswerModeal').modal('hide');
+        }
+        showTab(currentTab);
+
+    }
+
+    function validateForm() {
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        return valid;
+    }
+
+
+    function fixStepIndicator(n) {
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < (x.length) - 1; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+
+    }
+
+
+
+
+    jq162(".numericOnly").keypress(function(e) {
+        if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+    });
     </script>
 
 
     <script>
-        $('.order').on('click',function(){
-            var packageId = $(this).data('id');
-            $('.package_id').val(packageId);
-            $('#QuestionAnswerModeal').modal('show');
-            $('.paynowbtn').show();
-            $('.paynowbtn').attr('href','/razorpay-payment/'+packageId);
-            
-        });
+    $('.order').on('click', function() {
+        var packageId = $(this).data('id');
+        $('.package_id').val(packageId);
+        $('#QuestionAnswerModeal').modal('show');
+        $('.paynowbtn').show();
+        $('.paynowbtn').attr('href', '/razorpay-payment/' + packageId);
 
-        $('.storymodal').on('click',function(){
-            $('#storyAnswerModeal').modal('show');
-        });
+    });
+
+    $('.storymodal').on('click', function() {
+        $('#storyAnswerModeal').modal('show');
+    });
     </script>
 
     <?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>

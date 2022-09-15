@@ -100,8 +100,14 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::get('/delete-admin-user', [App\Http\Controllers\AdminuserController::class, 'deleteAdminuser'])->name('deleteAdminuser');
 
     Route::get('/quick-link-list', [App\Http\Controllers\QuickLinkController::class, 'quickLinksList'])->name('quickLinksList');
-    Route::get('/add-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'addQuicklinks'])->name('addQuicklinks');
-    Route::post('/submit-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'submitQuicklinks'])->name('submitQuicklinks');
-    Route::get('/edit-quick-link-user/{id}', [App\Http\Controllers\QuickLinkController::class, 'editQuicklinks'])->name('editQuicklinks');
-    Route::get('/delete-quick-link-user', [App\Http\Controllers\QuickLinkController::class, 'deleteQuicklinks'])->name('deleteQuicklinks');
+    Route::get('/add-quick-link', [App\Http\Controllers\QuickLinkController::class, 'addQuicklinks'])->name('addQuicklinks');
+    Route::post('/submit-quick-link', [App\Http\Controllers\QuickLinkController::class, 'submitQuicklinks'])->name('submitQuicklinks');
+    Route::get('/edit-quick-link/{id}', [App\Http\Controllers\QuickLinkController::class, 'editQuicklinks'])->name('editQuicklinks');
+    Route::get('/delete-quick-link', [App\Http\Controllers\QuickLinkController::class, 'deleteQuicklinks'])->name('deleteQuicklinks');
+
+    Route::get('/our-work-list', [App\Http\Controllers\QuickLinkController::class, 'ourWorkList'])->name('ourWorkList');
+    Route::get('/add-our-work', [App\Http\Controllers\QuickLinkController::class, 'addOurWork'])->name('addOurWork');
+    Route::post('/submit-our-work', [App\Http\Controllers\QuickLinkController::class, 'submitOurWork'])->name('submitOurWork');
+    Route::get('/edit-our-work/{id}', [App\Http\Controllers\QuickLinkController::class, 'editOurWork'])->name('editOurWork');
+    Route::get('/delete-our-work', [App\Http\Controllers\QuickLinkController::class, 'deleteOurWork'])->name('deleteOurWork');
 });

@@ -46,6 +46,13 @@
                                         <td>
                                             <a href="{{route('userOrderDetails',['id'=>$val->id])}}"
                                                 class="btn btn-outline-primary">Details</a>
+                                            @if($val->mssgCount >0)
+                                            <span class="text-danger">
+                                                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                                                {{$val->mssgCount}}
+                                            </span>
+
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

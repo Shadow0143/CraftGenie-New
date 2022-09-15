@@ -63,8 +63,8 @@
                                             {{$val->title}}
                                         </td>
                                         <td>{{ucfirst($val->user_name)}}</td>
-                                       
-                                       
+
+
                                         <td>{{$val->amount}} /-</td>
                                         <td>
                                             @if($val->is_pay =='NO')
@@ -73,9 +73,17 @@
                                             <p class="text-center text-success"> Payment Done.</p>
                                             @endif
                                         </td>
-                                        
+
                                         <td>
-                                            <a href="{{route('orderDetails',['id'=>$val->paymentid])}}" class="btn btn-outline-primary"> Order Details </a>
+                                            <a href="{{route('orderDetails',['id'=>$val->paymentid])}}"
+                                                class="btn btn-outline-primary btn-sm"> Order Details </a>
+                                            @if($val->mssgCount >0)
+                                            <span class="text-danger">
+                                                <i class="ri-chat-2-line"></i>
+                                                {{$val->mssgCount}}
+                                            </span>
+
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

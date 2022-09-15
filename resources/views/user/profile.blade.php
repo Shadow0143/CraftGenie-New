@@ -798,7 +798,7 @@
     }
 
     .sidebar012 {
-        height: 60vh;
+        height: auto;
         background: #fff;
         color: #000;
     }
@@ -869,13 +869,14 @@
         font-size: 14px;
         color: #1e3a46;
         max-width: 370px;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
     }
 
     .toptitle55 {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding-top:20px;
     }
 
     .infobox25.favbox {
@@ -1123,7 +1124,15 @@
         padding: 120px 0;
         background: #efefef;
     }
-
+    /* .quick ul li{
+        margin-left: 20px;
+    }
+    .contact ul li{
+        margin-left: unset !important;
+    }
+    .icon ul li{
+        margin-top: unset !important;
+    } */
     @media only screen and (max-width: 767px) {
 
         .sidebar012 {
@@ -1154,7 +1163,7 @@
                         <div class="sidebar012">
 
                             <div class="profbox45">
-                                <figure><img src="./images/team2-270x324.jpg" alt="profile image"></figure>
+                                <figure><img src="./images/icons/no-img.jpg" alt="profile image"></figure>
 
                                 <h3>{{Auth::user()->name}}</h3>
 

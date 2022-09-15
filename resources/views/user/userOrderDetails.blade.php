@@ -59,7 +59,7 @@
                                         {{$payments->transaction_no}}</h5>
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{route('PaymentList')}}" class="btn btn-outline-danger">Back</a>
+                                    <a href="{{route('orderList')}}" class="btn btn-outline-danger">Back</a>
                                 </div>
 
                             </div>

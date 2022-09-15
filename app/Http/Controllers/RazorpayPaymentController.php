@@ -76,18 +76,21 @@ class RazorpayPaymentController extends Controller
         $payment->is_pay = 'NO';
         $payment->save();
 
-        $data1 = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'contactNumber' => $request->contactNumber,
-            'address' => $request->address,
-            'amount' => $request->amount,
-            'pmode' => $request->pmode,
-            'payment_id' => $payment->id
-        ];
-        $data = (object) $data1;
-        Session::put('razorpayData', $data);
-        return redirect('/payment/CreateOrder');
+        // $data1 = [
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'contactNumber' => $request->contactNumber,
+        //     'address' => $request->address,
+        //     'amount' => $request->amount,
+        //     'pmode' => $request->pmode,
+        //     'payment_id' => $payment->id
+        // ];
+        // $data = (object) $data1;
+        // Session::put('razorpayData', $data);
+        // return redirect('/payment/CreateOrder');
+        Alert::success('Thank You', 'Your order is placed.');
+
+        return redirect()->route('welcome');
     }
 
     public function paymentCreateOrder()
@@ -99,12 +102,21 @@ class RazorpayPaymentController extends Controller
     public function PaymentList()
     {
         $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount', 'payments.id as paymentid')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->orderBy('paymentid', 'desc')->get();
+
+        foreach ($payments as $key => $val) {
+            $chatCount = Chat::where('payment_id', $val->paymentid)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->count();
+            $payments[$key]->mssgCount = $chatCount;
+        }
+
         return view('admin.payment.paymentList', compact('payments'));
     }
 
     public function orderDetails($id)
     {
         $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date', 'package_id')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
+
+        $chatCount = Chat::where('payment_id', $payments->paymentid)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->update(['status' => 'read']);
+
 
         $solution = Solutions::leftjoin('solutions_files', 'solutions_files.solution_id', '=', 'solutions.id')->where('payment_id', $id)->first();
 

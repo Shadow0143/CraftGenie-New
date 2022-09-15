@@ -23,6 +23,7 @@ class ChatController extends Controller
         $chat->package_id  = $request->package_id;
         $chat->sender  = Auth::user()->id;
         $chat->message  = $request->message;
+        $chat->status  = 'unread';
         $chat->save();
 
         $newChat = Chat::select('chats.*', 'users.name')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('chats.id', $chat->id)->first();

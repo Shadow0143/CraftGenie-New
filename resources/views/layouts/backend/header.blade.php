@@ -204,6 +204,16 @@
                                         <a href="{{route('packagesList')}}" class="nav-link"
                                             data-key="t-crm">Packages</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('quickLinksList')}}" class="nav-link" data-key="t-crm">Quick
+                                            Links</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="{{route('ourWorkList')}}" class="nav-link" data-key="t-crm">Our
+                                            Work</a>
+                                    </li>
+
 
                                 </ul>
                             </div>
@@ -219,9 +229,7 @@
                             <a href="{{route('adminuserList')}}" class="nav-link" data-key="t-crm">Admin User</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{route('quickLinksList')}}" class="nav-link" data-key="t-crm">Quick Links</a>
-                        </li>
+
 
 
 

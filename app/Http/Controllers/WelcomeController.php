@@ -41,15 +41,8 @@ class WelcomeController extends Controller
             $question[$key]->values = $values;
         }
 
-        // $story = Questions::where('use_for', 'story')->orderBy('sequence', 'ASC')->get();
-        // foreach ($story as $key => $val) {
-        //     $values = explode("~ ", $val->values);
-        //     $story[$key]->values = $values;
-        // }
-
 
         return view('welcome')->with('cms', $cms)->with('blog', $blogs)->with('testimonial', $testimonial)->with('package', $package)->with('question', $question);
-        // ->with('story', $story);
     }
 
     public function blogDetails($id)
@@ -132,6 +125,11 @@ class WelcomeController extends Controller
     public function orderList()
     {
         $orderList = Payment::select('payments.*', 'packages.title')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('user_id', Auth::user()->id)->orderBy('payments.id', 'DESC')->get();
+
+        foreach ($orderList as $key => $val) {
+            $chatCount = Chat::where('payment_id', $val->id)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->count();
+            $orderList[$key]->mssgCount = $chatCount;
+        }
         return view('user.orderList', compact('orderList'));
     }
 
@@ -219,12 +217,21 @@ class WelcomeController extends Controller
         // dd($id);
         $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date', 'package_id')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
 
+        $chatCount = Chat::where('payment_id', $payments->paymentid)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->update(['status' => 'read']);
+
+
+
         $solution = Solutions::leftjoin('solutions_files', 'solutions_files.solution_id', '=', 'solutions.id')->where('payment_id', $id)->first();
 
-        $payment = Payment::select('user_id', 'package_id')->where('id', $id)->first();
-        $answer = Answer::leftjoin('questions', 'questions.id', '=', 'answers.question_id')->where('user_id', $payment->user_id)->where('package_id', $payment->package_id)->get();
+        $payment_pkg = Payment::select('user_id', 'package_id')->where('id', $id)->first();
+        $answer = Answer::leftjoin('questions', 'questions.id', '=', 'answers.question_id')->where('user_id', $payment_pkg->user_id)->where('package_id', $payment_pkg->package_id)->get();
 
         $chats = Chat::select('chats.*', 'users.name', 'users.id as uid')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $id)->get();
+
+
+
+
+
 
         return view('user.userOrderDetails', compact('payments', 'solution', 'answer', 'chats'));
     }
