@@ -7,18 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class NewOrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $details;
+    public $userdetails;
+
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($userdetails)
     {
-        $this->details = $details;
+        $this->userdetails = $userdetails;
     }
 
     /**
@@ -28,6 +30,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('New Chat')->view('email.sendmail');
+        return $this->subject('New Order')->view('email.newOrderMail');
     }
 }

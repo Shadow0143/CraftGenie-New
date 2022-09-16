@@ -16,6 +16,8 @@ use App\Models\Solutions;
 use App\Models\SolutionFiles;
 use App\Models\Chat;
 use App\Models\Answer;
+use  App\Mail\NewOrderMail;
+use Illuminate\Support\Facades\Mail;
 
 
 class RazorpayPaymentController extends Controller
@@ -78,12 +80,22 @@ class RazorpayPaymentController extends Controller
         $payment->user_email = $request->email;
         $payment->contact_no = $request->contactNumber;
         $payment->address = $request->address;
-        $payment->amount = $request->amount;
-        $payment->payment_mode = $request->pmode;
         $payment->is_pay = 'NO';
         $payment->status = '1';
         $payment->save();
 
+        $package = Package::find($request->package_id);
+
+
+
+        $userdetails = [
+            'body' => 'Hello there, please have a look on this new order.',
+            'name' => $request->name,
+            'package_name' => $package->title,
+        ];
+        // $to = $request->email;
+        $to = 'shakilbluehorse@gmail.com';
+        Mail::to($to)->send(new NewOrderMail($userdetails));
 
         Alert::success('Thank You', 'Your order is placed.');
 

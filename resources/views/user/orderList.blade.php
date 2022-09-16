@@ -45,12 +45,15 @@
                                             {{date('d-M-Y',strtotime($val->created_at))}}
                                         </td>
                                         <td>
+                                            @if($val->status == 3)
+                                            @else
                                             <a class="btn btn-sm btn-outline-warning" @if($val->status == 2)
                                                 style ="cursor:pointer" href="{{route('pay',['order_id'=>$val->id])}}"
                                                 @else
                                                 style ="cursor:not-allowed"
                                                 href="javaScript:void(0);"
                                                 @endif>Pay</a>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{route('userOrderDetails',['id'=>$val->id])}}"
