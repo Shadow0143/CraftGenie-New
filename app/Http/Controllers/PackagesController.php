@@ -18,14 +18,15 @@ class PackagesController extends Controller
         $this->middleware('auth');
     }
 
-    public function packagesList(){
-        $packages = Package::orderBy('packages.id','desc')->get();
-            foreach($packages as $key=>$val){
-                $files = PackageExtraFiles::where('package_id',$val->id)->get();
-                $packages[$key]->file = $files;
-            }
+    public function packagesList()
+    {
+        $packages = Package::orderBy('packages.id', 'desc')->get();
+        foreach ($packages as $key => $val) {
+            $files = PackageExtraFiles::where('package_id', $val->id)->get();
+            $packages[$key]->file = $files;
+        }
         // dd($packages);
-        return view('admin.packages.packageList',compact('packages'));
+        return view('admin.packages.packageList', compact('packages'));
     }
 
     public function addPackages()
@@ -36,11 +37,11 @@ class PackagesController extends Controller
     public function submitPackages(Request $request)
     {
         // dd($request->all());
-        if(!empty($request->id)){
+        if (!empty($request->id)) {
             $cms =  Package::find($request->id);
             $cms->title = $request->title;
             $cms->description = $request->package_description;
-            $cms->price = $request->price;
+            // $cms->price = $request->price;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .
@@ -58,22 +59,21 @@ class PackagesController extends Controller
                 $cms->extra_file  = $extraFiles;
                 $extension =  $extra_files->getClientOriginalExtension();
                 $cms->file_type  = $extension;
-
             }
-            
+
             $cms->status = $request->changestatus;
             $cms->save();
             Alert::success('Success', 'Blog updated !');
-        }else{
+        } else {
             $validated = $request->validate([
                 'title' => 'required',
                 'package_image' => 'required',
-                'price' => 'required',
+
             ]);
             $cms = new Package();
             $cms->title = $request->title;
             $cms->description = $request->package_description;
-            $cms->price = $request->price;
+            // $cms->price = $request->price;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .
@@ -87,23 +87,23 @@ class PackagesController extends Controller
 
 
             $postImagearry = $request->extra_file;
-            if(!empty($postImagearry)){
+            if (!empty($postImagearry)) {
                 for ($k = 0; $k < count($postImagearry); $k++) {
-                        $input['imagename'] ='package-'.Auth::user()->id. '-'.rand(000, 5000) . '.' . $postImagearry[$k]->getClientOriginalExtension();
-                        $destinationPath_selected = public_path('/extra_files');
-                        $postImagearry[$k]->move($destinationPath_selected,$input['imagename']);
-                            $postimage = new PackageExtraFiles();
-                            $postimage->package_id = $cms->id;
-                            $postimage->file_name = $input['imagename'];
-                            $extension =  $postImagearry[$k]->getClientOriginalExtension();
-                            $postimage->extension  = $extension;
-                            $postimage->save();
-                    }
+                    $input['imagename'] = 'package-' . Auth::user()->id . '-' . rand(000, 5000) . '.' . $postImagearry[$k]->getClientOriginalExtension();
+                    $destinationPath_selected = public_path('/extra_files');
+                    $postImagearry[$k]->move($destinationPath_selected, $input['imagename']);
+                    $postimage = new PackageExtraFiles();
+                    $postimage->package_id = $cms->id;
+                    $postimage->file_name = $input['imagename'];
+                    $extension =  $postImagearry[$k]->getClientOriginalExtension();
+                    $postimage->extension  = $extension;
+                    $postimage->save();
+                }
             }
 
             Alert::success('Success', 'Package added !');
         }
-        
+
         return redirect()->route('packagesList');
     }
 
@@ -115,7 +115,7 @@ class PackagesController extends Controller
 
     public function editPackages($id)
     {
-        $pakage = Package::where('id',$id)->first();
-        return view('admin.packages.addPackages')->with('cms',$pakage);
+        $pakage = Package::where('id', $id)->first();
+        return view('admin.packages.addPackages')->with('cms', $pakage);
     }
 }

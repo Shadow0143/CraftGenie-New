@@ -21,7 +21,7 @@ use App\Models\Address;
 use App\Models\PackageExtraFiles;
 use App\Models\Solutions;
 use App\Models\Chat;
-
+use App\Models\QuickLinks;
 
 class WelcomeController extends Controller
 {
@@ -238,6 +238,7 @@ class WelcomeController extends Controller
 
     public function faq()
     {
-        return view('user.faq');
+        $faqs = QuickLinks::where('type', 'faqs')->get();
+        return view('user.faq', compact('faqs'));
     }
 }

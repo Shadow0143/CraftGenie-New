@@ -46,7 +46,7 @@
                                         <th>SR No.</th>
                                         <th>Package Title </th>
                                         <th>Description </th>
-                                        <th>Price</th>
+                                        {{-- <th>Price</th> --}}
                                         <th>Uploaded File</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -59,28 +59,29 @@
                                         <td>{{$key+1}}</td>
                                         <td>{{$val->title}}</td>
                                         <td>{!!$val->description!!}</td>
-                                        <td>{{$val->price}}</td>
+                                        {{-- <td>{{$val->price}}</td> --}}
                                         <td>
                                             @if(!empty($val->file))
-                                                @foreach($val->file as $key => $value)
-                                                <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
-                                                    @if($value->extension == 'docx')
-                                                        <img class="file-img" src="{{asset('img/download.jpeg')}}" alt="word-img">
-                                                    @elseif($value->extension == 'ppt')
-                                                    <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
-                                                    @elseif($value->extension == 'xlxs' ||  $value->extension == 'xl')
-                                                    <img src="{{asset('img/excel.png')}}" alt="xl-img">
-                                                    @endif
-                                                    
-                                                </a>
-                                                @endforeach
+                                            @foreach($val->file as $key => $value)
+                                            <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
+                                                @if($value->extension == 'docx')
+                                                <img class="file-img" src="{{asset('img/download.jpeg')}}"
+                                                    alt="word-img">
+                                                @elseif($value->extension == 'ppt')
+                                                <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
+                                                @elseif($value->extension == 'xlxs' || $value->extension == 'xl')
+                                                <img src="{{asset('img/excel.png')}}" alt="xl-img">
+                                                @endif
+
+                                            </a>
+                                            @endforeach
                                             @endif
                                         </td>
                                         <td>
                                             @if($val->status =='YES')
-                                                <span class="badge badge-soft-success">Active</span>
+                                            <span class="badge badge-soft-success">Active</span>
                                             @else
-                                                <span class="badge badge-soft-danger">Inctive</span>
+                                            <span class="badge badge-soft-danger">Inctive</span>
                                             @endif
                                         </td>
                                         <td>
@@ -94,13 +95,16 @@
                                                             class="dropdown-item" target="_blank"><i
                                                                 class="ri-eye-fill align-bottom me-2 text-muted"></i>
                                                             View package image</a></li>
-                                                    <li><a class="dropdown-item edit-item-btn" href="{{route('editPackages',['id'=>$val->id])}}"><i
+                                                    <li><a class="dropdown-item edit-item-btn"
+                                                            href="{{route('editPackages',['id'=>$val->id])}}"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
                                                         <a href="javaScript:void(0);"
-                                                            class="dropdown-item remove-item-btn delete_btn" data-id="{{$val->id}}">
-                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            class="dropdown-item remove-item-btn delete_btn"
+                                                            data-id="{{$val->id}}">
+                                                            <i
+                                                                class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
                                                     </li>

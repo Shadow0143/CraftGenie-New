@@ -25,7 +25,8 @@
                                         <th>Transaction No. </th>
                                         <th>Payment</th>
                                         <th>Amount</th>
-                                        <th>Payment Date</th>
+                                        <th>Order Date</th>
+                                        <th>Pay</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -44,8 +45,16 @@
                                             {{date('d-M-Y',strtotime($val->created_at))}}
                                         </td>
                                         <td>
+                                            <a class="btn btn-sm btn-outline-warning" @if($val->status == 2)
+                                                style ="cursor:pointer" href="{{route('pay',['order_id'=>$val->id])}}"
+                                                @else
+                                                style ="cursor:not-allowed"
+                                                href="javaScript:void(0);"
+                                                @endif>Pay</a>
+                                        </td>
+                                        <td>
                                             <a href="{{route('userOrderDetails',['id'=>$val->id])}}"
-                                                class="btn btn-outline-primary">Details</a>
+                                                class="btn btn-outline-dark btn-sm">Details</a>
                                             @if($val->mssgCount >0)
                                             <span class="text-danger">
                                                 <i class="fa fa-comments-o" aria-hidden="true"></i>

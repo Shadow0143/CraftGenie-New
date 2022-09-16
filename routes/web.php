@@ -33,6 +33,8 @@ Route::get('/default-address', [App\Http\Controllers\WelcomeController::class, '
 Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solution'])->name('solution');
 Route::get('/faq', [App\Http\Controllers\WelcomeController::class, 'faq'])->name('faq');
 
+Route::get('/pay/{order_id}', [App\Http\Controllers\RazorpayPaymentController::class, 'pay'])->name('pay');
+
 
 Route::get('/chat', [App\Http\Controllers\ChatController::class, 'allChats'])->name('allChats');
 Route::post('/submit-chat', [App\Http\Controllers\ChatController::class, 'submitChats'])->name('submitChats');
@@ -75,6 +77,7 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
 
     Route::get('/payment-list', [App\Http\Controllers\RazorpayPaymentController::class, 'PaymentList'])->name('PaymentList');
     Route::get('/order-details/{id}', [App\Http\Controllers\RazorpayPaymentController::class, 'orderDetails'])->name('orderDetails');
+    Route::post('/allow-payment-assign-amount', [App\Http\Controllers\RazorpayPaymentController::class, 'assignAmount'])->name('assignAmount');
 
     Route::get('/packages-list', [App\Http\Controllers\PackagesController::class, 'packagesList'])->name('packagesList');
     Route::get('/add-packages', [App\Http\Controllers\PackagesController::class, 'addPackages'])->name('addPackages');

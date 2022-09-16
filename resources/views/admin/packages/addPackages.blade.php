@@ -58,7 +58,7 @@
 
                                     </div>
 
-                                    <div class="col-12 mt-3">
+                                    {{-- <div class="col-12 mt-3">
                                         <label for="price">Package Price <span class="text-danger">*</span></label>
                                         <input type="number" name="price" id="price"
                                             class="form-control @error('price') is-invalid @enderror">
@@ -67,7 +67,7 @@
                                             {{ $message }}
                                         </span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-12 mt-3">
                                         <label for="package_description">Package Description</label>

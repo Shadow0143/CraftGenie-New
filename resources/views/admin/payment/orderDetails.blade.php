@@ -91,14 +91,23 @@
                                         <p><strong>Transaction/Order Id : </strong> {{$payments->transaction_no}}</p>
                                         <p><strong>Amount : </strong> {{$payments->PaymentAmount}} /-</p>
                                         <p><strong>Payment Status : </strong>
-                                            @if($payments->is_pay =='YES')
-                                            <span class="text-success"> payment Done</span>
-                                            @else
-                                            <span class="text-danger"> payment Fail</span>
+                                            @if($payments->paymentStatus =='1')
+                                            <span class="text-danger"> Amount not assign.</span>
+                                            @elseif($payments->paymentStatus =='2')
+                                            <span class="text-warning"> Amount assign but payment not done </span>
+                                            @elseif($payments->paymentStatus =='3')
+                                            <span class="text-success"> Payment done </span>
                                             @endif
                                         </p>
-                                        <p><strong>Payment Date: </strong>
-                                            {{date('m-d-Y',strtotime($payments->payment_date))}}</p>
+                                        <p><strong>Order Date: </strong>
+                                            {{date('d-m-Y',strtotime($payments->orderDate))}}</p>
+
+                                        <p>
+                                            <strong>Payment Date: </strong>
+                                            @if(!empty($payments->payment_date))
+                                            {{date('d-m-Y',strtotime($payments->payment_date))}}
+                                            @endif
+                                        </p>
                                     </div>
                                     {{-- Question & Answer section --}}
                                     @if(!empty($answer))
@@ -265,7 +274,7 @@
                             window.scrollTo(0, 200);
                     }
                 });
-    }, 30000);
+    }, 300);
 
     </script>
 

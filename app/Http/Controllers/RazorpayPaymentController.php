@@ -37,11 +37,7 @@ class RazorpayPaymentController extends Controller
     public function store(Request $request)
     {
 
-        $payments = Payment::find($request->payment_id);
-        $payments->transaction_no = 'TRXN' . date('dmy') . time();
-        $payments->is_pay = 'YES';
-        $payments->payment_date = date('y-m-d H:i:s');
-        $payments->save();
+
 
         $data = $request->all();
         // $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));  
@@ -57,6 +53,17 @@ class RazorpayPaymentController extends Controller
                 Session::put('error', $e->getMessage());
             }
         }
+
+        $payments = Payment::find($request->payment_id);
+        $payments->transaction_no = 'TRXN' . date('dmy') . time();
+        $payments->is_pay = 'YES';
+        $payments->status = '3';
+        $payments->payment_date = date('y-m-d H:i:s');
+        $payments->save();
+
+
+
+
         Alert::success('Thank you', 'Payment success');
         return redirect()->route('welcome');
     }
@@ -74,20 +81,10 @@ class RazorpayPaymentController extends Controller
         $payment->amount = $request->amount;
         $payment->payment_mode = $request->pmode;
         $payment->is_pay = 'NO';
+        $payment->status = '1';
         $payment->save();
 
-        // $data1 = [
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'contactNumber' => $request->contactNumber,
-        //     'address' => $request->address,
-        //     'amount' => $request->amount,
-        //     'pmode' => $request->pmode,
-        //     'payment_id' => $payment->id
-        // ];
-        // $data = (object) $data1;
-        // Session::put('razorpayData', $data);
-        // return redirect('/payment/CreateOrder');
+
         Alert::success('Thank You', 'Your order is placed.');
 
         return redirect()->route('welcome');
@@ -101,7 +98,7 @@ class RazorpayPaymentController extends Controller
 
     public function PaymentList()
     {
-        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount', 'payments.id as paymentid')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->orderBy('paymentid', 'desc')->get();
+        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount', 'payments.id as paymentid', 'payments.status as paymentStatus')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->orderBy('paymentid', 'desc')->get();
 
         foreach ($payments as $key => $val) {
             $chatCount = Chat::where('payment_id', $val->paymentid)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->count();
@@ -113,7 +110,7 @@ class RazorpayPaymentController extends Controller
 
     public function orderDetails($id)
     {
-        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date', 'package_id')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
+        $payments = Payment::select('transaction_no', 'packages.title', 'user_name', 'payments.amount as PaymentAmount', 'payments.id as paymentid', 'user_name', 'user_email', 'contact_no', 'address', 'is_pay', 'payment_date', 'package_id', 'payments.status as paymentStatus', 'payments.created_at as orderDate')->leftjoin('packages', 'packages.id', '=', 'payments.package_id')->where('payments.id', $id)->orderBy('paymentid', 'desc')->first();
 
         $chatCount = Chat::where('payment_id', $payments->paymentid)->where('sender', '!=', Auth::user()->id)->where('status', 'unread')->update(['status' => 'read']);
 
@@ -126,5 +123,30 @@ class RazorpayPaymentController extends Controller
         $chats = Chat::select('chats.*', 'users.name', 'users.id as uid')->leftjoin('users', 'users.id', '=', 'chats.sender')->where('payment_id', $id)->get();
 
         return view('admin.payment.orderDetails', compact('payments', 'solution', 'answer', 'chats'));
+    }
+
+    public function assignAmount(Request $request)
+    {
+        $assignAmount = Payment::find($request->order_id);
+        $assignAmount->amount = $request->amount;
+        $assignAmount->status = '2';
+        $assignAmount->save();
+        return back();
+    }
+
+    public function pay($order_id)
+    {
+        $payment_details = Payment::find($order_id);
+        $data1 = [
+            'name' => $payment_details->user_name,
+            'email' => $payment_details->user_email,
+            'contactNumber' => $payment_details->contact_no,
+            'address' => $payment_details->address,
+            'amount' => $payment_details->amount,
+            'payment_id' => $payment_details->id
+        ];
+        $data = (object) $data1;
+        Session::put('razorpayData', $data);
+        return redirect('/payment/CreateOrder');
     }
 }

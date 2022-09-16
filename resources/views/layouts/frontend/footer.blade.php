@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             {{-- <div class="modal-header">
-			</div> --}}
+            </div> --}}
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -46,8 +46,8 @@
                     </span>
                     @enderror
                     <div class="form-holder check-gap">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{
-								old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember')
+                            ? 'checked' : '' }}>
 
                         <label class="form-check-label" for="remember">
                             {{ __('Remember Me') }}
@@ -83,27 +83,27 @@
                     <h3>QUICK LINKS</h3>
                     <div class="row">
                         {{-- <div class="col-3">
-							<ul>
-								<li>
-									<a href="">Home </a>
-								</li>
-								<li>
-									<a href="">About </a>
-								</li>
-								<li>
-									<a href="">Quick Packages </a>
-								</li>
-								<li>
-									<a href="">How Do We Do</a>
-								</li>
-								<li>
-									<a href="">Blogs </a>
-								</li>
-								<li>
-									<a href="">Contact </a>
-								</li>
-							</ul>
-						</div> --}}
+                            <ul>
+                                <li>
+                                    <a href="">Home </a>
+                                </li>
+                                <li>
+                                    <a href="">About </a>
+                                </li>
+                                <li>
+                                    <a href="">Quick Packages </a>
+                                </li>
+                                <li>
+                                    <a href="">How Do We Do</a>
+                                </li>
+                                <li>
+                                    <a href="">Blogs </a>
+                                </li>
+                                <li>
+                                    <a href="">Contact </a>
+                                </li>
+                            </ul>
+                        </div> --}}
                         <div class="quick">
                             <ul>
                                 <li>
@@ -156,7 +156,12 @@
             </div>
             <div class="col-md-5 ml-auto text-right">
                 <div class="share">
-                    <h2>Â© 2022 Ariiliana Network</h2>
+                    <h2>
+                        {{-- Â© 2022 Ariiliana Network --}}
+                        Copyright © 2022 Craftgenie.All Rights Reserved.Powered by <a href="http://www.bluehorse.in"
+                            target="_blank">BlueHorse</a>
+
+                    </h2>
                     <ul>
                         <li>
                             <a href=""> <img src="{{asset('img/face.png')}}" alt="facebook-logo"></a>

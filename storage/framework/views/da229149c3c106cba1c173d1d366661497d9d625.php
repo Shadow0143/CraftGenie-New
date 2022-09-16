@@ -75,7 +75,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     <div class="form-holder check-gap">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php echo e(old('remember')
+                            ? 'checked' : ''); ?>>
 
                         <label class="form-check-label" for="remember">
                             <?php echo e(__('Remember Me')); ?>
@@ -165,7 +166,12 @@ unset($__errorArgs, $__bag); ?>
             </div>
             <div class="col-md-5 ml-auto text-right">
                 <div class="share">
-                    <h2>Â© 2022 Ariiliana Network</h2>
+                    <h2>
+                        
+                        Copyright © 2022 Craftgenie.All Rights Reserved.Powered by <a href="http://www.bluehorse.in"
+                            target="_blank">BlueHorse</a>
+
+                    </h2>
                     <ul>
                         <li>
                             <a href=""> <img src="<?php echo e(asset('img/face.png')); ?>" alt="facebook-logo"></a>

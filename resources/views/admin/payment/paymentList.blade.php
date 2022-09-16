@@ -1,5 +1,8 @@
 @section('title', 'Payment Records')
 @include('layouts.backend.header')
+
+
+
 <div class="main-content">
 
     <div class="page-content">
@@ -40,10 +43,11 @@
                                 style="width:100%">
                                 <thead>
                                     <tr class="text-center">
-                                        <th>Transaction No. </th>
                                         <th>Package Name</th>
+                                        <th>Transaction No. </th>
                                         <th>User Name </th>
                                         <th>Amount</th>
+                                        <th>Allow Pay </th>
                                         <th>Status</th>
                                         <th>Order Details</th>
                                     </tr>
@@ -53,26 +57,42 @@
                                     @forelse($payments as $key => $val)
                                     <tr class="text-center">
                                         <td>
+                                            {{$val->title}}
+                                        </td>
+                                        <td>
                                             @if($val->transaction_no =='')
                                             <p class="text-primary text-center">---</p>
                                             @else
                                             {{$val->transaction_no}}
                                             @endif
                                         </td>
-                                        <td>
-                                            {{$val->title}}
-                                        </td>
+
                                         <td>{{ucfirst($val->user_name)}}</td>
 
 
                                         <td>{{$val->amount}} /-</td>
                                         <td>
-                                            @if($val->is_pay =='NO')
-                                            <p class="text-center text-danger"> Payment not done.</p>
-                                            @else
-                                            <p class="text-center text-success"> Payment Done.</p>
+                                            @if($val->paymentStatus =='1')
+                                            <a href="javaScript:void(0);"
+                                                class="btn btn-sm btn-outline-dark allowPayment"
+                                                data-id="{{$val->paymentid}}"> Asign
+                                                Amount and allow </a>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            @if($val->paymentStatus =='1')
+                                            <p class="text-center text-danger">Order Start.</p>
+                                            @endif
+                                            @if($val->paymentStatus =='2')
+                                            <p class="text-center text-warning"> Proccessing .</p>
+                                            @endif
+
+                                            @if($val->paymentStatus == '3')
+                                            <p class="text-center text-success"> Payment Done .</p>
                                             @endif
                                         </td>
+
 
                                         <td>
                                             <a href="{{route('orderDetails',['id'=>$val->paymentid])}}"
@@ -104,5 +124,46 @@
         </div>
         <!-- container-fluid -->
     </div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="assignAmountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enter Amount</h5>
+                    {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                </div>
+                <form action="{{route('assignAmount')}}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <label for="amount">Enter Amount</label>
+
+                        <input type="hidden" name="order_id" id="order_id" class="form-control order_id" value="">
+                        <input type="text" name="amount" id="amount" class="form-control">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- End Page-content -->
     @include('layouts.backend.footer')
+
+    <script>
+        $('.allowPayment').on('click',function (){
+            var payment_id = $(this).data('id');
+            $('.order_id').val(payment_id);
+            $('#assignAmountModal').modal('show');
+        })
+    </script>
