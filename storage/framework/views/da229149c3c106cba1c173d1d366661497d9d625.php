@@ -120,13 +120,13 @@ unset($__errorArgs, $__bag); ?>
                                     <a href="<?php echo e(route('faq')); ?>">FAQs</a>
                                 </li>
                                 <li>
-                                    <a href="#">Terms & Condition</a>
+                                    <a href="<?php echo e(route('termCond')); ?>">Terms & Condition</a>
                                 </li>
                                 <li>
-                                    <a href="#">Booking Policies</a>
+                                    <a href="<?php echo e(route('bookPol')); ?>">Booking Policies</a>
                                 </li>
                                 <li>
-                                    <a href="#">Refund Policie</a>
+                                    <a href="<?php echo e(route('refunPoly')); ?>">Refund Policie</a>
                                 </li>
                             </ul>
                         </div>

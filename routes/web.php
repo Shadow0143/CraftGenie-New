@@ -32,6 +32,9 @@ Route::get('/delete-address', [App\Http\Controllers\WelcomeController::class, 'd
 Route::get('/default-address', [App\Http\Controllers\WelcomeController::class, 'defaultAddress'])->name('defaultAddress');
 Route::get('/solution', [App\Http\Controllers\WelcomeController::class, 'solution'])->name('solution');
 Route::get('/faq', [App\Http\Controllers\WelcomeController::class, 'faq'])->name('faq');
+Route::get('/booking-policy', [App\Http\Controllers\WelcomeController::class, 'bookPol'])->name('bookPol');
+Route::get('/re-fund-policy', [App\Http\Controllers\WelcomeController::class, 'refunPoly'])->name('refunPoly');
+Route::get('/t-c', [App\Http\Controllers\WelcomeController::class, 'termCond'])->name('termCond');
 
 Route::get('/pay/{order_id}', [App\Http\Controllers\RazorpayPaymentController::class, 'pay'])->name('pay');
 

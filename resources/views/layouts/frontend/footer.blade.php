@@ -110,13 +110,13 @@
                                     <a href="{{route('faq')}}">FAQs</a>
                                 </li>
                                 <li>
-                                    <a href="#">Terms & Condition</a>
+                                    <a href="{{route('termCond')}}">Terms & Condition</a>
                                 </li>
                                 <li>
-                                    <a href="#">Booking Policies</a>
+                                    <a href="{{route('bookPol')}}">Booking Policies</a>
                                 </li>
                                 <li>
-                                    <a href="#">Refund Policie</a>
+                                    <a href="{{route('refunPoly')}}">Refund Policie</a>
                                 </li>
                             </ul>
                         </div>

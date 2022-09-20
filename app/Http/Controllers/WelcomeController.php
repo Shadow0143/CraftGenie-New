@@ -23,6 +23,7 @@ use App\Models\Solutions;
 use App\Models\Chat;
 use App\Models\QuickLinks;
 use App\Models\Work;
+use App\Models\Policies;
 
 class WelcomeController extends Controller
 {
@@ -243,5 +244,23 @@ class WelcomeController extends Controller
     {
         $faqs = QuickLinks::where('type', 'faqs')->get();
         return view('user.faq', compact('faqs'));
+    }
+
+    public function bookPol()
+    {
+        $policy = Policies::where('status', '1')->where('type', 'booking-policie')->get();
+        return view('user.booking_policy', compact('policy'));
+    }
+    public function refunPoly()
+    {
+        $policy = Policies::where('status', '1')->where('type', 'refund-policie')->get();
+
+        return view('user.refund_policy', compact('policy'));
+    }
+    public function termCond()
+    {
+        $policy = Policies::where('status', '1')->where('type', 'term-condition')->get();
+
+        return view('user.term_condition', compact('policy'));
     }
 }

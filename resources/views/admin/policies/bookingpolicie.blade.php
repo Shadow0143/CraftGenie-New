@@ -22,7 +22,7 @@
             </div>
             <!-- end page title -->
 
-            <div class="row">
+            <div class="row">`
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
@@ -80,7 +80,7 @@
                                                             href="{{route('editPolicies',['id'=>$val->id])}}"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
-                                                    <li>
+                                                    {{-- <li>
                                                         <a href="javaScript:void(0);"
                                                             class="dropdown-item remove-item-btn delete_btn"
                                                             data-id="{{$val->id}}">
@@ -88,7 +88,7 @@
                                                                 class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Delete
                                                         </a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </td>
