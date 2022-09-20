@@ -168,8 +168,8 @@ unset($__errorArgs, $__bag); ?>
                 <div class="share">
                     <h2>
                         
-                        Copyright © 2022 Craftgenie.All Rights Reserved.Powered by <a href="http://www.bluehorse.in"
-                            target="_blank">BlueHorse</a>
+                        Copyright © 2022 Craftgenie.All Rights Reserved.Powered by
+                        <a href="http://www.bluehorse.in" target="_blank">BlueHorse</a>
 
                     </h2>
                     <ul>

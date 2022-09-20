@@ -27,16 +27,16 @@
 <div class="about-sec my-5 py-5">
     <h2 class="titleall">about US</h2>
     <div class="col-md-6 m-auto py-4 text-center">
-        <p>Depending on the stage of your company ~ we work across Indiaâ€™s fastest growing startups to some of
-            Indiaâ€™s biggest unicorn founders..</p>
+        <p>
+        Craftgenie is a one-of-its-kind web platform, where brands get a chance to tell their story through easy-to-access communication solutions, made available for every need. With 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. Craftgenie works with companies at various stages, right from the fastest-growing startups to some of India’s biggest unicorn founders.
+        </p>
     </div>
     <div class="about-bnr mt-5">
         <div class="container">
             <div class="about-text col-md-7">
                 <h3>Powerful Narratives Powerful Perception
                 </h3>
-                <p>30+ years of combined experience in helping brands achieve their perception journey goals, we connect
-                    real business stories of impact across platforms of trust. </p>
+                <p> 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. </p>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
 <!-- quick-packages-->
 <section class="quick-packages mb-5">
     <div class="container">
-        <h2 class="titleall titleall-text mb-5">Quick packages</h2>
+        <h2 class="titleall titleall-text mb-5">Packages</h2>
         <div class="row mt-4">
             <div id="owl-demo1" class="tips-area owl-carousel owl-theme px-3">
 
@@ -91,7 +91,7 @@
                         </div>
                         <div class="w-100 d-block qtext">
                             <h5><?php echo e($val->title); ?> </h5>
-                            <p> Price : <strong><?php echo e($val->price); ?> /-</strong></p>
+                            
                             <span><?php echo $val->description; ?></span>
                             <div class="bar-list">
                                 <ul>
@@ -142,7 +142,7 @@
 </section>
 
 <div class="Whatdo my-5 pt-5">
-    <h2 class="titleall mb-3">How do we do?</h2>
+    <h2 class="titleall mb-3">How do we do it?</h2>
     <div class="col-md-6 m-auto py-4 text-center">
         <p>Depending on the stage of your company ~ we work across Indiaâ€™s fastest growing startups to some of
             Indiaâ€™s biggest unicorn founders..</p>
@@ -439,65 +439,31 @@
 
             <div class="row">
 
-                <div class="col-md-4">
+                <?php $__currentLoopData = $work; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    
+                    <div class="col-md-4">
 
-                    <div class="work-item">
+                        <div class="work-item">
 
-                        <div class="work-img"><img src="<?php echo e(asset('img/work-1.jpg')); ?>" alt=""></div>
+                            <div class="work-img"><img src="<?php echo e(asset('extra_files')); ?>/<?php echo e($val->image); ?>" alt=""></div>
 
-                        <div class="work-p">
+                            <div class="work-p">
 
-                            <h3>Lorem Ipsum is simply</h3>
+                                <h3><?php echo e($val->title); ?></h3>
 
-                            <p>Ipsum passages, and more
+                                <p><?php echo $val->description; ?></p>
 
-                                recently withIpsum passages, and more</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4">
-
-                    <div class="work-item">
-
-                        <div class="work-img"><img src="<?php echo e(asset('img/work-2.jpg')); ?>" alt=""></div>
-
-                        <div class="work-p">
-
-                            <h3>Lorem Ipsum is simply</h3>
-
-                            <p>Ipsum passages, and more
-
-                                recently withIpsum passages, and more</p>
+                            </div>
 
                         </div>
 
                     </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                </div>
 
-                <div class="col-md-4">
+                
 
-                    <div class="work-item">
-
-                        <div class="work-img"><img src="<?php echo e(asset('img/work-3.jpg')); ?>" alt=""></div>
-
-                        <div class="work-p">
-
-                            <h3>Lorem Ipsum is simply</h3>
-
-                            <p>Ipsum passages, and more
-
-                                recently withIpsum passages, and more</p>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                
 
             </div>
 

@@ -217,6 +217,39 @@
 
                                 </ul>
                             </div>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#policibaar" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Policies</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="policibaar">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('bookingPolicieList')}}" class="nav-link"
+                                            data-key="t-analytics">
+                                            Booking Policies </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('refundPolicieList')}}" class="nav-link" data-key="t-crm">
+                                            Refund
+                                            Policies </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('termConditionsList')}}" class="nav-link" data-key="t-crm">
+                                            Terms & Conditions </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+
+
+
+
                         </li>
 
                         <li class="nav-item">

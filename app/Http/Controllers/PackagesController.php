@@ -41,7 +41,7 @@ class PackagesController extends Controller
             $cms =  Package::find($request->id);
             $cms->title = $request->title;
             $cms->description = $request->package_description;
-            // $cms->price = $request->price;
+            $cms->sequence = $request->sequence;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .
@@ -68,12 +68,13 @@ class PackagesController extends Controller
             $validated = $request->validate([
                 'title' => 'required',
                 'package_image' => 'required',
+                'sequence' => 'required',
 
             ]);
             $cms = new Package();
             $cms->title = $request->title;
             $cms->description = $request->package_description;
-            // $cms->price = $request->price;
+            $cms->sequence = $request->sequence;
             if (!empty($request->file('package_image'))) {
                 $packages = $request->file('package_image');
                 $packagephoto = 'package-image-' . rand(000, 999) . '.' .

@@ -11,8 +11,8 @@
 
 <body>
     <h1> {{ $userdetails['body']}}</h1>
-    <p> <strong> {{$userdetails['name']}} </strong> wants to buy <strong>{{$userdetails['package_name'] }}</strong>
-        package. </p>
+    <p> <strong> {{$userdetails['name']}} </strong> wants to buy <strong>{{$userdetails['package_name'] }}</strong>.
+    </p>
     <p>Please assign the required amount for this package.So that payment will done</p>
     <p>Thank You</p>
 </body>

@@ -42,7 +42,7 @@
                             <form action="{{route('submitPackages')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         @if(!empty($cms->id))
                                         <input type="hidden" name="id" id="id" value="{{$cms->id}}" readable>
                                         @endif
@@ -58,16 +58,17 @@
 
                                     </div>
 
-                                    {{-- <div class="col-12 mt-3">
-                                        <label for="price">Package Price <span class="text-danger">*</span></label>
-                                        <input type="number" name="price" id="price"
-                                            class="form-control @error('price') is-invalid @enderror">
-                                        @error('price')
+                                    <div class="col-6">
+                                        <label for="sequence">Sequence <span class="text-danger">*</span></label>
+                                        <input type="number" name="sequence" id="sequence"
+                                            class="form-control @error('sequence') is-invalid @enderror" required
+                                            @if(!empty($cms)) value="{{$cms->sequence}}" @endif>
+                                        @error('sequence')
                                         <span class="invalid-feedback" role="alert">
                                             {{ $message }}
                                         </span>
                                         @enderror
-                                    </div> --}}
+                                    </div>
 
                                     <div class="col-12 mt-3">
                                         <label for="package_description">Package Description</label>

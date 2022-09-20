@@ -113,4 +113,13 @@ Route::middleware(['rolecheck'])->prefix('admin')->group(function () {
     Route::post('/submit-our-work', [App\Http\Controllers\QuickLinkController::class, 'submitOurWork'])->name('submitOurWork');
     Route::get('/edit-our-work/{id}', [App\Http\Controllers\QuickLinkController::class, 'editOurWork'])->name('editOurWork');
     Route::get('/delete-our-work', [App\Http\Controllers\QuickLinkController::class, 'deleteOurWork'])->name('deleteOurWork');
+
+
+    Route::get('/booking-police-list', [App\Http\Controllers\QuickLinkController::class, 'bookingPolicieList'])->name('bookingPolicieList');
+    Route::get('/refund-police-list', [App\Http\Controllers\QuickLinkController::class, 'refundPolicieList'])->name('refundPolicieList');
+    Route::get('/term-condition-list', [App\Http\Controllers\QuickLinkController::class, 'termConditionsList'])->name('termConditionsList');
+    Route::get('/policies-add/{slug}', [App\Http\Controllers\QuickLinkController::class, 'addPolicies'])->name('addPolicies');
+    Route::post('/submit-policies', [App\Http\Controllers\QuickLinkController::class, 'submitPolicies'])->name('submitPolicies');
+    Route::get('/edit-policies/{id}', [App\Http\Controllers\QuickLinkController::class, 'editPolicies'])->name('editPolicies');
+    Route::get('/delete-policies', [App\Http\Controllers\QuickLinkController::class, 'deletePolicies'])->name('deletePolicies');
 });

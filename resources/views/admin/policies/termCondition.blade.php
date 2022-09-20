@@ -1,4 +1,4 @@
-@section('title', 'Package List')
+@section('title', 'Term & Conditions')
 @include('layouts.backend.header')
 <div class="main-content">
 
@@ -9,12 +9,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Packages </h4>
+                        <h4 class="mb-sm-0">Term & Condition </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                <li class="breadcrumb-item active">Packages </li>
+                                <li class="breadcrumb-item active">Term & Condition </li>
                             </ol>
                         </div>
                     </div>
@@ -28,11 +28,12 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
-                                    <h5 class="card-title mb-0">Packages List </h5>
+                                    <h5 class="card-title mb-0">Term & Condition List </h5>
                                 </div>
                                 <div class="col-2 text-right">
-                                    <a href="{{route('addPackages')}}" class="btn btn-outline-success add-btn"><i
-                                            class="ri-add-line align-bottom me-1"></i> Add Packages</a>
+                                    <a href="{{route('addPolicies',['slug'=>'term-condition'])}}"
+                                        class="btn btn-outline-success add-btn"><i
+                                            class="ri-add-line align-bottom me-1"></i> Add Term & Condition</a>
                                 </div>
                             </div>
 
@@ -44,41 +45,24 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>SR No.</th>
-                                        <th>Package Title </th>
+                                        <th> Title </th>
+                                        <th>Sub Title</th>
                                         <th>Description </th>
-                                        <th>Sequence</th>
-                                        <th>Uploaded File</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @forelse($packages as $key => $val)
+                                    @forelse($termCondition as $key => $val)
                                     <tr id="removeRow{{$val->id}}" class="text-center">
                                         <td>{{$key+1}}</td>
                                         <td>{{$val->title}}</td>
+                                        <td>{{$val->subtitle}}</td>
                                         <td>{!!$val->description!!}</td>
-                                        <td>{{$val->sequence}}</td>
-                                        <td>
-                                            @if(!empty($val->file))
-                                            @foreach($val->file as $key => $value)
-                                            <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
-                                                @if($value->extension == 'docx')
-                                                <img class="file-img" src="{{asset('img/download.jpeg')}}"
-                                                    alt="word-img">
-                                                @elseif($value->extension == 'ppt')
-                                                <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
-                                                @elseif($value->extension == 'xlxs' || $value->extension == 'xl')
-                                                <img src="{{asset('img/excel.png')}}" alt="xl-img">
-                                                @endif
 
-                                            </a>
-                                            @endforeach
-                                            @endif
-                                        </td>
                                         <td>
-                                            @if($val->status =='YES')
+                                            @if($val->status =='1')
                                             <span class="badge badge-soft-success">Active</span>
                                             @else
                                             <span class="badge badge-soft-danger">Inctive</span>
@@ -91,12 +75,9 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="{{asset('packages')}}/{{$val->image}}"
-                                                            class="dropdown-item" target="_blank"><i
-                                                                class="ri-eye-fill align-bottom me-2 text-muted"></i>
-                                                            View package image</a></li>
+
                                                     <li><a class="dropdown-item edit-item-btn"
-                                                            href="{{route('editPackages',['id'=>$val->id])}}"><i
+                                                            href="{{route('editPolicies',['id'=>$val->id])}}"><i
                                                                 class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Edit</a></li>
                                                     <li>
@@ -114,7 +95,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="text-center" colspan="6"> No package added yet </td>
+                                        <td class="text-center" colspan="6"> No policy added yet </td>
                                     </tr>
                                     @endforelse
 
@@ -135,10 +116,10 @@
 
     <script>
         $('.delete_btn').on('click',function(){
-            var package_id = $(this).data('id');
+            var term_policy_id = $(this).data('id');
             swal({
                 title: 'Are you sure?',
-                text: "You won't delete this package!",
+                text: "You won't delete this policy!",
                 icon: 'warning',
                 buttons: true,
                 buttonsStyling: false,
@@ -147,8 +128,8 @@
                 if (confirm) {
                     $.ajax({
                         type: "GET",
-                        url: "{{route('deletePackages')}}",
-                        data: { id: package_id },
+                        url: "{{route('deletePolicies')}}",
+                        data: { id: term_policy_id },
                         success: function(data) {
                             swal({
                                 title: 'Success',
@@ -158,7 +139,7 @@
                                 buttonsStyling: false,
                                 reverseButtons: true
                             });
-                            $('#removeRow'+package_id).hide();
+                            $('#removeRow'+term_policy_id).hide();
                         }
                     });
                 }

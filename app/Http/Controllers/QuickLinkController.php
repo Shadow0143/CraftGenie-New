@@ -7,7 +7,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Models\QuickLinks;
 use App\Models\Work;
-
+use App\Models\Policies;
 
 class QuickLinkController extends Controller
 {
@@ -130,5 +130,65 @@ class QuickLinkController extends Controller
     {
         $delete = Work::find($request->id);
         $delete->delete();
+    }
+
+
+
+    public function bookingPolicieList()
+    {
+        $booking_policie = Policies::where('type', 'booking-policie')->get();
+        return view('admin.policies.bookingpolicie', compact('booking_policie'));
+    }
+    public function refundPolicieList()
+    {
+        $refund_policie = Policies::where('type', 'refund-policie')->get();
+        return view('admin.policies.refundPolicy', compact('refund_policie'));
+    }
+    public function termConditionsList()
+    {
+        $termCondition = Policies::where('type', 'term-condition')->get();
+        return view('admin.policies.termCondition', compact('termCondition'));
+    }
+    public function addPolicies($s)
+    {
+        $type = $s;
+        return view('admin.policies.addPolicies', compact('type'));
+    }
+    public function submitPolicies(Request $request)
+    {
+        // dd($request->all());
+        if (!empty($request->id)) {
+            $policies = Policies::find($request->id);
+            $policies->title = $request->title;
+            $policies->subtitle = $request->subtitle;
+            $policies->description = $request->description;
+            $policies->status = $request->changestatus;
+            $policies->save();
+
+            Alert::success('Success', 'Policie updated. ');
+        } else {
+            $policies = new Policies();
+            $policies->type = $request->policie_type;
+            $policies->title = $request->title;
+            $policies->subtitle = $request->subtitle;
+            $policies->description = $request->description;
+            $policies->status = $request->changestatus;
+            $policies->save();
+
+            Alert::success('Success', 'Policie added. ');
+        }
+        return back();
+    }
+
+    public function deletePolicies(Request $request)
+    {
+        $delete = Policies::find($request->id);
+        $delete->delete();
+    }
+
+    public function editPolicies($id)
+    {
+        $policy = Policies::find($id);
+        return view('admin.policies.addPolicies', compact('policy'));
     }
 }

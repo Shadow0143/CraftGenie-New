@@ -22,6 +22,7 @@ use App\Models\PackageExtraFiles;
 use App\Models\Solutions;
 use App\Models\Chat;
 use App\Models\QuickLinks;
+use App\Models\Work;
 
 class WelcomeController extends Controller
 {
@@ -30,7 +31,7 @@ class WelcomeController extends Controller
         $cms = CMS::where('status', '1')->orderBy('id', 'desc')->get();
         $blogs = Blog::where('status', 1)->orderBy('id', 'desc')->get();
         $testimonial = Testimonial::where('status', 1)->orderBy('id', 'desc')->get();
-        $package = Package::where('status', 'YES')->orderBy('id', 'desc')->get();
+        $package = Package::where('status', 'YES')->orderBy('sequence', 'asc')->get();
         foreach ($package as $key => $val) {
             $files = PackageExtraFiles::where('package_id', $val->id)->get();
             $package[$key]->file = $files;
@@ -41,8 +42,10 @@ class WelcomeController extends Controller
             $question[$key]->values = $values;
         }
 
+        $works = Work::orderBy('id', 'asc')->get();
 
-        return view('welcome')->with('cms', $cms)->with('blog', $blogs)->with('testimonial', $testimonial)->with('package', $package)->with('question', $question);
+
+        return view('welcome')->with('cms', $cms)->with('blog', $blogs)->with('testimonial', $testimonial)->with('package', $package)->with('question', $question)->with('work', $works);
     }
 
     public function blogDetails($id)
