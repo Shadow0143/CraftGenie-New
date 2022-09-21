@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card order-list">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
@@ -14,7 +14,7 @@
 
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body order-details-body">
                             <table id="example"
                                 class="table table-bordered dt-responsive nowrap table-striped align-middle"
                                 style="width:100%">
@@ -57,9 +57,9 @@
                                         </td>
                                         <td>
                                             <a href="{{route('userOrderDetails',['id'=>$val->id])}}"
-                                                class="btn btn-outline-dark btn-sm">Details</a>
+                                                class="btn btn-outline-dark btn-sm details-btn">Details</a>
                                             @if($val->mssgCount >0)
-                                            <span class="text-danger">
+                                            <span class="text-danger comments-logo">
                                                 <i class="fa fa-comments-o" aria-hidden="true"></i>
                                                 {{$val->mssgCount}}
                                             </span>

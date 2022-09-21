@@ -462,6 +462,13 @@ header a.navbar-brand img {
     .rw-box:after {
         display: none;
     }
+    .inr-slider-box{
+        height: unset !important;
+    }
+    /* .text-gap{} */
+    .blog-text{
+        padding-top: 165px !important;
+    }
 }
 
 
@@ -470,7 +477,9 @@ header a.navbar-brand img {
 .quick-packages .container {
     max-width: 1000px;
 }
-
+.inr-slider-box {
+    height: 330px;
+}
 .quick-packages .inr-slider-box {
     border: 1px solid rgb(204 204 204 / 58%);
     border-radius: 15px;
@@ -481,7 +490,7 @@ header a.navbar-brand img {
     color: #484848;
     font-weight: 600;
     margin-bottom: 3;
-    font-size: 17px;
+    font-size: 11px;
 }
 
 .quick-packages .inr-slider-box p {
@@ -491,6 +500,10 @@ header a.navbar-brand img {
     font-size: 12px;
     color: #8f8f8f;
     margin-bottom: 0px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .quick-packages .owl-nav .owl-prev,
@@ -842,6 +855,10 @@ header a.navbar-brand img {
     padding-top: 10px !important;
 }
 
+.icon-text ul {
+    list-style: none;
+}
+
 @media (max-width: 767px) {
     .client-sp .boxinn p {
         width: 90%;
@@ -980,7 +997,7 @@ header a.navbar-brand img {
     }
     .icon {
         float: unset !important;
-        margin-left: 80px;
+        margin-left: 90px;
     }
     .questions-model {
         width: 100% !important;
@@ -990,7 +1007,50 @@ header a.navbar-brand img {
     .title-text {
         padding-left: 110px !important;
     }
-}
+    .order-details{
+        margin-left: -47px;
+    }
+    .user, .user2, .user3, .user4, .user5{
+        height: auto !important;
+    }
+    .chat{
+        height: auto !important;
+    }
+    .send-bt {
+        margin-left: -296px !important;
+        width: 100px;
+        margin-top: 55px !important;
+    }
+    .order-gap{
+        margin-left: -45px;
+    }
+    .user5{
+        margin-left: -23px;
+        width: 310px;
+    }
+    .chat-gap{
+        margin-left: -35px;
+    }
+    .chat-box{
+        margin-top: 10px !important;
+        margin-left: -36px;
+    }
+    .order-list{
+        margin-left: -47px;
+    }
+    .order-details-body{
+        overflow-y: scroll;
+    }
+    .comments-logo{
+        float: unset !important;
+    }
+    .banner .item{
+        min-height: 137px !important;
+        margin-top: 66px !important;
+    }
+    .owl-theme .owl-dots .owl-dot{
+        margin-bottom: -28px;
+    }
 
 
 /* footer-box */
@@ -1096,6 +1156,40 @@ header a.navbar-brand img {
     color: #fff;
 }
 
+.user,.user2,.user3,.user4,.user5 {
+    background-color: #011c9d;
+    color: #fff;
+    height: 50px;
+    padding-top: 8px;
+    padding-left: 5px;
+}
+.send-bt{
+    margin-top: -3px;
+    box-shadow: none !important;
+    height: 40px;
+    margin-left: -18px;
+}
+.message{
+    box-shadow: none !important;
+    border: 2px solid #000;
+}
+.back{
+    float: right;
+    box-shadow: none !important;
+}
+.order-gap{
+    padding-bottom: 10px;
+}
+.chat-gap{
+    overflow-y: scroll;
+}
+.details-btn{
+    box-shadow: none !important;
+}
+.comments-logo{
+    float: right;
+}
+
 @media (max-width: 600px) {
     .footer-box .share {
         justify-content: center;
@@ -1123,7 +1217,7 @@ header a.navbar-brand img {
 
 .quick-packages .tips-area .img-area img {
     height: 140px;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .login458 {
@@ -1194,4 +1288,6 @@ header a.navbar-brand img {
 
 .close-icon span {
     color: #fff;
+
+}
 }

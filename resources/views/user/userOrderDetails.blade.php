@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Order Details </h4>
+                        <h4 class="mb-sm-0 order-gap">Order Details </h4>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card order-details">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-10">
@@ -59,7 +59,7 @@
                                         {{$payments->transaction_no}}</h5>
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{route('orderList')}}" class="btn btn-outline-danger">Back</a>
+                                    <a href="{{route('orderList')}}" class="btn btn-outline-danger back">Back</a>
                                 </div>
 
                             </div>
@@ -67,9 +67,9 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6 col-sm-6">
                                     <div class="col-12 card mt-5  mb-3">
-                                        <h3 class="mt-3">User Details</h3>
+                                        <h3 class="mt-3 user">User Details</h3>
                                         <p><strong> User Name : </strong> {{$payments->user_name}}</p>
                                         <p><strong> User Email : </strong> {{$payments->user_email}} </p>
                                         <p><strong> Phone No : </strong> {{$payments->contact_no}}</p>
@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3 class="mt-3">Order / Payment Details</h3>
+                                        <h3 class="mt-3 user2">Order / Payment Details</h3>
                                         <p><strong>Package Name : </strong> {{$payments->title}}</p>
                                         <p><strong>Transaction/Order Id : </strong> {{$payments->transaction_no}}</p>
                                         <p><strong>Amount : </strong> {{$payments->PaymentAmount}} /-</p>
@@ -95,7 +95,7 @@
                                     {{-- Question & Answer section --}}
                                     @if(!empty($answer))
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3 class="mt-3">Questions &Answers</h3>
+                                        <h3 class="mt-3 user3">Questions &Answers</h3>
                                         @forelse($answer as $key2 => $val2)
                                         <label for="">Q {{$key2+1}}) . {{$val2->question}}</label>
                                         <p>Ans .{{$val2->answers}}</p>
@@ -111,7 +111,7 @@
                                     @if(empty($solution))
 
                                     <div class="col-12 card mt-5 mb-3">
-                                        <h3 class="mt-3">Please wait !</h3>
+                                        <h3 class="mt-3 user4">Please wait !</h3>
                                         <p>You will get your solution very soon.</p>
                                     </div>
                                     @else
@@ -138,9 +138,9 @@
 
                                 </div>
 
-                                <div class="col-6 mt-5 pl-5 card" style="height:650px;">
-                                    <h3 class="mt-3">Chat With Admin</h3>
-                                    <div class=" mt-3 mb-3" style="overflow-y: scroll;">
+                                <div class="col-md-6 col-sm-6 mt-5 pl-5 card chat" style="height:650px;">
+                                    <h3 class="mt-3 user5">Chat With Admin</h3>
+                                    <div class="mt-3 mb-3 chat-gap">
                                         <div class="allMessages" style="">
                                             @forelse($chats as $chatkey => $chatval)
                                             <div
@@ -162,17 +162,17 @@
                                     </div>
                                     <div class="mb-3">
                                         <form action="" id="chatForm">
-                                            <div class="row mt-5">
+                                            <div class="row mt-5 chat-box">
                                                 <div class="col-10">
                                                     <input type="hidden" name="order_id" id="order_id"
                                                         value="{{$payments->paymentid}}">
                                                     <input type="hidden" name="package_id" id="package_id"
                                                         value="{{$payments->package_id}}">
                                                     <input type="text" name="sendMessage" id="sendMessage"
-                                                        class="form-control">
+                                                        class="form-control message">
                                                 </div>
                                                 <div class="col-2">
-                                                    <a href="javaScript:void(0);" class="btn btn-outline-primary"
+                                                    <a href="javaScript:void(0);" class="btn btn-outline-primary send-bt"
                                                         onClick="submitChat()"> Send
                                                     </a>
                                                 </div>

@@ -79,10 +79,9 @@
                             <a class="dropdown-item" href="{{route('profile')}}">Profile</a>
                             <a class="dropdown-item" href="{{route('orderList')}}">Orders</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-                                <span class="align-middle" data-key="t-logout">Logout</span>
-                            </a>
+                              document.getElementById('logout-form').submit();"><i
+                                    class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                    class="align-middle" data-key="t-logout">Logout</span></a>
 
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -103,4 +102,9 @@
                 </ul>
             </div>
         </nav>
+
+
+
+
+
     </header>
