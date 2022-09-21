@@ -28,7 +28,12 @@
     <h2 class="titleall">about US</h2>
     <div class="col-md-6 m-auto py-4 text-center">
         <p>
-        Craftgenie is a one-of-its-kind web platform, where brands get a chance to tell their story through easy-to-access communication solutions, made available for every need. With 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. Craftgenie works with companies at various stages, right from the fastest-growing startups to some of India’s biggest unicorn founders.
+            Craftgenie is a one-of-its-kind web platform, where brands get a chance to tell their story through
+            easy-to-access communication solutions, made available for every need. With 30+ years of cumulative team
+            experience, our trusted specialists create impact-driven narratives & perception journeys for players across
+            industries. We have curated communication functions which can be selected and activated through simple steps
+            instead of complicated processes. Craftgenie works with companies at various stages, right from the
+            fastest-growing startups to some of India’s biggest unicorn founders.
         </p>
     </div>
     <div class="about-bnr mt-5">
@@ -36,7 +41,9 @@
             <div class="about-text col-md-7">
                 <h3>Powerful Narratives Powerful Perception
                 </h3>
-                <p> 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. </p>
+                <p> 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives &
+                    perception journeys for players across industries. We have curated communication functions which can
+                    be selected and activated through simple steps instead of complicated processes. </p>
             </div>
         </div>
     </div>
@@ -86,52 +93,58 @@
                 <?php $__currentLoopData = $package; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="inr-slider-box ">
+
                         <div class="img-area">
                             <img src="<?php echo e(asset('packages')); ?>/<?php echo e($val->image); ?>" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
-                            <h5><?php echo e($val->title); ?> </h5>
-                            
-                            <span><?php echo $val->description; ?></span>
-                            <div class="bar-list">
-                                <ul>
-                                    <?php if(!empty($val->file)): ?>
-                                    <?php $__currentLoopData = $val->file; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li>
-                                        <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($value->file_name); ?>" target="_blank">
-                                            <?php if($value->extension == 'docx'): ?>
-                                            <img src="<?php echo e(asset('img/download.jpeg')); ?>" alt="word-img">
-                                            <?php elseif($value->extension == 'ppt'): ?>
-                                            <img src="<?php echo e(asset('img/ppt.png')); ?>" alt="ppt-img">
-                                            <?php elseif($value->extension == 'xlxs' || $value->extension == 'xl'): ?>
-                                            <img src="<?php echo e(asset('img/excel.png')); ?>" alt="xl-img">
+                            <a href="javaScript:void(0);" data-id="<?php echo e($val->id); ?>" class="packageDetails">
+
+                                <h5><?php echo e($val->title); ?> </h5>
+                                
+                                <span><?php echo $val->description; ?></span>
+                                <div class="bar-list">
+                                    <ul>
+                                        <?php if(!empty($val->file)): ?>
+                                        <?php $__currentLoopData = $val->file; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li>
+                                            <a href="<?php echo e(asset('extra_files')); ?>/<?php echo e($value->file_name); ?>" target="_blank">
+                                                <?php if($value->extension == 'docx'): ?>
+                                                <img src="<?php echo e(asset('img/download.jpeg')); ?>" alt="word-img">
+                                                <?php elseif($value->extension == 'ppt'): ?>
+                                                <img src="<?php echo e(asset('img/ppt.png')); ?>" alt="ppt-img">
+                                                <?php elseif($value->extension == 'xlxs' || $value->extension == 'xl'): ?>
+                                                <img src="<?php echo e(asset('img/excel.png')); ?>" alt="xl-img">
+                                                <?php endif; ?>
+
+                                            </a>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <?php endif; ?>
 
-                                        </a>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php endif; ?>
-
-                                    </li>
+                                        </li>
 
 
 
-                                </ul>
-                                <?php if(!Auth::user()): ?>
-                                <a class="order2" href="javaScript:void(0);" data-toggle="modal"
-                                    data-target="#login55">Order</a>
-                                <?php else: ?>
-                                
-                                <a href="javaScript:void(0);" class="order" data-id="<?php echo e($val->id); ?>"> Order</a>
-                                <?php endif; ?>
-                            </div>
+                                    </ul>
+
+                            </a>
+
+                            <?php if(!Auth::user()): ?>
+                            <a class="order2" href="javaScript:void(0);" data-toggle="modal"
+                                data-target="#login55">Order</a>
+                            <?php else: ?>
+                            
+                            <a href="javaScript:void(0);" class="order" data-id="<?php echo e($val->id); ?>"> Order</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+    </div>
 
-        <div id="howdo"></div>
+    <div id="howdo"></div>
 
     </div>
 
@@ -177,43 +190,43 @@
 
 
 <style>
-.tab {
-    display: none;
-}
+    .tab {
+        display: none;
+    }
 
-.tab2 {
-    display: none;
-}
+    .tab2 {
+        display: none;
+    }
 
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
 
-.step2 {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
+    .step2 {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
 
-.step.active {
-    opacity: 1;
-}
+    .step.active {
+        opacity: 1;
+    }
 
-.step2.active {
-    opacity: 1;
-}
+    .step2.active {
+        opacity: 1;
+    }
 </style>
 
 <!-- Modal -->
@@ -440,24 +453,24 @@
             <div class="row">
 
                 <?php $__currentLoopData = $work; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
-                    <div class="col-md-4">
 
-                        <div class="work-item">
+                <div class="col-md-4">
 
-                            <div class="work-img"><img src="<?php echo e(asset('extra_files')); ?>/<?php echo e($val->image); ?>" alt=""></div>
+                    <div class="work-item">
 
-                            <div class="work-p">
+                        <div class="work-img"><img src="<?php echo e(asset('extra_files')); ?>/<?php echo e($val->image); ?>" alt=""></div>
 
-                                <h3><?php echo e($val->title); ?></h3>
+                        <div class="work-p">
 
-                                <p><?php echo $val->description; ?></p>
+                            <h3><?php echo e($val->title); ?></h3>
 
-                            </div>
+                            <p><?php echo $val->description; ?></p>
 
                         </div>
 
                     </div>
+
+                </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
@@ -505,6 +518,34 @@
         </div>
     </div>
 
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="packagedetailsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" alt="" class="package_detail_img">
+                    <h3 class="package_detail_title"></h3>
+                    <p class="package_detail_desc"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- end incontact -->
     <?php echo $__env->make('layouts.frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -513,7 +554,7 @@
 
 
     <script>
-    jq162 = jQuery.noConflict(true);
+        jq162 = jQuery.noConflict(true);
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
     function showTab(n) {
@@ -654,6 +695,22 @@
     }
 
 
+    jq162('.packageDetails').on('click',function(){
+            var id = jq162(this).data('id');
+            // alert(id);
+            jq162.ajax({
+                type:'GET',
+                url:"<?php echo e(route('packageDetails')); ?>",
+                data:{id:id},
+                success:function(res){
+                    $('.package_detail_img').attr('src','packages'+'/'+res.image);
+                    $('.package_detail_title').html(res.title);
+                    $('.package_detail_desc').html(res.description);
+                    $('#packagedetailsmodal').modal('show');
+                }
+            });        
+    });
+
 
 
     jq162(".numericOnly").keypress(function(e) {
@@ -663,7 +720,7 @@
 
 
     <script>
-    $('.order').on('click', function() {
+        $('.order').on('click', function() {
         var packageId = $(this).data('id');
         $('.package_id').val(packageId);
         $('#QuestionAnswerModeal').modal('show');
@@ -676,5 +733,8 @@
         $('#storyAnswerModeal').modal('show');
     });
     </script>
+
+
+
 
     <?php /**PATH /home/billu/Data/Professional/Laravel/CraftGenie-New/resources/views/welcome.blade.php ENDPATH**/ ?>

@@ -28,7 +28,12 @@
     <h2 class="titleall">about US</h2>
     <div class="col-md-6 m-auto py-4 text-center">
         <p>
-        Craftgenie is a one-of-its-kind web platform, where brands get a chance to tell their story through easy-to-access communication solutions, made available for every need. With 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. Craftgenie works with companies at various stages, right from the fastest-growing startups to some of India’s biggest unicorn founders.
+            Craftgenie is a one-of-its-kind web platform, where brands get a chance to tell their story through
+            easy-to-access communication solutions, made available for every need. With 30+ years of cumulative team
+            experience, our trusted specialists create impact-driven narratives & perception journeys for players across
+            industries. We have curated communication functions which can be selected and activated through simple steps
+            instead of complicated processes. Craftgenie works with companies at various stages, right from the
+            fastest-growing startups to some of India’s biggest unicorn founders.
         </p>
     </div>
     <div class="about-bnr mt-5">
@@ -36,7 +41,9 @@
             <div class="about-text col-md-7">
                 <h3>Powerful Narratives Powerful Perception
                 </h3>
-                <p> 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives & perception journeys for players across industries. We have curated communication functions which can be selected and activated through simple steps instead of complicated processes. </p>
+                <p> 30+ years of cumulative team experience, our trusted specialists create impact-driven narratives &
+                    perception journeys for players across industries. We have curated communication functions which can
+                    be selected and activated through simple steps instead of complicated processes. </p>
             </div>
         </div>
     </div>
@@ -86,52 +93,58 @@
                 @foreach($package as $key => $val)
                 <div class="item">
                     <div class="inr-slider-box ">
+
                         <div class="img-area">
                             <img src="{{asset('packages')}}/{{$val->image}}" alt="quic3.png">
                         </div>
                         <div class="w-100 d-block qtext">
-                            <h5>{{$val->title}} </h5>
-                            {{-- <p> Price : <strong>{{$val->price}} /-</strong></p> --}}
-                            <span>{!! $val->description !!}</span>
-                            <div class="bar-list">
-                                <ul>
-                                    @if(!empty($val->file))
-                                    @foreach($val->file as $key => $value)
-                                    <li>
-                                        <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
-                                            @if($value->extension == 'docx')
-                                            <img src="{{asset('img/download.jpeg')}}" alt="word-img">
-                                            @elseif($value->extension == 'ppt')
-                                            <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
-                                            @elseif($value->extension == 'xlxs' || $value->extension == 'xl')
-                                            <img src="{{asset('img/excel.png')}}" alt="xl-img">
+                            <a href="javaScript:void(0);" data-id="{{$val->id}}" class="packageDetails">
+
+                                <h5>{{$val->title}} </h5>
+                                {{-- <p> Price : <strong>{{$val->price}} /-</strong></p> --}}
+                                <span>{!! $val->description !!}</span>
+                                <div class="bar-list">
+                                    <ul>
+                                        @if(!empty($val->file))
+                                        @foreach($val->file as $key => $value)
+                                        <li>
+                                            <a href="{{asset('extra_files')}}/{{$value->file_name}}" target="_blank">
+                                                @if($value->extension == 'docx')
+                                                <img src="{{asset('img/download.jpeg')}}" alt="word-img">
+                                                @elseif($value->extension == 'ppt')
+                                                <img src="{{asset('img/ppt.png')}}" alt="ppt-img">
+                                                @elseif($value->extension == 'xlxs' || $value->extension == 'xl')
+                                                <img src="{{asset('img/excel.png')}}" alt="xl-img">
+                                                @endif
+
+                                            </a>
+                                            @endforeach
                                             @endif
 
-                                        </a>
-                                        @endforeach
-                                        @endif
-
-                                    </li>
+                                        </li>
 
 
 
-                                </ul>
-                                @if(!Auth::user())
-                                <a class="order2" href="javaScript:void(0);" data-toggle="modal"
-                                    data-target="#login55">Order</a>
-                                @else
-                                {{-- <a href="{{route('login')}}" class="order"> order</a> --}}
-                                <a href="javaScript:void(0);" class="order" data-id="{{$val->id}}"> Order</a>
-                                @endif
-                            </div>
+                                    </ul>
+
+                            </a>
+
+                            @if(!Auth::user())
+                            <a class="order2" href="javaScript:void(0);" data-toggle="modal"
+                                data-target="#login55">Order</a>
+                            @else
+                            {{-- <a href="{{route('login')}}" class="order"> order</a> --}}
+                            <a href="javaScript:void(0);" class="order" data-id="{{$val->id}}"> Order</a>
+                            @endif
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
         </div>
+    </div>
 
-        <div id="howdo"></div>
+    <div id="howdo"></div>
 
     </div>
 
@@ -177,43 +190,43 @@
 
 
 <style>
-.tab {
-    display: none;
-}
+    .tab {
+        display: none;
+    }
 
-.tab2 {
-    display: none;
-}
+    .tab2 {
+        display: none;
+    }
 
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
 
-.step2 {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
+    .step2 {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
 
-.step.active {
-    opacity: 1;
-}
+    .step.active {
+        opacity: 1;
+    }
 
-.step2.active {
-    opacity: 1;
-}
+    .step2.active {
+        opacity: 1;
+    }
 </style>
 
 <!-- Modal -->
@@ -340,84 +353,88 @@
             <div class="modal-body">
                 @foreach($story as $key => $val)
                 <form action="{{route('submitAnswer')}}" id="question_form{{$key+1}}">
-@csrf
+                    @csrf
 
-<div class="tab2">
-    <p>
-        {{$key+1}} ). &nbsp; {{$val->question}}
-        <input type="hidden" name="question_id" id="question_id{{$val->id}}" value="{{$val->id}}"
-            class="question_id{{$val->id}}">
-        <input type="hidden" name="question_type" id="question_type{{$val->id}}" value="{{$val->question_type}}"
-            class="question_type{{$val->id}}">
-    </p>
-    <p class="mb-5">
-        @if($val->question_type == 'text')
-        <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
-            id="answer{{$val->id}}">
-        @elseif($val->question_type == 'textarea')
-        <textarea name="answer" id="answer{{$val->id}}" cols="30" rows="10"
-            class="form-control answer{{$val->id}}"></textarea>
-        @elseif($val->question_type == 'radio')
-    <ul>
-        @foreach($val->values as $key => $value)
-        <li>
-            <label for="{{$value}}">{{$value}}</label>
-            <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
-                value="{{$value}}" id="answer{{$val->id}}">
-        </li>
+                    <div class="tab2">
+                        <p>
+                            {{$key+1}} ). &nbsp; {{$val->question}}
+                            <input type="hidden" name="question_id" id="question_id{{$val->id}}" value="{{$val->id}}"
+                                class="question_id{{$val->id}}">
+                            <input type="hidden" name="question_type" id="question_type{{$val->id}}"
+                                value="{{$val->question_type}}" class="question_type{{$val->id}}">
+                        </p>
+                        <p class="mb-5">
+                            @if($val->question_type == 'text')
+                            <input type="{{$val->question_type}}" name="answer" class="form-control answer{{$val->id}}"
+                                id="answer{{$val->id}}">
+                            @elseif($val->question_type == 'textarea')
+                            <textarea name="answer" id="answer{{$val->id}}" cols="30" rows="10"
+                                class="form-control answer{{$val->id}}"></textarea>
+                            @elseif($val->question_type == 'radio')
+                        <ul>
+                            @foreach($val->values as $key => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="answer"
+                                    class="form-control answer{{$val->id}}" value="{{$value}}" id="answer{{$val->id}}">
+                            </li>
 
-        @endforeach
-    </ul>
+                            @endforeach
+                        </ul>
 
-    @elseif($val->question_type == 'checkbox')
-    <ul>
-        @foreach($val->values as $key2 => $value)
-        <li>
-            <label for="{{$value}}">{{$value}}</label>
-            <input type="{{$val->question_type}}" name="checkbox[]" class="form-control checkbox{{$val->id}}"
-                value="{{$value}}" id="checkbox{{$val->id}}">
-        </li>
+                        @elseif($val->question_type == 'checkbox')
+                        <ul>
+                            @foreach($val->values as $key2 => $value)
+                            <li>
+                                <label for="{{$value}}">{{$value}}</label>
+                                <input type="{{$val->question_type}}" name="checkbox[]"
+                                    class="form-control checkbox{{$val->id}}" value="{{$value}}"
+                                    id="checkbox{{$val->id}}">
+                            </li>
 
-        @endforeach
-    </ul>
+                            @endforeach
+                        </ul>
 
-    @elseif($val->question_type == 'select')
-    <select name="answer" id=" answer{{$val->id}}" class="form-control answer{{$val->id}}">
-        <option value="">--Select please--</option>
-        @foreach($val->values as $key => $value)
-        <option value="{{$value}}">{{ucfirst($value)}}</option>
-        @endforeach
-    </select>
-    @endif
-    </p>
-    <div style="overflow:auto;">
-        <div style="float:right">
+                        @elseif($val->question_type == 'select')
+                        <select name="answer" id=" answer{{$val->id}}" class="form-control answer{{$val->id}}">
+                            <option value="">--Select please--</option>
+                            @foreach($val->values as $key => $value)
+                            <option value="{{$value}}">{{ucfirst($value)}}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                        </p>
+                        <div style="overflow:auto;">
+                            <div style="float:right">
 
-            <a href="javaScript:void(0);" id="prevBtn2" onclick="nextPrev2(-1)" class="btn btn-outline-dark btn-sm">
-                << </a>
-                    <a href="javaScript:void(0);" class="btn btn-outline-success btn-sm submitAnswer{{$val->id}}"
-                        type="submit" id="nextBtn2" onclick="nextPrev2(1,'{{$val->id}}')">Save &
-                        Next</a>
-                    <a class="btn btn-outline-danger btn-sm paynowbtn2 " href="#">Skip &
-                        Checkout</a>
-                    <a class="btn btn-outline-warning btn-sm" onclick="skip2(1)" href="javaScript:void(0);"> >> </a>
+                                <a href="javaScript:void(0);" id="prevBtn2" onclick="nextPrev2(-1)"
+                                    class="btn btn-outline-dark btn-sm">
+                                    << </a>
+                                        <a href="javaScript:void(0);"
+                                            class="btn btn-outline-success btn-sm submitAnswer{{$val->id}}"
+                                            type="submit" id="nextBtn2" onclick="nextPrev2(1,'{{$val->id}}')">Save &
+                                            Next</a>
+                                        <a class="btn btn-outline-danger btn-sm paynowbtn2 " href="#">Skip &
+                                            Checkout</a>
+                                        <a class="btn btn-outline-warning btn-sm" onclick="skip2(1)"
+                                            href="javaScript:void(0);"> >> </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    @endforeach
+                </form>
+
+                <!-- Circles which indicates the steps of the form: -->
+                <div style="text-align:center;margin-top:40px;">
+                    @for( $i =0; $i< (count($story) -1 );$i++) <span class="step2"></span>
+                        @endfor
+                </div>
+            </div>
 
         </div>
     </div>
-
-</div>
-@endforeach
-</form>
-
-<!-- Circles which indicates the steps of the form: -->
-<div style="text-align:center;margin-top:40px;">
-    @for( $i =0; $i< (count($story) -1 );$i++) <span class="step2"></span>
-        @endfor
-</div>
-</div>
-
-</div>
-</div>
 </div> --}}
 
 <!------ Wait  for solution MODAL -------->
@@ -529,24 +546,24 @@
             <div class="row">
 
                 @foreach ($work as $key=>$val)
-                    
-                    <div class="col-md-4">
 
-                        <div class="work-item">
+                <div class="col-md-4">
 
-                            <div class="work-img"><img src="{{asset('extra_files')}}/{{$val->image}}" alt=""></div>
+                    <div class="work-item">
 
-                            <div class="work-p">
+                        <div class="work-img"><img src="{{asset('extra_files')}}/{{$val->image}}" alt=""></div>
 
-                                <h3>{{$val->title}}</h3>
+                        <div class="work-p">
 
-                                <p>{!! $val->description !!}</p>
+                            <h3>{{$val->title}}</h3>
 
-                            </div>
+                            <p>{!! $val->description !!}</p>
 
                         </div>
 
                     </div>
+
+                </div>
                 @endforeach
 
 
@@ -630,6 +647,34 @@
         </div>
     </div>
 
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="packagedetailsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" alt="" class="package_detail_img">
+                    <h3 class="package_detail_title"></h3>
+                    <p class="package_detail_desc"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- end incontact -->
     @include('layouts.frontend.footer')
 
@@ -638,7 +683,7 @@
 
 
     <script>
-    jq162 = jQuery.noConflict(true);
+        jq162 = jQuery.noConflict(true);
     var currentTab = 0; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
     function showTab(n) {
@@ -779,6 +824,22 @@
     }
 
 
+    jq162('.packageDetails').on('click',function(){
+            var id = jq162(this).data('id');
+            // alert(id);
+            jq162.ajax({
+                type:'GET',
+                url:"{{route('packageDetails')}}",
+                data:{id:id},
+                success:function(res){
+                    $('.package_detail_img').attr('src','packages'+'/'+res.image);
+                    $('.package_detail_title').html(res.title);
+                    $('.package_detail_desc').html(res.description);
+                    $('#packagedetailsmodal').modal('show');
+                }
+            });        
+    });
+
 
 
     jq162(".numericOnly").keypress(function(e) {
@@ -788,7 +849,7 @@
 
 
     <script>
-    $('.order').on('click', function() {
+        $('.order').on('click', function() {
         var packageId = $(this).data('id');
         $('.package_id').val(packageId);
         $('#QuestionAnswerModeal').modal('show');
@@ -801,6 +862,9 @@
         $('#storyAnswerModeal').modal('show');
     });
     </script>
+
+
+
 
     {{-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
@@ -915,4 +979,5 @@
 
     function fixStepIndicator2(n2) {
     var i2, x2 = document.getElementsByClassName("step2");
-    for (i = 0; i <( x2.length)-1; i++) { x2[i].className=x2[i].className.replace(" active", "" ); } } </script> --}}
+    for (i = 0; i <( x2.length)-1; i++) { x2[i].className=x2[i].className.replace(" active", "" ); } } 
+    </script> --}}

@@ -21,6 +21,7 @@ Route::post('/submit-contact', [App\Http\Controllers\WelcomeController::class, '
 Route::get('/questionaries', [App\Http\Controllers\WelcomeController::class, 'questionaries'])->name('questionaries');
 Route::post('/submit-answer', [App\Http\Controllers\WelcomeController::class, 'submitAnswer'])->name('submitAnswer');
 
+Route::get('/package-details', [App\Http\Controllers\WelcomeController::class, 'packageDetails'])->name('packageDetails');
 
 Route::get('/order-list', [App\Http\Controllers\WelcomeController::class, 'orderList'])->name('orderList');
 Route::get('/user-order-details/{id}', [App\Http\Controllers\WelcomeController::class, 'userOrderDetails'])->name('userOrderDetails');

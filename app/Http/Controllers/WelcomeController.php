@@ -263,4 +263,13 @@ class WelcomeController extends Controller
 
         return view('user.term_condition', compact('policy'));
     }
+
+
+    public function packageDetails(Request $request)
+    {
+
+        $package = Package::where('id', $request->id)->first();
+        // dd($request->id, $package);
+        return $package;
+    }
 }
